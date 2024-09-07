@@ -1,7 +1,7 @@
 package ru.nsu.lavitskaya;
 
 /**
- * The Main class provides a static method for heap sort algorithm.
+ * The HeapSort class provides a static method for heap sort algorithm.
  */
 
 public class HeapSort {
@@ -9,7 +9,6 @@ public class HeapSort {
     /**
      * Sorts the input array using the heap sort algorithm.
      * @param arr the input array to be sorted
-     * @return the sorted array
      */
 
     public static void heapSort(int[] arr) {
