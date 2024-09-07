@@ -4,7 +4,7 @@ package ru.nsu.lavitskaya;
  * The Main class provides a static method for heap sort algorithm.
  */
 
-public class Main {
+public class HeapSort {
 
     /**
      * Sorts the input array using the heap sort algorithm.
@@ -12,7 +12,7 @@ public class Main {
      * @return the sorted array
      */
 
-    public static int[] heapSort(int[] arr) {
+    public static void heapSort(int[] arr) {
         int n = arr.length;
 
         for (int i = n / 2 - 1; i >= 0; i--) {
@@ -25,8 +25,6 @@ public class Main {
             arr[0] = tmp;
             heapify(arr, 0, i);
         }
-
-        return arr;
     }
 
     /**
