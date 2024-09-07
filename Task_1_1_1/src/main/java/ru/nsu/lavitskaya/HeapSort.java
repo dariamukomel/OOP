@@ -8,6 +8,7 @@ public class HeapSort {
 
     /**
      * Sorts the input array using the heap sort algorithm.
+     *
      * @param arr the input array to be sorted
      */
 
@@ -27,7 +28,8 @@ public class HeapSort {
     }
 
     /**
-     * Heapify the subtree rooted at index i, n is size of heap
+     * Heapify the subtree rooted at index i, n is size of heap.
+     *
      * @param arr the input array to be heapified
      * @param i the index of the current node
      * @param n the size of the heap
@@ -41,7 +43,7 @@ public class HeapSort {
         if (l < n && arr[l] > arr[largest]) {
             largest = l;
         }
-        if (r <n && arr[r] > arr[largest]) {
+        if (r < n && arr[r] > arr[largest]) {
             largest = r;
         }
         if (i != largest) {

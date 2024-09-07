@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.nsu.lavitskaya.HeapSort.heapSort;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Random;
 
-/** Testing */
+import org.junit.jupiter.api.Test;
+
+
+/** Testing. */
 class HeapSortTest {
     @Test
     public void testHeapSort_sortedInput() {
