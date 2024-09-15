@@ -31,7 +31,7 @@ class BlackjackGameTest {
     @Test
     void testPlayerWinsWithBlackjack() {
 
-        String simulatedInput = "0\n";
+        String simulatedInput = "no\n";
         InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
         Scanner scanner = new Scanner(in);
 
@@ -48,6 +48,33 @@ class BlackjackGameTest {
 
         String output = outputStream.toString();
         assertTrue(output.contains("You have a blackjack! You win!"));
+        System.setOut(originalOut);
+    }
+
+    @Test
+    void testPlayerWinsWithoutBlackjack() {
+
+        String simulatedInput = "0\nno\n";
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
+        Scanner scanner = new Scanner(in);
+
+
+        Deck mockDeck = mock(Deck.class);
+        BlackjackGame game = new BlackjackGame();
+        game.setScanner(scanner);
+        game.setDeck(mockDeck);
+
+        Card playerCard1 = new Card("Hearts", "10");
+        Card playerCard2 = new Card("Diamonds", "K");
+        Card dealerCard1 = new Card("Spades", "9");
+        Card dealerCard2 = new Card("Clubs", "9");
+        when(mockDeck.deal()).thenReturn(playerCard1, dealerCard1, playerCard2, dealerCard2);
+
+
+        game.start();
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("You won the round!"));
         System.setOut(originalOut);
     }
 }
