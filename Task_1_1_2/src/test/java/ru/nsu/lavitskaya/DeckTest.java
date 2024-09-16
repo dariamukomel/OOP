@@ -1,16 +1,18 @@
 package ru.nsu.lavitskaya;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 /**
  *The DeckTest class tests the functionalities of the Deck class.
  * It ensures that the operations for dealing cards work as expected.
  * testDealCard() - Tests that a card can be dealt from a non-empty deck.
- * testDealLastCard() - Tests that dealing the last card from the deck correctly creates a new deck and returns a non-null card.
+ * testDealLastCard() - Tests that dealing the last card from the deck correctly creates a new deck and returns
+ * a non-null card.
  */
 
 class DeckTest {

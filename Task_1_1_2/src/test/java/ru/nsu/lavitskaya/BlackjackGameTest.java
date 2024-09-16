@@ -1,17 +1,16 @@
 package ru.nsu.lavitskaya;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for checking the logic of the BlackjackGame.
@@ -24,19 +23,24 @@ import static org.mockito.Mockito.when;
  */
 
 class BlackjackGameTest {
-    private final PrintStream originalOut = System.out; //originalOut preserves the original standard output so that it can be restored if necessary
-    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); //outputStream is used to collect data output to standard stream (instead of console)
+    private final PrintStream originalOut = System.out;
+    //originalOut preserves the original standard output so that it can be restored if necessary
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    //outputStream is used to collect data output to standard stream (instead of console)
 
     @BeforeEach
     void setUp() {
-        System.setOut(new PrintStream(outputStream)); //Here the standard output is redirected to outputStream so that we can capture whatever is output to the console while the test is running
+        System.setOut(new PrintStream(outputStream));
+        //Here the standard output is redirected to outputStream so that we can capture whatever is output to the
+        // console while the test is running
     }
 
     @Test
     void testPlayerWinsWithBlackjack() {
 
         String simulatedInput = "no\n";
-        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        //ByteArrayInputStream is used to create an input data stream from a string
         Scanner scanner = new Scanner(in);
 
 
@@ -59,7 +63,8 @@ class BlackjackGameTest {
     void testPlayerWinsWithoutBlackjack() {
 
         String simulatedInput = "0\nno\n";
-        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        //ByteArrayInputStream is used to create an input data stream from a string
         Scanner scanner = new Scanner(in);
 
 
@@ -86,7 +91,8 @@ class BlackjackGameTest {
     void testDealerWins() {
 
         String simulatedInput = "1\nno\n";
-        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        //ByteArrayInputStream is used to create an input data stream from a string
         Scanner scanner = new Scanner(in);
 
         Deck mockDeck = mock(Deck.class);

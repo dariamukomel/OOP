@@ -62,7 +62,7 @@ public class BlackjackGame {
 
         System.out.println("Dealer dealt cards.");
 
-        System.out.println("Your cards: " + player );
+        System.out.println("Your cards: " + player);
         System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
 
         if (player.getScore() == BLACKJACK_SCORE) {
@@ -81,8 +81,7 @@ public class BlackjackGame {
 
         if (dealer.isBust()) {
             System.out.println("Dealer score exceeds " + BLACKJACK_SCORE + "! You win!");
-        }
-        else {
+        } else {
             determineWinner();
         }
 
@@ -98,7 +97,7 @@ public class BlackjackGame {
             if (choice == 1) {
                 player.addCard(deck.deal());
                 System.out.println("You drew: " + player.getLastCardOfHand());
-                System.out.println("Your cards: " + player );
+                System.out.println("Your cards: " + player);
                 System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
 
                 if (player.isBust()) {

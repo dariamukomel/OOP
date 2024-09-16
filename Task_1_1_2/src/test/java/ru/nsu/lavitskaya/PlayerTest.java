@@ -1,10 +1,11 @@
 package ru.nsu.lavitskaya;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This class tests the functionalities of the Player class,
@@ -23,7 +24,7 @@ class PlayerTest {
     void testAddCard() {
         Card card = new Card("Hearts", "K");
         player.addCard(card);
-        assertEquals(1, player.getHandSize() , "Player should have one card in hand");
+        assertEquals(1, player.getHandSize(), "Player should have one card in hand");
     }
 
     @Test

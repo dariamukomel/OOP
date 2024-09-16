@@ -27,11 +27,17 @@ public class Player {
         hand.clear();
     }
 
-    public Card getFirstCardOfHand() { return hand.getFirst(); }
+    public Card getFirstCardOfHand() {
+        return hand.getFirst();
+    }
 
-    public Card getLastCardOfHand() { return hand.getLast(); }
+    public Card getLastCardOfHand() {
+        return hand.getLast();
+    }
 
-    public int getHandSize() { return hand.size(); }
+    public int getHandSize() {
+        return hand.size();
+    }
 
     public int getScore() {
         int score = 0;
@@ -50,7 +56,7 @@ public class Player {
     }
 
     public boolean isBust() {
-        return getScore() > BlackjackGame.BLACKJACK_SCORE ;
+        return getScore() > BlackjackGame.BLACKJACK_SCORE;
     }
 
     public String toString() {

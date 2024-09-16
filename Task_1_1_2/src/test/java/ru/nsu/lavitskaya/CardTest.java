@@ -1,9 +1,9 @@
 package ru.nsu.lavitskaya;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This class tests the functionalities of the Card class,
@@ -25,7 +25,8 @@ class CardTest {
 
     @Test
     void testCardToString() {
-        assertEquals("A of Hearts (11)", card.toString(), "The toString method should return the correct format");
+        assertEquals("A of Hearts (11)", card.toString(), "The toString method should return the " +
+                "correct format");
     }
 
 }
