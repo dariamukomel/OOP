@@ -49,8 +49,10 @@ class BlackjackGameTest {
 
 
         Deck mockDeck = mock(Deck.class);
-        when(mockDeck.deal()).thenReturn(new Card("Hearts", "A"), new Card("Diamonds", "K"));
         game.setDeck(mockDeck);
+        when(mockDeck.deal()).thenReturn(new Card("Hearts", "A"),
+                new Card("Diamonds", "K"), new Card("Hearts", "K"));
+
 
         game.start();
 
