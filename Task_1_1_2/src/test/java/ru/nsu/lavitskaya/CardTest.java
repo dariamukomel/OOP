@@ -25,8 +25,8 @@ class CardTest {
 
     @Test
     void testCardToString() {
-        assertEquals("A of Hearts (11)", card.toString(), "The toString method should return the " +
-                "correct format");
+        assertEquals("A of Hearts (11)", card.toString(), "The toString method should return the "
+                + "correct format");
     }
 
 }

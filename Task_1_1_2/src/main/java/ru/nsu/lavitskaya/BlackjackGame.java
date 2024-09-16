@@ -4,13 +4,10 @@ import java.util.Scanner;
 
 /**
  * The main class for the Blackjack game.
- * This class is responsible for managing the game lifecycle,
- * including initializing the game components, handling player
- * interactions, and determining the outcomes of each round
- * of Blackjack.
+ * This class manages the game lifecycle, including initializing
+ * the game components, handling player interactions, and
+ * determining the outcomes of each round of Blackjack.
  */
-
-
 public class BlackjackGame {
     public static final int BLACKJACK_SCORE = 21;
     private Deck deck;
@@ -19,7 +16,9 @@ public class BlackjackGame {
     private int roundNumber;
     private Scanner scanner;
 
-
+    /**
+     * Constructs a new Blackjack game with a fresh deck and players.
+     */
     public BlackjackGame() {
         deck = new Deck();
         player = new Player("Player");
@@ -28,14 +27,26 @@ public class BlackjackGame {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Sets the scanner for user input.
+     * @param scanner the scanner to be used for user input
+     */
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;
     }
 
+    /**
+     * Sets the deck for the game.
+     * @param deck the deck to be used in the game
+     */
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
 
+    /**
+     * Starts the Blackjack game, welcoming the player
+     * and managing the game rounds.
+     */
     public void start() {
         System.out.println("Welcome to Blackjack!");
         while (true) {
@@ -49,6 +60,11 @@ public class BlackjackGame {
         scanner.close();
     }
 
+    /**
+     * Plays a single round of Blackjack, managing the interactions
+     * between the player and the dealer, and determining the round outcome.
+     * @param scanner the scanner for user input
+     */
     private void playRound(Scanner scanner) {
         roundNumber++;
         player.clearHand();
@@ -63,7 +79,8 @@ public class BlackjackGame {
         System.out.println("Dealer dealt cards.");
 
         System.out.println("Your cards: " + player);
-        System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
+        System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand()
+                + ", <hidden card>]");
 
         if (player.getScore() == BLACKJACK_SCORE) {
             System.out.println("You have a blackjack! You win!");
@@ -87,6 +104,10 @@ public class BlackjackGame {
 
     }
 
+    /**
+     * Manages the player's turn, allowing them to take cards or stop.
+     * @param scanner the scanner for user input
+     */
     private void playerTurn(Scanner scanner) {
         System.out.println("\nYour turn\n");
         while (true) {
@@ -98,7 +119,8 @@ public class BlackjackGame {
                 player.addCard(deck.deal());
                 System.out.println("You drew: " + player.getLastCardOfHand());
                 System.out.println("Your cards: " + player);
-                System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
+                System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand()
+                        + ", <hidden card>]");
 
                 if (player.isBust()) {
                     break;
@@ -109,6 +131,9 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * Manages the dealer's turn, drawing cards according to the rules.
+     */
     private void dealerTurn() {
         System.out.println("Dealer's turn\n");
         System.out.println("Dealer reveals the hidden card: " + dealer.getLastCardOfHand());
@@ -124,6 +149,10 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * Determines the winner of the round based on the scores of
+     * the player and the dealer.
+     */
     private void determineWinner() {
         if (player.getScore() > dealer.getScore()) {
             System.out.println("You won the round!");
@@ -134,6 +163,10 @@ public class BlackjackGame {
         }
     }
 
+    /**
+     * The main method to launch the Blackjack game.
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         BlackjackGame game = new BlackjackGame();
         game.start();

@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeEach;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -31,8 +31,8 @@ class BlackjackGameTest {
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outputStream));
-        //Here the standard output is redirected to outputStream so that we can capture whatever is output to the
-        // console while the test is running
+        //Here the standard output is redirected to outputStream so that we can capture
+        // whatever is output to the console while the test is running
     }
 
     @Test
@@ -105,12 +105,14 @@ class BlackjackGameTest {
         Card dealerCard1 = new Card("Spades", "9");
         Card dealerCard2 = new Card("Clubs", "9");
         Card playerCard3 = new Card("Hearts", "2");
-        when(mockDeck.deal()).thenReturn(playerCard1, dealerCard1, playerCard2, dealerCard2, playerCard3);
+        when(mockDeck.deal()).thenReturn(playerCard1, dealerCard1, playerCard2,
+                dealerCard2, playerCard3);
 
         game.start();
 
         String output = outputStream.toString();
-        assertTrue(output.contains("You lost! Your score exceeds " + BlackjackGame.BLACKJACK_SCORE + "."));
+        assertTrue(output.contains("You lost! Your score exceeds "
+                + BlackjackGame.BLACKJACK_SCORE + "."));
         System.setOut(originalOut);
 
     }

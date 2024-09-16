@@ -1,9 +1,7 @@
 package ru.nsu.lavitskaya;
 
 /**
- * Represents a playing card in the game.
- * Each card has a suit, a rank, and a value. The value is determined based on
- * the rank of the card, with special handling for face cards and aces.
+ * Represents a playing card with a suit, rank, and value.
  */
 
 public class Card {
@@ -11,6 +9,11 @@ public class Card {
     private String rank;
     private int value;
 
+    /**
+     * Constructs a new {@code Card} with the specified suit and rank.
+     * @param suit the suit of the card (e.g., "Hearts")
+     * @param rank the rank of the card (e.g., "K", "10")
+     */
     public Card(String suit, String rank) {
         this.suit = suit;
         this.rank = rank;
@@ -30,10 +33,18 @@ public class Card {
         }
     }
 
+    /**
+     * Returns the value of the card.
+     * @return the value of the card as an integer
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Returns a string representation of the card.
+     * @return a string in the format "Rank of Suit (Value)"
+     */
     public String toString() {
         return rank + " of " + suit + " (" + getValue() + ")";
     }

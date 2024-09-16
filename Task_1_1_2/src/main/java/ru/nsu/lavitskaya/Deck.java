@@ -5,14 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Represents a deck of cards for the Blackjack game.
- * The deck is capable of shuffling and dealing cards.
- * Once the deck is empty, a new deck is automatically created
- * and shuffled for continued play.
+ * Represents a deck of playing cards.
+ * The deck can create a new set of cards, shuffle them, and deal cards to players.
  */
+
 public class Deck {
     private List<Card> cards;
 
+    /**
+     * Constructs a new {@code Deck} and initializes it with a full
+     * set of 52 cards. The deck is shuffled upon creation.
+     */
     public Deck() {
         createNewDeck();
         shuffle();
@@ -34,6 +37,12 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    /**
+     * Deals a card from the deck. If the deck is empty, a new deck
+     * is created and shuffled before dealing the card.
+     *
+     * @return the dealt card
+     */
     public Card deal() {
         if (cards.isEmpty()) {
             System.out.println("The deck is empty. Creating a new deck.");

@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
  *The DeckTest class tests the functionalities of the Deck class.
  * It ensures that the operations for dealing cards work as expected.
  * testDealCard() - Tests that a card can be dealt from a non-empty deck.
- * testDealLastCard() - Tests that dealing the last card from the deck correctly creates a new deck and returns
+ * testDealLastCard() - Tests that dealing the last card from the deck
+ * correctly creates a new deck and returns
  * a non-null card.
  */
 
