@@ -17,6 +17,10 @@ import static org.mockito.Mockito.when;
  * Test class for checking the logic of the BlackjackGame.
  * This class uses JUnit 5 to perform the tests
  * and Mockito to create mock objects used in the tests.
+ * The following test methods are included:
+ * testPlayerWinsWithBlackjack() - Tests the scenario where the player wins with a blackjack hand.
+ * testPlayerWinsWithoutBlackjack() - Tests the scenario where the player wins without a blackjack.
+ * testDealerWins() - Tests the scenario where the dealer wins against the player.
  */
 
 class BlackjackGameTest {
@@ -76,5 +80,32 @@ class BlackjackGameTest {
         String output = outputStream.toString();
         assertTrue(output.contains("You won the round!"));
         System.setOut(originalOut);
+    }
+
+    @Test
+    void testDealerWins() {
+
+        String simulatedInput = "1\nno\n";
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes()); //ByteArrayInputStream is used to create an input data stream from a string
+        Scanner scanner = new Scanner(in);
+
+        Deck mockDeck = mock(Deck.class);
+        BlackjackGame game = new BlackjackGame();
+        game.setScanner(scanner);
+        game.setDeck(mockDeck);
+
+        Card playerCard1 = new Card("Hearts", "10");
+        Card playerCard2 = new Card("Diamonds", "K");
+        Card dealerCard1 = new Card("Spades", "9");
+        Card dealerCard2 = new Card("Clubs", "9");
+        Card playerCard3 = new Card("Hearts", "2");
+        when(mockDeck.deal()).thenReturn(playerCard1, dealerCard1, playerCard2, dealerCard2, playerCard3);
+
+        game.start();
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("You lost! Your score exceeds " + BlackjackGame.BLACKJACK_SCORE + "."));
+        System.setOut(originalOut);
+
     }
 }

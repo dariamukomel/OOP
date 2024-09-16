@@ -12,11 +12,13 @@ import java.util.Scanner;
 
 
 public class BlackjackGame {
+    public static final int BLACKJACK_SCORE = 21;
     private Deck deck;
     private Player player;
     private Player dealer;
     private int roundNumber;
     private Scanner scanner;
+
 
     public BlackjackGame() {
         deck = new Deck();
@@ -60,10 +62,10 @@ public class BlackjackGame {
 
         System.out.println("Dealer dealt cards.");
 
-        System.out.println("Your cards: " + player + " > " + player.getScore());
-        System.out.println("Dealer's cards: [" + dealer.getHand().get(0) + ", <hidden card>]");
+        System.out.println("Your cards: " + player );
+        System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
 
-        if (player.getScore() == 21) {
+        if (player.getScore() == BLACKJACK_SCORE) {
             System.out.println("You have a blackjack! You win!");
             return;
         }
@@ -71,19 +73,18 @@ public class BlackjackGame {
         playerTurn(scanner);
 
         if (player.isBust()) {
-            System.out.println("You lost! Your score exceeds 21.");
+            System.out.println("You lost! Your score exceeds " + BLACKJACK_SCORE + ".");
             return;
         }
 
         dealerTurn();
 
         if (dealer.isBust()) {
-            System.out.println("Dealer score exceeds 21! You win!");
+            System.out.println("Dealer score exceeds " + BLACKJACK_SCORE + "! You win!");
         }
         else {
             determineWinner();
         }
-
 
     }
 
@@ -96,9 +97,9 @@ public class BlackjackGame {
 
             if (choice == 1) {
                 player.addCard(deck.deal());
-                System.out.println("You drew: " + player.getHand().get(player.getHand().size() - 1));
-                System.out.println("Your cards: " + player + " > " + player.getScore());
-                System.out.println("Dealer's cards: [" + dealer.getHand().get(0) + ", <hidden card>]");
+                System.out.println("You drew: " + player.getLastCardOfHand());
+                System.out.println("Your cards: " + player );
+                System.out.println("Dealer's cards: [" + dealer.getFirstCardOfHand() + ", <hidden card>]");
 
                 if (player.isBust()) {
                     break;
@@ -111,11 +112,16 @@ public class BlackjackGame {
 
     private void dealerTurn() {
         System.out.println("Dealer's turn\n");
-        System.out.println("Dealer reveals the hidden card: " + dealer.getHand().get(1));
+        System.out.println("Dealer reveals the hidden card: " + dealer.getLastCardOfHand());
+        System.out.println("Your cards: " + player);
+        System.out.println("Dealer's cards: " + dealer);
+
 
         while (dealer.getScore() < 17) {
             dealer.addCard(deck.deal());
-            System.out.println("Dealer's cards: " + dealer + " > " + dealer.getScore());
+            System.out.println("\nDealer drew: " + dealer.getLastCardOfHand());
+            System.out.println("Your cards: " + player);
+            System.out.println("Dealer's cards: " + dealer);
         }
     }
 

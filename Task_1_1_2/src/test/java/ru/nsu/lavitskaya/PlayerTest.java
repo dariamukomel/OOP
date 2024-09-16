@@ -23,7 +23,7 @@ class PlayerTest {
     void testAddCard() {
         Card card = new Card("Hearts", "K");
         player.addCard(card);
-        assertEquals(1, player.getHand().size(), "Player should have one card in hand");
+        assertEquals(1, player.getHandSize() , "Player should have one card in hand");
     }
 
     @Test

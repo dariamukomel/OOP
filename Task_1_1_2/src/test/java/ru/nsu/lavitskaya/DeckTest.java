@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * This class tests the functionalities of the Deck class,
- * including dealing cards and shuffling the deck.
+ *The DeckTest class tests the functionalities of the Deck class.
+ * It ensures that the operations for dealing cards work as expected.
+ * testDealCard() - Tests that a card can be dealt from a non-empty deck.
+ * testDealLastCard() - Tests that dealing the last card from the deck correctly creates a new deck and returns a non-null card.
  */
 
 class DeckTest {
@@ -26,10 +28,12 @@ class DeckTest {
     }
 
     @Test
-    void testShuffleDeck() {
-        Card firstCardBeforeShuffle = deck.deal();
-        deck.shuffle();
-        Card firstCardAfterShuffle = deck.deal();
-        assertNotEquals(firstCardBeforeShuffle, firstCardAfterShuffle, "The first card after shuffle should be different");
+    void testDealLastCard() {
+        for (int i = 0; i < 52; i++) {
+            deck.deal();
+        }
+
+        Card newCard = deck.deal();
+        assertNotNull(newCard, "Dealing from an empty deck should return a non-null card");
     }
 }

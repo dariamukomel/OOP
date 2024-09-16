@@ -27,9 +27,11 @@ public class Player {
         hand.clear();
     }
 
-    public List<Card> getHand() {
-        return hand;
-    }
+    public Card getFirstCardOfHand() { return hand.getFirst(); }
+
+    public Card getLastCardOfHand() { return hand.getLast(); }
+
+    public int getHandSize() { return hand.size(); }
 
     public int getScore() {
         int score = 0;
@@ -40,7 +42,7 @@ public class Player {
                 aces++;
             }
         }
-        while (score > 21 && aces > 0) {
+        while (score > BlackjackGame.BLACKJACK_SCORE && aces > 0) {
             score -= 10;
             aces--;
         }
@@ -48,11 +50,11 @@ public class Player {
     }
 
     public boolean isBust() {
-        return getScore() > 21;
+        return getScore() > BlackjackGame.BLACKJACK_SCORE ;
     }
 
     public String toString() {
-        return hand.toString();
+        return hand.toString() + " > " + String.valueOf(this.getScore());
     }
 }
 
