@@ -29,6 +29,7 @@ public class BlackjackGame {
 
     /**
      * Sets the scanner for user input.
+     *
      * @param scanner the scanner to be used for user input
      */
     public void setScanner(Scanner scanner) {
@@ -37,6 +38,7 @@ public class BlackjackGame {
 
     /**
      * Sets the deck for the game.
+     *
      * @param deck the deck to be used in the game
      */
     public void setDeck(Deck deck) {
@@ -63,6 +65,7 @@ public class BlackjackGame {
     /**
      * Plays a single round of Blackjack, managing the interactions
      * between the player and the dealer, and determining the round outcome.
+     *
      * @param scanner the scanner for user input
      */
     private void playRound(Scanner scanner) {
@@ -106,6 +109,7 @@ public class BlackjackGame {
 
     /**
      * Manages the player's turn, allowing them to take cards or stop.
+     *
      * @param scanner the scanner for user input
      */
     private void playerTurn(Scanner scanner) {
@@ -165,6 +169,7 @@ public class BlackjackGame {
 
     /**
      * The main method to launch the Blackjack game.
+     *
      * @param args command-line arguments (not used)
      */
     public static void main(String[] args) {

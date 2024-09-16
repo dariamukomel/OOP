@@ -13,6 +13,7 @@ public class Player {
 
     /**
      * Constructs a new {@code Player} with the specified name.
+     *
      * @param name the name of the player
      */
     public Player(String name) {
@@ -22,6 +23,7 @@ public class Player {
 
     /**
      * Adds a card to the player's hand.
+     *
      * @param card the card to be added
      */
     public void addCard(Card card) {
@@ -37,6 +39,7 @@ public class Player {
 
     /**
      * Retrieves the first card in the player's hand.
+     *
      * @return the first card
      */
     public Card getFirstCardOfHand() {
@@ -45,6 +48,7 @@ public class Player {
 
     /**
      * Retrieves the last card in the player's hand.
+     *
      * @return the last card
      */
     public Card getLastCardOfHand() {
@@ -53,6 +57,7 @@ public class Player {
 
     /**
      * Returns the number of cards in the player's hand.
+     *
      * @return the size of the hand
      */
     public int getHandSize() {
@@ -64,6 +69,7 @@ public class Player {
      * Aces are counted as 11 unless the score exceeds
      * the maximum allowed score, in which case their value
      * is adjusted to 1.
+     *
      * @return the total score of the player
      */
     public int getScore() {
@@ -85,6 +91,7 @@ public class Player {
 
     /**
      * Determines if the player has bust (over the maximum score).
+     *
      * @return true if the score exceeds the limit, false otherwise
      */
     public boolean isBust() {
@@ -93,6 +100,7 @@ public class Player {
 
     /**
      * Returns a string representation of the player's hand and score.
+     *
      * @return a string describing the hand followed by the current score
      */
     public String toString() {
