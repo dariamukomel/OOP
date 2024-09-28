@@ -40,7 +40,8 @@ public class Sub extends Expression {
      * Evaluates the subtraction expression using the provided variable mapping.
      *
      * @param variables A map of variables with their corresponding values.
-     * @return The result of subtracting the evaluated right expression from the evaluated left expression.
+     * @return The result of subtracting the evaluated right expression from the evaluated left
+     * expression.
      */
     @Override
     public double eval(Map<String, Double> variables) {
@@ -50,7 +51,8 @@ public class Sub extends Expression {
     /**
      * Evaluates the subtraction expression without any variables.
      *
-     * @return The result of subtracting the evaluated right expression from the evaluated left expression.
+     * @return The result of subtracting the evaluated right expression from the evaluated left
+     * expression.
      */
     @Override
     public double eval() {
@@ -58,10 +60,12 @@ public class Sub extends Expression {
     }
 
     /**
-     * Calculates the derivative of the subtraction expression with respect to the specified variable.
+     * Calculates the derivative of the subtraction expression with respect to the specified
+     * variable.
      *
      * @param var The name of the variable with respect to which the derivative is to be computed.
-     * @return A new Sub expression representing the difference of the derivatives of the left and right expressions.
+     * @return A new Sub expression representing the difference of the derivatives of the left and
+     * right expressions.
      */
     @Override
     public Expression derivative(String var) {

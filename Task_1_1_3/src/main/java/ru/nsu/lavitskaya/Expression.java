@@ -136,9 +136,8 @@ public abstract class Expression {
                     values.push(createExpression(op, left, right));
                 }
                 operators.pop();
-            }
 
-            else if ("+-*/".indexOf(token) != -1) {
+            } else if ("+-*/".indexOf(token) != -1) {
                 while (!operators.isEmpty() && precedence(operators.peek()) >= precedence(token)) {
                     char op = operators.pop();
                     Expression right = values.pop();
@@ -155,9 +154,8 @@ public abstract class Expression {
                 } else {
                     throw new IllegalArgumentException("invalid expression.");
                 }
-            }
 
-            else {
+            } else {
                 throw new IllegalArgumentException("invalid expression.");
             }
         }

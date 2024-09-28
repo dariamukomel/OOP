@@ -37,7 +37,8 @@ public class Div extends Expression {
      * Evaluates the division expression using the provided variable mapping.
      *
      * @param variables A map of variables with their corresponding values.
-     * @return The result of dividing the evaluated left expression by the evaluated right expression.
+     * @return The result of dividing the evaluated left expression by the evaluated right
+     * expression.
      */
     @Override
     public double eval(Map<String, Double> variables) {
@@ -47,7 +48,8 @@ public class Div extends Expression {
     /**
      * Evaluates the division expression without any variables.
      *
-     * @return The result of dividing the evaluated left expression by the evaluated right expression.
+     * @return The result of dividing the evaluated left expression by the evaluated right
+     * expression.
      */
     @Override
     public double eval() {

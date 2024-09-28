@@ -16,7 +16,7 @@ public class Add extends Expression {
      * @param left  The left expression to be added.
      * @param right The right expression to be added.
      */
-    public Add (Expression left, Expression right) {
+    public Add(Expression left, Expression right) {
         this.left = left;
         this.right = right;
     }
@@ -30,7 +30,7 @@ public class Add extends Expression {
      */
     @Override
     public String toString() {
-        if (left.toString().equals("0.0")){
+        if (left.toString().equals("0.0")) {
             return "(" + right.toString() + ")";
         }
         return "(" + left.toString() + "+" + right.toString() + ")";
@@ -61,7 +61,8 @@ public class Add extends Expression {
      * Calculates the derivative of the addition expression with respect to the specified variable.
      *
      * @param var The name of the variable with respect to which the derivative is to be computed.
-     * @return A new Add expression representing the sum of the derivatives of the left and right expressions.
+     * @return A new Add expression representing the sum of the derivatives of the left and right
+     * expressions.
      */
     @Override
     public Expression derivative(String var) {
