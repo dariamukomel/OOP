@@ -167,7 +167,7 @@ public abstract class Expression {
             char op = operators.pop();
             Expression right = values.pop();
             Expression left;
-            if (values.isEmpty()) {// -2
+            if (values.isEmpty()) { // -2
                 if (op == '-' || op == '+') {
                     left = new Number(0);
                 } else {

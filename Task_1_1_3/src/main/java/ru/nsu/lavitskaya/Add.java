@@ -62,7 +62,7 @@ public class Add extends Expression {
      *
      * @param var The name of the variable with respect to which the derivative is to be computed.
      * @return A new Add expression representing the sum of the derivatives of the left and right
-     * expressions.
+     *     expressions.
      */
     @Override
     public Expression derivative(String var) {

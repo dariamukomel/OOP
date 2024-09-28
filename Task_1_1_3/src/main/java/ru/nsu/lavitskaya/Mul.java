@@ -37,7 +37,7 @@ public class Mul extends Expression {
      *
      * @param variables A map of variables with their corresponding values.
      * @return The result of multiplying the evaluated left expression by the evaluated right
-     * expression.
+     *     expression.
      */
     @Override
     public double eval(Map<String, Double> variables) {
@@ -48,7 +48,7 @@ public class Mul extends Expression {
      * Evaluates the multiplication expression without any variables.
      *
      * @return The result of multiplying the evaluated left expression by the evaluated right
-     * expression.
+     *     expression.
      */
     @Override
     public double eval() {
@@ -61,7 +61,7 @@ public class Mul extends Expression {
      *
      * @param var The name of the variable with respect to which the derivative is to be computed.
      * @return A new Add expression representing the sum of the derivatives according to the
-     * product rule.
+     *     product rule.
      */
     @Override
     public Expression derivative(String var) {
