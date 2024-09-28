@@ -92,6 +92,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Sub</span>
 <span class="extends-implements">extends <a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></span></div>
+<div class="block">Represents a subtraction operation between two expressions.
+ This class is part of the expression evaluation framework.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -114,7 +116,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.lavitskaya.Expression,ru.nsu.lavitskaya.Expression)" class="member-name-link">Sub</a><wbr>(<a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new subtraction expression with the specified left and right operands.</div>
+</div>
 </div>
 </section>
 </li>
@@ -131,16 +135,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;var)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculates the derivative of the subtraction expression with respect to the specified variable.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval()" class="member-name-link">eval</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Evaluates the subtraction expression without any variables.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.util.Map)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Evaluates the subtraction expression using the provided variable mapping.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a string representation of the subtraction expression in the format:
+ (left - right).</div>
+</div>
 </div>
 </div>
 </div>
@@ -166,6 +179,12 @@ loadScripts(document, 'script');</script>
 <h3>Sub</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Sub</span><wbr><span class="parameters">(<a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a>&nbsp;left,
  <a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a>&nbsp;right)</span></div>
+<div class="block">Creates a new subtraction expression with the specified left and right operands.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - The left expression to be subtracted from.</dd>
+<dd><code>right</code> - The right expression that will be subtracted.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -180,9 +199,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Returns a string representation of the subtraction expression in the format:
+ (left - right). If the left expression is equivalent to 0.0, it returns:
+ (-right).</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+<dt>Returns:</dt>
+<dd>A string representing the subtraction expression.</dd>
 </dl>
 </section>
 </li>
@@ -190,9 +214,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.util.Map)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</span></div>
+<div class="block">Evaluates the subtraction expression using the provided variable mapping.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#eval(java.util.Map)">eval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>variables</code> - A map of variables with their corresponding values.</dd>
+<dt>Returns:</dt>
+<dd>The result of subtracting the evaluated right expression from the evaluated left expression.</dd>
 </dl>
 </section>
 </li>
@@ -200,9 +229,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval()">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span>()</div>
+<div class="block">Evaluates the subtraction expression without any variables.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#eval()">eval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></dd>
+<dt>Returns:</dt>
+<dd>The result of subtracting the evaluated right expression from the evaluated left expression.</dd>
 </dl>
 </section>
 </li>
@@ -210,9 +242,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;var)</span></div>
+<div class="block">Calculates the derivative of the subtraction expression with respect to the specified variable.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>var</code> - The name of the variable with respect to which the derivative is to be computed.</dd>
+<dt>Returns:</dt>
+<dd>A new Sub expression representing the difference of the derivatives of the left and right expressions.</dd>
 </dl>
 </section>
 </li>
