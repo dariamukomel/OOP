@@ -1,178 +1,178 @@
 package ru.nsu.lavitskaya;
 
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public abstract class Expression {
-    public abstract String print();
     public abstract double eval(Map<String, Double> variables);
+    public abstract double eval();
     public abstract Expression derivative(String var);
-}
 
-class Number extends Expression {
-    private double value;
+    public static Map<String, Double> variables = new HashMap<>();
 
-    public Number (double value) {
-        this.value = value;
-    }
+    public double eval(String stringOfVars) {
+        String[] pairs = stringOfVars.split(";");
 
-    @Override
-    public String print() {
-        if(value % 1 == 0){
-            return String.valueOf((int) value);
+        for (String pair : pairs) {
+            String[] keyValue = pair.split("=");
+
+            if (keyValue.length != 2) {
+                throw new IllegalArgumentException("invalid format for '" + pair + "'. " +
+                        "Expected 'key=value'");
+            }
+
+            String key = keyValue[0].trim();
+            String valueStr = keyValue[1].trim();
+
+            if (!variables.containsKey(key)) {
+                throw new IllegalArgumentException("variable '" + key + "' doesn't exist.");
+
+            }
+
+            try {
+                double value = Double.parseDouble(valueStr);
+                variables.put(key, value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("value '" + valueStr + "' for variable '"
+                        + key + "' isn't a number.");
+
+            }
         }
-        return String.valueOf(value);
+        return eval(variables);
     }
 
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return value;
-    }
 
-    @Override
-    public Expression derivative(String var) {
-        return new Number(0);
-    }
+    public static Expression create(String expression) {
+        char[] tokens = expression.toCharArray();
+        Stack<Expression> values = new Stack<>();
+        Stack<Character> operators = new Stack<>();
 
-}
+        for(int i=0; i< tokens.length; i++){
+            char token = tokens[i];
 
-class Variable extends Expression {
-    private String name;
+            if(token == ' '){
+                continue;
+            }
+            if (Character.isDigit(token)) {
+                String number = String.valueOf(tokens[i++]);
+                while (i < tokens.length && (Character.isDigit(tokens[i]) || tokens[i] == '.')) {
+                    number += tokens[i++];
+                }
+                i--;
+                values.push(new Number(Double.parseDouble(number)));
+            }
 
-    public Variable (String name) {
-        this.name = name;
-    }
+            else if (Character.isLetter(token) || token == '_'){
+                String variable =  String.valueOf(tokens[i++]);
+                while (i < tokens.length && (Character.isDigit(tokens[i]) ||
+                        Character.isLetter(tokens[i]) || tokens[i] == '_')) {
+                    variable += tokens[i++];
+                }
+                i--;
+                values.push(new Variable(variable));
+                variables.put(variable, null);
+            }
 
-    @Override
-    public String print() {
-        return name;
-    }
+            else if (token == '('){
+                operators.push(token);
+            }
 
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return variables.get(name);
-    }
+            else if (token == ')'){ // 2+2) () (-)
+                if (!operators.contains('(') || operators.peek() == '(' || values.isEmpty()) {
+                    throw new IllegalArgumentException("invalid expression.");
+                }
 
-    @Override
-    public Expression derivative(String var) {
-        return new Number(var.equals(name) ? 1 : 0);
-    }
-}
+                while (operators.peek() != '(' ) { // (5+8+9)
+                    char op = operators.pop();
+                    Expression right = values.pop();
+                    Expression left;
+                    if(values.isEmpty()) { // (-2)
+                        if (op == '-' || op == '+') {
+                            left = new Number(0);
+                        }
+                        else { // (*2)
+                            throw new IllegalArgumentException("invalid expression.");
+                        }
+                    }
+                    else{
+                        left = values.pop();
+                    }
+                    values.push(createExpression(op, left, right));
+                }
+                operators.pop();
+            }
 
-class Add extends Expression {
-    private Expression left;
-    private Expression right;
+            else if ("+-*/".indexOf(token) != -1) {
+                while (!operators.isEmpty() && precedence(operators.peek()) >= precedence(token)) {
+                    char op = operators.pop();
+                    Expression right = values.pop();
+                    Expression left = values.pop();
+                    values.push(createExpression(op, left, right));
+                }
+                operators.push(tokens[i++]);
+                while (i<tokens.length && tokens[i] == ' '){
+                    i++;
+                }
+                if(i<tokens.length && (Character.isDigit(tokens[i]) || Character.isLetter(tokens[i])
+                        || tokens[i] == '_' || tokens[i] == '(')) {
+                    i--;
+                }
+                else{
+                    throw new IllegalArgumentException("invalid expression.");
+                }
+            }
 
-    public Add (Expression left, Expression right) {
-        this.left = left;
-        this.right = right;
-    }
-
-    @Override
-    public String print() {
-        if (left.print().equals("0.0")){
-            return "(" + right.print() + ")";
+            else{
+                throw new IllegalArgumentException("invalid expression.");
+            }
         }
-        return "(" + left.print() + "+" + right.print() + ")";
-    }
 
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return left.eval(variables) + right.eval(variables);
-    }
-
-    @Override
-    public Expression derivative(String var) {
-        return new Add(left.derivative(var), right.derivative(var));
-    }
-}
-
-class Sub extends Expression {
-    private Expression left;
-    private Expression right;
-
-    public Sub (Expression left, Expression right) {
-        this.left = left;
-        this.right = right;
-    }
-
-    @Override
-    public String print() {
-        if (left.print().equals("0.0")){
-            return "(" + "-" + right.print() + ")";
+        while (!operators.isEmpty()){
+            if (operators.contains('(') || values.isEmpty()){
+                throw new IllegalArgumentException("invalid expression.");
+            }
+            char op = operators.pop();
+            Expression right = values.pop();
+            Expression left;
+            if(values.isEmpty()){// -2
+                if(op == '-' || op == '+'){
+                    left = new Number(0);
+                }
+                else {
+                    throw new IllegalArgumentException("invalid expression.");
+                }
+            }
+            else{
+                left = values.pop();
+            }
+            values.push(createExpression(op, left, right));
         }
-        return "(" + left.print() + "-" + right.print() + ")";
+
+        return values.pop();
     }
 
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return left.eval(variables) - right.eval(variables);
+    private static Expression createExpression (char op, Expression left, Expression right) {
+        return switch (op) {
+            case '+' -> new Add(left, right);
+            case '-' -> new Sub(left, right);
+            case '*' -> new Mul(left, right);
+            case '/' -> new Div(left, right);
+            default -> throw new IllegalArgumentException("invalid expression.");
+        };
     }
 
-    @Override
-    public Expression derivative(String var) {
-        return new Sub(left.derivative(var), right.derivative(var));
+    private static int precedence(char operator) {
+        return switch (operator) {
+            case '+', '-' -> 1;
+            case '*', '/' -> 2;
+            default -> 0;
+        };
     }
+
 }
 
-class Mul extends Expression {
-    private Expression left;
-    private Expression right;
-
-    public Mul (Expression left, Expression right) {
-        this.left = left;
-        this.right =right;
-    }
-
-    @Override
-    public String print() {
-        return "(" + left.print() + "*" + right.print() + ")";
-    }
-
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return left.eval(variables) * right.eval(variables);
-    }
-
-    @Override
-    public Expression derivative(String var) {
-        return new Add(
-                new Mul(left.derivative(var), right),
-                new Mul(left, right.derivative(var))
-        );
-    }
-}
-
-class Div extends Expression {
-    private Expression left;
-    private Expression right;
-
-    public Div (Expression left, Expression right) {
-        this.left = left;
-        this.right = right;
-    }
-
-    @Override
-    public String print() {
-        return "(" + left.print() + "/" + right.print() + ")";
-    }
-
-    @Override
-    public double eval(Map<String, Double> variables) {
-        return left.eval(variables) / right.eval(variables);
-    }
-
-    @Override
-    public Expression derivative(String var) {
-        return new Div(
-                new Sub(
-                        new Mul(left.derivative(var), right),
-                        new Mul(left, right.derivative(var))
-                ),
-                new Mul(right, right)
-        );
-    }
-}
 
 
 
