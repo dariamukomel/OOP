@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for the {@link Expression} class, checking various behaviors
+ * including evaluation, error handling, and derivatives.
+ */
 class ExpressionTest {
 
     @Test
