@@ -68,4 +68,15 @@ public class Number extends Expression {
         return new Number(0);
     }
 
+    /**
+     * Simplifies the expression. Since this class represents a constant numeric value,
+     * the simplified result is the same constant.
+     *
+     * @return A new Number instance with the same numeric value.
+     */
+    @Override
+    public Expression simplify() {
+        return new Number(value);
+    }
+
 }

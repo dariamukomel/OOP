@@ -1,6 +1,7 @@
 package ru.nsu.lavitskaya;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents a division operation between two expressions.
@@ -72,5 +73,37 @@ public class Div extends Expression {
                 ),
                 new Mul(right, right)
         );
+    }
+
+    /**
+     * Simplifies the division expression by evaluating constant operands.
+     * If both the left and right expressions are instances of Number,
+     * their values are divided, and a new Number instance is returned.
+     * If the right expression is a constant that evaluates to 1, the left
+     * expression is returned (as dividing by 1 has no effect).
+     * If the left expression and the right expression are identical,
+     * a new Number instance representing one is returned, as A / A = 1 (for A ≠ 0).
+     *
+     * @return A simplified division expression, which may be a Number if both operands
+     *     are constants, or a new Div instance if at least one operand is not a constant
+     *     or does not meet special simplification conditions.
+     */
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft.getClass() == Number.class
+                && simplifiedRight.getClass() == Number.class){
+            return new Number(simplifiedLeft.eval() / simplifiedRight.eval());
+        }
+        if (simplifiedRight.getClass() == Number.class && simplifiedRight.eval() == 1) {
+            return simplifiedLeft;
+        }
+        if(Objects.equals(simplifiedRight.toString(), simplifiedLeft.toString())){
+            return new Number(1);
+        }
+
+        return new Div(simplifiedLeft, simplifiedRight);
     }
 }

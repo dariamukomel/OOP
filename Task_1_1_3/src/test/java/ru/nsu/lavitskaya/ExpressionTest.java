@@ -97,4 +97,40 @@ class ExpressionTest {
                 expression.derivative("x").toString());
     }
 
+    @Test
+    void testSimplifyAdd() {
+        Expression expression = Expression.create("2 + 2");
+        assertEquals("4", expression.simplify().toString());
+    }
+
+    @Test
+    void testSimplifyAddWithUnaryMinus() {
+        Expression expression = Expression.create("-x+x");
+        assertEquals("0", expression.simplify().toString());
+    }
+
+    @Test
+    void testMulByZero() {
+        Expression expression = Expression.create("0 * x");
+        assertEquals("0", expression.simplify().toString());
+    }
+
+    @Test
+    void testMulByOne() {
+        Expression expression = Expression.create("1 * x");
+        assertEquals("x", expression.simplify().toString());
+    }
+
+    @Test
+    void testDivByOne() {
+        Expression expression = Expression.create("x / 1");
+        assertEquals("x", expression.simplify().toString());
+    }
+
+    @Test
+    void testDivByTheSame() {
+        Expression expression = Expression.create("x / x");
+        assertEquals("1", expression.simplify().toString());
+    }
+
 }

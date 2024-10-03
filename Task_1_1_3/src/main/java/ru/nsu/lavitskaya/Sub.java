@@ -1,6 +1,7 @@
 package ru.nsu.lavitskaya;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents a subtraction operation between two expressions.
@@ -30,7 +31,7 @@ public class Sub extends Expression {
      */
     @Override
     public String toString() {
-        if (left.toString().equals("0.0")) {
+        if (left.toString().equals("0")) {
             return "(" + "-" + right.toString() + ")";
         }
         return "(" + left.toString() + "-" + right.toString() + ")";
@@ -70,5 +71,44 @@ public class Sub extends Expression {
     @Override
     public Expression derivative(String var) {
         return new Sub(left.derivative(var), right.derivative(var));
+    }
+
+    /**
+     * Simplifies the subtraction expression by evaluating constant operands.
+     * If both the left and right expressions are instances of Number,
+     * their values are subtracted, and a new Number instance is returned.
+     * If the left expression evaluates to 0 and the right expression is an addition
+     * of two identical terms, or if both expressions are the same, a new Number
+     * instance representing zero is returned.
+     * Otherwise, a new Sub expression containing the simplified left and right
+     * expressions is returned.
+     *
+     * @return A simplified subtraction expression, which may be a Number if both operands
+     *     are constants, or a new Sub instance if at least one operand is not a constant
+     *     or if special simplification cases do not apply.
+     */
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft.getClass() == Number.class
+                && simplifiedRight.getClass() == Number.class) {
+            return new Number(simplifiedLeft.eval() - simplifiedRight.eval());
+        }
+        if (simplifiedLeft.getClass() == Number.class && simplifiedLeft.eval() == 0
+                && simplifiedRight.getClass() == Add.class) {
+            String[] terms = simplifiedRight.toString().split("\\+");
+            if (Objects.equals(terms[0].replaceAll("[\\s()]", ""),
+                    terms[1].replaceAll("[\\s()]", ""))) {
+                return new Number(0);
+            }
+        }
+
+        if (Objects.equals(simplifiedLeft.toString(), simplifiedRight.toString())) {
+            return new Number(0);
+        }
+
+        return new Sub(simplifiedLeft, simplifiedRight);
     }
 }

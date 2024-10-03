@@ -70,4 +70,47 @@ public class Mul extends Expression {
                 new Mul(left, right.derivative(var))
         );
     }
+
+    /**
+     * Simplifies the multiplication expression by evaluating constant operands.
+     * If both the left and right expressions are instances of Number,
+     * their values are multiplied, and a new Number instance is returned.
+     * If the left expression is a constant and evaluates to 0, a new Number
+     * instance representing zero is returned. If it evaluates to 1, the right
+     * expression is returned (since multiplying by 1 has no effect).
+     * Similarly, if the right expression is a constant and evaluates to 0,
+     * a new Number instance representing zero is returned, and if it evaluates
+     * to 1, the left expression is returned.
+     *
+     * @return A simplified multiplication expression, which may be a Number if both operands
+     *    are constants, or a new Mul instance if at least one operand is not a constant
+     *    or does not meet special simplification conditions.
+     */
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft.getClass() == Number.class
+                && simplifiedRight.getClass() == Number.class) {
+            return new Number(simplifiedLeft.eval() * simplifiedRight.eval());
+        }
+        if (simplifiedLeft.getClass() == Number.class){
+            if (simplifiedLeft.eval() == 0) {
+                return new Number(0);
+            }
+            if (simplifiedLeft.eval() == 1) {
+                return simplifiedRight;
+            }
+        }
+        if (simplifiedRight.getClass() == Number.class){
+            if (simplifiedRight.eval() == 0) {
+                return new Number(0);
+            }
+            if (simplifiedRight.eval() == 1) {
+                return simplifiedLeft;
+            }
+        }
+        return new Mul(simplifiedLeft, simplifiedRight);
+    }
 }

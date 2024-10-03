@@ -12,7 +12,7 @@ import java.util.Stack;
  */
 public abstract class Expression {
     public static Map<String, Double> variables = new HashMap<>();
-
+    public abstract Expression simplify();
     /**
      * Calculates the derivative of the expression with respect to the specified variable.
      *
@@ -138,7 +138,7 @@ public abstract class Expression {
                 operators.pop();
 
             } else if ("+-*/".indexOf(token) != -1) {
-                while (!operators.isEmpty() && precedence(operators.peek()) >= precedence(token)) {
+                while (!operators.isEmpty() && precedence(operators.peek()) > precedence(token)) {
                     char op = operators.pop();
                     Expression right = values.pop();
                     Expression left = values.pop();

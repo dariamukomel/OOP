@@ -65,4 +65,15 @@ public class Variable extends Expression {
     public Expression derivative(String var) {
         return new Number(var.equals(name) ? 1 : 0);
     }
+
+    /**
+     * Simplifies the variable expression. Since variables are already in their simplest form,
+     * the simplified result is the same variable.
+     *
+     * @return A new Variable instance with the same name.
+     */
+    @Override
+    public Expression simplify() {
+        return new Variable(name);
+    }
 }

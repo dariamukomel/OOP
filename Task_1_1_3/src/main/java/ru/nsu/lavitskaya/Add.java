@@ -1,6 +1,7 @@
 package ru.nsu.lavitskaya;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents an addition operation between two expressions.
@@ -67,5 +68,28 @@ public class Add extends Expression {
     @Override
     public Expression derivative(String var) {
         return new Add(left.derivative(var), right.derivative(var));
+    }
+
+    /**
+     * Simplifies the addition expression by evaluating constant operands.
+     * If both the left and right expressions are instances of Number,
+     * their values are added together and a new Number instance is returned.
+     * Otherwise, a new Add expression containing the simplified left and right
+     * expressions is created and returned.
+     *
+     * @return A simplified addition expression, which may be a Number if both operands
+     *     are constants, or a new Add instance if at least one operand is not a constant.
+     */
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft.getClass() == Number.class
+                && simplifiedRight.getClass() == Number.class) {
+            return new Number(simplifiedLeft.eval() + simplifiedRight.eval());
+        }
+
+        return new Add(simplifiedLeft, simplifiedRight);
     }
 }
