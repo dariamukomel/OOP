@@ -149,9 +149,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Evaluates the multiplication expression using the provided variable mapping.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Simplifies the multiplication expression by evaluating constant operands.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of the multiplication expression in the format:
  (left * right).</div>
 </div>
@@ -254,6 +259,29 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>A new Add expression representing the sum of the derivatives according to the
      product rule.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simplify()">
+<h3>simplify</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()</div>
+<div class="block">Simplifies the multiplication expression by evaluating constant operands.
+ If both the left and right expressions are instances of Number,
+ their values are multiplied, and a new Number instance is returned.
+ If the left expression is a constant and evaluates to 0, a new Number
+ instance representing zero is returned. If it evaluates to 1, the right
+ expression is returned (since multiplying by 1 has no effect).
+ Similarly, if the right expression is a constant and evaluates to 0,
+ a new Number instance representing zero is returned, and if it evaluates
+ to 1, the left expression is returned.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></dd>
+<dt>Returns:</dt>
+<dd>A simplified multiplication expression, which may be a Number if both operands
+    are constants, or a new Mul instance if at least one operand is not a constant
+    or does not meet special simplification conditions.</dd>
 </dl>
 </section>
 </li>

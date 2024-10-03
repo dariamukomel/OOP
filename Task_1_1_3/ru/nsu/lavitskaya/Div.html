@@ -148,9 +148,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Evaluates the division expression using the provided variable mapping.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simplify()" class="member-name-link">simplify</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Simplifies the division expression by evaluating constant operands.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of the division expression in the format:
  (left / right).</div>
 </div>
@@ -252,6 +257,27 @@ loadScripts(document, 'script');</script>
 <dd><code>var</code> - The name of the variable with respect to which the derivative is to be computed.</dd>
 <dt>Returns:</dt>
 <dd>A new Div expression representing the derivative of the division.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simplify()">
+<h3>simplify</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></span>&nbsp;<span class="element-name">simplify</span>()</div>
+<div class="block">Simplifies the division expression by evaluating constant operands.
+ If both the left and right expressions are instances of Number,
+ their values are divided, and a new Number instance is returned.
+ If the right expression is a constant that evaluates to 1, the left
+ expression is returned (as dividing by 1 has no effect).
+ If the left expression and the right expression are identical,
+ a new Number instance representing one is returned, as A / A = 1 (for A ≠ 0).</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Expression.html#simplify()">simplify</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.lavitskaya">Expression</a></code></dd>
+<dt>Returns:</dt>
+<dd>A simplified division expression, which may be a Number if both operands
+     are constants, or a new Div instance if at least one operand is not a constant
+     or does not meet special simplification conditions.</dd>
 </dl>
 </section>
 </li>
