@@ -94,13 +94,13 @@ public class Div extends Expression {
         Expression simplifiedRight = right.simplify();
 
         if (simplifiedLeft.getClass() == Number.class
-                && simplifiedRight.getClass() == Number.class){
+                && simplifiedRight.getClass() == Number.class) {
             return new Number(simplifiedLeft.eval() / simplifiedRight.eval());
         }
         if (simplifiedRight.getClass() == Number.class && simplifiedRight.eval() == 1) {
             return simplifiedLeft;
         }
-        if(Objects.equals(simplifiedRight.toString(), simplifiedLeft.toString())){
+        if (Objects.equals(simplifiedRight.toString(), simplifiedLeft.toString())) {
             return new Number(1);
         }
 

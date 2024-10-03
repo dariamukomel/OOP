@@ -12,7 +12,9 @@ import java.util.Stack;
  */
 public abstract class Expression {
     public static Map<String, Double> variables = new HashMap<>();
+
     public abstract Expression simplify();
+
     /**
      * Calculates the derivative of the expression with respect to the specified variable.
      *

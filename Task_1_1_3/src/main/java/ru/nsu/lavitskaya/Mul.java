@@ -83,8 +83,8 @@ public class Mul extends Expression {
      * to 1, the left expression is returned.
      *
      * @return A simplified multiplication expression, which may be a Number if both operands
-     *    are constants, or a new Mul instance if at least one operand is not a constant
-     *    or does not meet special simplification conditions.
+     *     are constants, or a new Mul instance if at least one operand is not a constant
+     *     or does not meet special simplification conditions.
      */
     @Override
     public Expression simplify() {
@@ -95,7 +95,7 @@ public class Mul extends Expression {
                 && simplifiedRight.getClass() == Number.class) {
             return new Number(simplifiedLeft.eval() * simplifiedRight.eval());
         }
-        if (simplifiedLeft.getClass() == Number.class){
+        if (simplifiedLeft.getClass() == Number.class) {
             if (simplifiedLeft.eval() == 0) {
                 return new Number(0);
             }
@@ -103,7 +103,7 @@ public class Mul extends Expression {
                 return simplifiedRight;
             }
         }
-        if (simplifiedRight.getClass() == Number.class){
+        if (simplifiedRight.getClass() == Number.class) {
             if (simplifiedRight.eval() == 0) {
                 return new Number(0);
             }
