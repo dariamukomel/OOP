@@ -98,27 +98,37 @@ class ExpressionTest {
     }
 
     @Test
-    void testSimplifyAdd() {
+    void testSimplifyAddWithConstants() {
         Expression expression = Expression.create("2 + 2");
         assertEquals("4", expression.simplify().toString());
     }
 
     @Test
-    void testSimplifyAddWithUnaryMinus() {
-        Expression expression = Expression.create("-x+x");
-        assertEquals("0", expression.simplify().toString());
+    void testSimplifyAddWithVars() {
+        Expression expression = Expression.create("x + 4");
+        assertEquals("(x+4)", expression.simplify().toString());
     }
 
     @Test
     void testMulByZero() {
         Expression expression = Expression.create("0 * x");
         assertEquals("0", expression.simplify().toString());
+        Expression expression2 = Expression.create("x * 0");
+        assertEquals("0", expression2.simplify().toString());
     }
 
     @Test
     void testMulByOne() {
         Expression expression = Expression.create("1 * x");
         assertEquals("x", expression.simplify().toString());
+        Expression expression2 = Expression.create("x * 1");
+        assertEquals("x", expression.simplify().toString());
+    }
+
+    @Test
+    void testMulWithConstants() {
+        Expression expression = Expression.create("10 * 5");
+        assertEquals("50", expression.simplify().toString());
     }
 
     @Test
@@ -131,6 +141,12 @@ class ExpressionTest {
     void testDivByTheSame() {
         Expression expression = Expression.create("x / x");
         assertEquals("1", expression.simplify().toString());
+    }
+
+    @Test
+    void testSubTheSame() {
+        Expression expression = Expression.create("x - x");
+        assertEquals("0", expression.simplify().toString());
     }
 
 }

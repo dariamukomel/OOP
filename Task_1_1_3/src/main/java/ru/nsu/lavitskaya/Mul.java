@@ -7,8 +7,8 @@ import java.util.Map;
  * This class is part of the expression evaluation framework.
  */
 public class Mul extends Expression {
-    private Expression left;
-    private Expression right;
+    private final Expression left;
+    private final Expression right;
 
     /**
      * Creates a new multiplication expression with the specified left and right operands.

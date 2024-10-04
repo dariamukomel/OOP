@@ -7,7 +7,7 @@ import java.util.Map;
  * This class is part of the expression evaluation framework.
  */
 public class Variable extends Expression {
-    private String name;
+    private final String name;
 
     /**
      * Creates a new variable object with the specified name.

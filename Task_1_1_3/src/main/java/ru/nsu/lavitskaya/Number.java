@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class Number extends Expression {
 
-    private double value;
+    private final double value;
 
     /**
      * Creates a new Number instance with the specified value.

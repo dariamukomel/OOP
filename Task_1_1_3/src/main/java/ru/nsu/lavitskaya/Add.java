@@ -8,8 +8,16 @@ import java.util.Objects;
  * This class is part of the expression evaluation framework.
  */
 public class Add extends Expression {
-    private Expression left;
-    private Expression right;
+    private final Expression left;
+    private final Expression right;
+
+    public Expression getLeft() {
+        return left;
+    }
+
+    public Expression getRight() {
+        return right;
+    }
 
     /**
      * Creates a new addition expression with the specified left and right operands.
