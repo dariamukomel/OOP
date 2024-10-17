@@ -5,9 +5,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+/**
+ * Provides a method for performing topological sorting on a directed acyclic graph.
+ */
 public class TopologicalSort {
 
+    /**
+     * Performs a topological sort on the given graph.
+     *
+     * @param graph The directed graph to be sorted.
+     * @param <T>   The type of the vertices in the graph.
+     * @return A list of vertices in topologically sorted order.
+     * @throws IllegalStateException If the graph is cyclic.
+     */
     public static <T> List<Vertex<T>> topSort(Graph<T> graph) throws IllegalStateException {
         List<Vertex<T>> sortedList = new ArrayList<>();
         Set<Vertex<T>> visited = new HashSet<>();
