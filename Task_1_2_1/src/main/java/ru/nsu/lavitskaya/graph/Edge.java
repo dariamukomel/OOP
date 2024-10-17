@@ -48,10 +48,14 @@ public class Edge<T> {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        return getFrom().equals(((Edge<?>) obj).getFrom()) &&
-                getTo().equals(((Edge<?>) obj).getTo());
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        return getFrom().equals(((Edge<?>) obj).getFrom())
+                && getTo().equals(((Edge<?>) obj).getTo());
     }
 
     /**

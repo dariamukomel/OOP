@@ -1,8 +1,8 @@
 package ru.nsu.lavitskaya.graph;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -239,11 +239,19 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         IncidenceMatrixGraph<T> that = (IncidenceMatrixGraph<T>) obj;
-        if (this.vertices.size() != that.vertices.size()) return false;
-        if (this.edges.size() != that.edges.size()) return false;
+        if (this.vertices.size() != that.vertices.size()) {
+            return false;
+        }
+        if (this.edges.size() != that.edges.size()) {
+            return false;
+        }
         for (Vertex<T> currVertex : this.vertices) {
             List<Vertex<T>> thisNeighbors = getNeighbors(currVertex);
             List<Vertex<T>> thatNeighbors = that.getNeighbors(currVertex);

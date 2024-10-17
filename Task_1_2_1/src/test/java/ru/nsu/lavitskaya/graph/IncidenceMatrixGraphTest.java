@@ -4,14 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the IncidenceMatrixGraph class.
@@ -28,18 +26,19 @@ class IncidenceMatrixGraphTest {
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
-        Vertex<String> v4 = new Vertex<>("D");
-        Vertex<String> v5 = new Vertex<>("E");
+
         graph.addVertex(v1);
         graph.addVertex(v1);
         graph.addVertex(v2);
         graph.addVertex(v3);
         assertEquals("A | \n" + "B | \n" + "C | \n", graph.toString());
 
+        Vertex<String> v4 = new Vertex<>("D");
+        Vertex<String> v5 = new Vertex<>("E");
         graph.addEdge(new Edge<>(v4, v5));
         graph.addEdge(new Edge<>(v1, v2));
-        assertEquals("A | 0 1 \n" + "B | 0 -1 \n" + "C | 0 0 \n" + "D | 1 0 \n" +
-                "E | -1 0 \n", graph.toString());
+        assertEquals("A | 0 1 \n" + "B | 0 -1 \n" + "C | 0 0 \n" + "D | 1 0 \n"
+                + "E | -1 0 \n", graph.toString());
 
         graph.removeVertex(v4);
         assertEquals("A | 1 \n" + "B | -1 \n" + "C | 0 \n" + "E | 0 \n", graph.toString());
@@ -54,11 +53,9 @@ class IncidenceMatrixGraphTest {
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v3));
-        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         List<Vertex<String>> expected = new ArrayList<>();
-        expected.add(v2);
-        expected.add(v2);
-        expected.add(v3);
+        expected.add(v2);expected.add(v2);expected.add(v3);
+        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         assertEquals(expected, neighbors);
     }
 
