@@ -119,8 +119,8 @@ public class AdjacencyListGraph<T> implements Graph<T> {
                 addVertex(vertex);
 
                 if (neighborsPart.startsWith("[") && neighborsPart.endsWith("]")) {
-                    String neighborsList = neighborsPart.substring(1, neighborsPart.length() - 1).
-                            trim();
+                    String neighborsList = neighborsPart.substring(1, neighborsPart.length() - 1)
+                                    .trim();
                     if (!neighborsList.isEmpty()) {
                         String[] neighbors = neighborsList.split(",");
                         for (String neighborName : neighbors) {

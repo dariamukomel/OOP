@@ -54,7 +54,9 @@ class IncidenceMatrixGraphTest {
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v3));
         List<Vertex<String>> expected = new ArrayList<>();
-        expected.add(v2);expected.add(v2);expected.add(v3);
+        expected.add(v2);
+        expected.add(v2);
+        expected.add(v3);
         List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         assertEquals(expected, neighbors);
     }
@@ -62,23 +64,23 @@ class IncidenceMatrixGraphTest {
     @Test
     public void testEquals() {
         IncidenceMatrixGraph<String> graph1 = new IncidenceMatrixGraph<>();
-        IncidenceMatrixGraph<String> graph2 = new IncidenceMatrixGraph<>();
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v3));
+        IncidenceMatrixGraph<String> graph2 = new IncidenceMatrixGraph<>();
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v2));
         assertFalse(graph1.equals(graph2));
 
         IncidenceMatrixGraph<String> graph3 = new IncidenceMatrixGraph<>();
-        IncidenceMatrixGraph<String> graph4 = new IncidenceMatrixGraph<>();
         graph3.addVertex(v1);
         graph3.addVertex(v2);
         graph3.addEdge(new Edge<>(v1, v2));
+        IncidenceMatrixGraph<String> graph4 = new IncidenceMatrixGraph<>();
         graph4.addVertex(v2);
         graph4.addVertex(v1);
         graph4.addEdge(new Edge<>(v1, v2));
