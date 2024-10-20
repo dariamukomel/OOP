@@ -147,7 +147,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Gra
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.lavitskaya.graph">Vertex</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(ru.nsu.lavitskaya.graph.Vertex)" class="member-name-link">getNeighbors</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.lavitskaya.graph">Vertex</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns a list of neighbors for a given vertex.</div>
+<div class="block">Retrieves the list of neighbors for a specified vertex in the graph.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.lavitskaya.graph">Vertex</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
@@ -160,7 +160,8 @@ implements <a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Gra
 <div class="block">Generates a hash code for this graph.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.io.File)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.io.File,java.util.function.Function)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&nbsp;converter)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Reads a graph from a specified file.</div>
 </div>
@@ -267,14 +268,15 @@ implements <a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Gra
 <section class="detail" id="getNeighbors(ru.nsu.lavitskaya.graph.Vertex)">
 <h3>getNeighbors</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in ru.nsu.lavitskaya.graph">Vertex</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in ru.nsu.lavitskaya.graph">Vertex</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&nbsp;vertex)</span></div>
-<div class="block">Returns a list of neighbors for a given vertex.</div>
+<div class="block">Retrieves the list of neighbors for a specified vertex in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#getNeighbors(ru.nsu.lavitskaya.graph.Vertex)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Parameters:</dt>
-<dd><code>vertex</code> - the vertex for which neighbors are to be retrieved</dd>
+<dd><code>vertex</code> - the vertex for which neighboring vertices are to be retrieved</dd>
 <dt>Returns:</dt>
-<dd>a list of neighboring vertices</dd>
+<dd>a list of neighboring vertices, or null if the specified vertex is not present
+     in the graph</dd>
 </dl>
 </section>
 </li>
@@ -292,14 +294,15 @@ implements <a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Gra
 </section>
 </li>
 <li>
-<section class="detail" id="readFromFile(java.io.File)">
+<section class="detail" id="readFromFile(java.io.File,java.util.function.Function)">
 <h3>readFromFile</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a>&nbsp;file,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;&nbsp;converter)</span>
                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block">Reads a graph from a specified file.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#readFromFile(java.io.File)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dd><code><a href="Graph.html#readFromFile(java.io.File,java.util.function.Function)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.lavitskaya.graph">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Parameters:</dt>
 <dd><code>file</code> - the file from which to read the graph</dd>
 <dt>Throws:</dt>
