@@ -2,7 +2,9 @@ package ru.nsu.lavitskaya.graph;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Function;
 import java.util.List;
+
 
 /**
  * Represents a generic graph interface.
@@ -26,7 +28,7 @@ public interface Graph<T> {
 
     List<Vertex<T>> getVertices();
 
-    void readFromFile(File file) throws IOException;
+    void readFromFile(File file, Function<String, T> converter) throws IOException;
 
     @Override
     boolean equals(Object obj);

@@ -89,6 +89,17 @@ class IncidenceMatrixGraphTest {
     }
 
     @Test
+    public void testEqualsWithDifTypes() {
+        IncidenceMatrixGraph<String> graph1 = new IncidenceMatrixGraph<>();
+        Vertex<String> v1 = new Vertex<>("1");
+        graph1.addVertex(v1);
+        IncidenceMatrixGraph<Integer> graph2 = new IncidenceMatrixGraph<>();
+        Vertex<Integer> v2 = new Vertex<>(1);
+        graph2.addVertex(v2);
+        assertFalse(graph1.equals(graph2));
+    }
+
+    @Test
     public void testHashCode() {
         IncidenceMatrixGraph<String> graph1 = new IncidenceMatrixGraph<>();
         IncidenceMatrixGraph<String> graph2 = new IncidenceMatrixGraph<>();
@@ -104,22 +115,22 @@ class IncidenceMatrixGraphTest {
         File tempFile;
         tempFile = File.createTempFile("testGraph", ".txt");
         try (FileWriter writer = new FileWriter(tempFile)) {
-            writer.write("A|1 1 \n");
-            writer.write("B|-1 0 \n");
-            writer.write("C|0 -1 \n");
+            writer.write("1|1 1 \n");
+            writer.write("2|-1 0 \n");
+            writer.write("3|0 -1 \n");
         }
-        IncidenceMatrixGraph<String> graph = new IncidenceMatrixGraph<>();
-        graph.readFromFile(tempFile);
-        List<Vertex<String>> vertices = graph.getVertices();
+        IncidenceMatrixGraph<Integer> graph = new IncidenceMatrixGraph<>();
+        graph.readFromFile(tempFile, line -> Integer.parseInt(line.trim()));
+        List<Vertex<Integer>> vertices = graph.getVertices();
         assertEquals(3, vertices.size());
-        assertTrue(vertices.contains(new Vertex<>("A")));
-        assertTrue(vertices.contains(new Vertex<>("B")));
-        assertTrue(vertices.contains(new Vertex<>("C")));
+        assertTrue(vertices.contains(new Vertex<>(1)));
+        assertTrue(vertices.contains(new Vertex<>(2)));
+        assertTrue(vertices.contains(new Vertex<>(3)));
 
-        List<Vertex<String>> neighborsOfA = graph.getNeighbors(new Vertex<>("A"));
-        assertEquals(2, neighborsOfA.size());
-        assertTrue(neighborsOfA.contains(new Vertex<>("B")));
-        assertTrue(neighborsOfA.contains(new Vertex<>("C")));
+        List<Vertex<Integer>> neighborsOf1 = graph.getNeighbors(new Vertex<>(1));
+        assertEquals(2, neighborsOf1.size());
+        assertTrue(neighborsOf1.contains(new Vertex<>(2)));
+        assertTrue(neighborsOf1.contains(new Vertex<>(3)));
 
         if (tempFile.exists()) {
             tempFile.delete();

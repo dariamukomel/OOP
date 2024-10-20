@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * Represents a graph using an incidence matrix representation.
@@ -140,22 +141,24 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
     }
 
     /**
-     * Returns a list of neighbors for a given vertex.
+     * Retrieves a list of neighboring vertices for the specified vertex in the graph.
      *
-     * @param vertex the vertex for which neighbors are to be retrieved
-     * @return a list of neighboring vertices
+     * @param vertex The vertex whose neighbors are to be retrieved.
+     * @return A list of neighboring vertices, or null if the specified vertex is not present
+     *     in the graph.
      */
     @Override
     public List<Vertex<T>> getNeighbors(Vertex<T> vertex) {
-        List<Vertex<T>> neighbors = new ArrayList<>();
         int vertexIndex = vertices.indexOf(vertex);
-        if (vertexIndex != -1) {
-            for (int j = 0; j < edges.size(); j++) {
-                if (incidenceMatrix[vertexIndex][j] == 1) {
-                    neighbors.add(edges.get(j).getTo());
-                }
-
+        if (vertexIndex == -1) {
+            return null;
+        }
+        List<Vertex<T>> neighbors = new ArrayList<>();
+        for (int j = 0; j < edges.size(); j++) {
+            if (incidenceMatrix[vertexIndex][j] == 1) {
+                neighbors.add(edges.get(j).getTo());
             }
+
         }
         return neighbors;
     }
@@ -178,7 +181,7 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public void readFromFile(File file) throws IOException {
+    public void readFromFile(File file, Function<String, T> converter) throws IOException {
         HashMap<Vertex<T>, int[]> incidenceMap = new HashMap<>();
         List<Vertex<T>> vertexList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -192,7 +195,7 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
                     throw new IOException("Invalid line format: " + line);
                 }
                 String vertexName = parts[0].trim();
-                Vertex<T> vertex = new Vertex<>((T) vertexName);
+                Vertex<T> vertex = new Vertex<>(converter.apply(vertexName));
                 String[] incidenceStrings = parts[1].trim().split("\\s+");
                 int[] incidences = new int[incidenceStrings.length];
                 for (int i = 0; i < incidenceStrings.length; i++) {
@@ -255,7 +258,7 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
         for (Vertex<T> currVertex : this.vertices) {
             List<Vertex<T>> thisNeighbors = getNeighbors(currVertex);
             List<Vertex<T>> thatNeighbors = that.getNeighbors(currVertex);
-            if (thatNeighbors.size() != thisNeighbors.size()) {
+            if (thatNeighbors == null || thatNeighbors.size() != thisNeighbors.size()) {
                 return false;
             }
             for (int i = 0; i < thisNeighbors.size(); i++) {

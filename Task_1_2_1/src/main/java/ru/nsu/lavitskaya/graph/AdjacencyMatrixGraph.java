@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * Represents a directed graph using an adjacency matrix to store edges.
@@ -130,20 +131,22 @@ public class AdjacencyMatrixGraph<T> implements Graph<T> {
     }
 
     /**
-     * Retrieves the neighbors of the specified vertex.
+     * Retrieves the list of neighbors for the specified vertex in the graph.
      *
      * @param vertex The vertex whose neighbors are to be retrieved.
-     * @return A list of neighboring vertices.
+     * @return A list of neighboring vertices, or null if the specified vertex is not present
+     *     in the graph.
      */
     @Override
     public List<Vertex<T>> getNeighbors(Vertex<T> vertex) {
-        List<Vertex<T>> neighbors = new ArrayList<>();
         int index = vertices.indexOf(vertex);
-        if (index != -1) {
-            for (int i = 0; i < vertices.size(); i++) {
-                for (int j = 0; j < adjacencyMatrix[index][i]; j++) {
-                    neighbors.add(vertices.get(i));
-                }
+        if (index == -1) {
+            return null;
+        }
+        List<Vertex<T>> neighbors = new ArrayList<>();
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = 0; j < adjacencyMatrix[index][i]; j++) {
+                neighbors.add(vertices.get(i));
             }
         }
         return neighbors;
@@ -166,25 +169,26 @@ public class AdjacencyMatrixGraph<T> implements Graph<T> {
      * @throws IOException If an error occurs while reading the file or parsing the numbers.
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public void readFromFile(File file) throws IOException {
+    public void readFromFile(File file, Function<String, T> converter) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
             if (line != null) {
                 String[] vertexNames = line.trim().split("\\s+");
                 for (int i = 0; i < vertexNames.length; i++) {
-                    addVertex(new Vertex<>((T) vertexNames[i]));
+                    addVertex(new Vertex<>(converter.apply(vertexNames[i])));
                 }
             }
             int vertexCount = vertices.size();
-            adjacencyMatrix = new int[vertexCount][vertexCount];
 
             for (int i = 0; i < vertexCount; i++) {
                 line = reader.readLine();
                 if (line != null) {
                     String[] values = line.trim().split("\\s+");
                     for (int j = 1; j < values.length; j++) {
-                        adjacencyMatrix[i][j - 1] = Integer.parseInt(values[j]);
+                        int countOfEdges = Integer.parseInt(values[j]);
+                        for (int y = 0; y < countOfEdges; y++) {
+                            addEdge(new Edge<>(vertices.get(i), vertices.get(j-1)));
+                        }
                     }
                 }
             }
@@ -217,7 +221,7 @@ public class AdjacencyMatrixGraph<T> implements Graph<T> {
         for (Vertex<T> currVertex : this.vertices) {
             List<Vertex<T>> thisNeighbors = getNeighbors(currVertex);
             List<Vertex<T>> thatNeighbors = that.getNeighbors(currVertex);
-            if (thatNeighbors.size() != thisNeighbors.size()) {
+            if (thatNeighbors == null || thatNeighbors.size() != thisNeighbors.size()) {
                 return false;
             }
             for (int i = 0; i < thisNeighbors.size(); i++) {

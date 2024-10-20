@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * Represents a graph using an adjacency list representation.
@@ -74,16 +75,18 @@ public class AdjacencyListGraph<T> implements Graph<T> {
     }
 
     /**
-     * Returns a list of neighbors for a given vertex.
+     * Retrieves the list of neighbors for a specified vertex in the graph.
      *
-     * @param vertex the vertex for which neighbors are to be retrieved
-     * @return a list of neighboring vertices
+     * @param vertex the vertex for which neighboring vertices are to be retrieved
+     * @return a list of neighboring vertices, or null if the specified vertex is not present
+     *     in the graph
      */
     @Override
     public List<Vertex<T>> getNeighbors(Vertex<T> vertex) {
-        List<Vertex<T>> neighbors = new ArrayList<>(adjacencyList.getOrDefault(vertex,
-                new ArrayList<>()));
-        return neighbors;
+        if (!adjacencyList.containsKey(vertex)) {
+            return null;
+        }
+        return new ArrayList<>(adjacencyList.get(vertex));
     }
 
     /**
@@ -102,8 +105,7 @@ public class AdjacencyListGraph<T> implements Graph<T> {
      * @throws IOException if an error occurs while reading the file
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public void readFromFile(File file) throws IOException {
+    public void readFromFile(File file, Function<String, T> converter) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -115,7 +117,7 @@ public class AdjacencyListGraph<T> implements Graph<T> {
                 String vertexName = parts[0].trim();
                 String neighborsPart = parts[1].trim();
 
-                Vertex<T> vertex = new Vertex<>((T) vertexName);
+                Vertex<T> vertex = new Vertex<>(converter.apply(vertexName));
                 addVertex(vertex);
 
                 if (neighborsPart.startsWith("[") && neighborsPart.endsWith("]")) {
@@ -125,7 +127,7 @@ public class AdjacencyListGraph<T> implements Graph<T> {
                         String[] neighbors = neighborsList.split(",");
                         for (String neighborName : neighbors) {
                             neighborName = neighborName.trim();
-                            Vertex<T> neighbor = new Vertex<>((T) neighborName);
+                            Vertex<T> neighbor = new Vertex<>(converter.apply(neighborName));
                             addVertex(neighbor);
                             addEdge(new Edge<>(vertex, neighbor));
                         }
@@ -159,7 +161,7 @@ public class AdjacencyListGraph<T> implements Graph<T> {
         for (Vertex<T> currVertex : this.getVertices()) {
             List<Vertex<T>> thisNeighbors = getNeighbors(currVertex);
             List<Vertex<T>> thatNeighbors = that.getNeighbors(currVertex);
-            if (thatNeighbors.size() != thisNeighbors.size()) {
+            if (thatNeighbors == null || thatNeighbors.size() != thisNeighbors.size()) {
                 return false;
             }
             for (int i = 0; i < thisNeighbors.size(); i++) {
