@@ -78,34 +78,34 @@ class AdjacencyMatrixGraphTest {
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v3));
-        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         List<Vertex<String>> expected = new ArrayList<>();
         expected.add(v2);
         expected.add(v2);
         expected.add(v3);
+        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         assertEquals(expected, neighbors);
     }
 
     @Test
     public void testEquals() {
         AdjacencyMatrixGraph<String> graph1 = new AdjacencyMatrixGraph<>();
-        AdjacencyMatrixGraph<String> graph2 = new AdjacencyMatrixGraph<>();
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v3));
+        AdjacencyMatrixGraph<String> graph2 = new AdjacencyMatrixGraph<>();
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v2));
         assertFalse(graph1.equals(graph2));
 
         AdjacencyMatrixGraph<String> graph3 = new AdjacencyMatrixGraph<>();
-        AdjacencyMatrixGraph<String> graph4 = new AdjacencyMatrixGraph<>();
         graph3.addVertex(v1);
         graph3.addVertex(v2);
         graph3.addEdge(new Edge<>(v1, v2));
+        AdjacencyMatrixGraph<String> graph4 = new AdjacencyMatrixGraph<>();
         graph4.addVertex(v2);
         graph4.addVertex(v1);
         graph4.addEdge(new Edge<>(v1, v2));

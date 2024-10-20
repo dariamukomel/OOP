@@ -25,12 +25,12 @@ class AdjacencyListGraphTest {
     public void testAddRemoveVerticesAndEdges() {
         AdjacencyListGraph<String> graph = new AdjacencyListGraph<>();
         Vertex<String> v1 = new Vertex<>("A");
-        Vertex<String> v2 = new Vertex<>("B");
-        Vertex<String> v3 = new Vertex<>("C");
         graph.addVertex(v1);
         assertEquals("A: []\n", graph.toString());
+        Vertex<String> v2 = new Vertex<>("B");
         graph.addEdge(new Edge<>(v1, v2));
         assertEquals("A: [B]\n" + "B: []\n", graph.toString());
+        Vertex<String> v3 = new Vertex<>("C");
         graph.addEdge(new Edge<>(v1, v3));
         graph.addEdge(new Edge<>(v2, v3));
         assertEquals("A: [B, C]\n" + "B: [C]\n" + "C: []\n", graph.toString());
@@ -50,34 +50,34 @@ class AdjacencyListGraphTest {
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v2));
         graph.addEdge(new Edge<>(v1, v3));
-        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         List<Vertex<String>> expected = new ArrayList<>();
         expected.add(v2);
         expected.add(v2);
         expected.add(v3);
+        List<Vertex<String>> neighbors = graph.getNeighbors(v1);
         assertEquals(expected, neighbors);
     }
 
     @Test
     public void testEquals() {
         AdjacencyListGraph<String> graph1 = new AdjacencyListGraph<>();
-        AdjacencyListGraph<String> graph2 = new AdjacencyListGraph<>();
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v2));
         graph1.addEdge(new Edge<>(v1, v3));
+        AdjacencyListGraph<String> graph2 = new AdjacencyListGraph<>();
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v3));
         graph2.addEdge(new Edge<>(v1, v2));
         assertFalse(graph1.equals(graph2));
 
         AdjacencyListGraph<String> graph3 = new AdjacencyListGraph<>();
-        AdjacencyListGraph<String> graph4 = new AdjacencyListGraph<>();
         graph3.addVertex(v1);
         graph3.addVertex(v2);
         graph3.addEdge(new Edge<>(v1, v2));
+        AdjacencyListGraph<String> graph4 = new AdjacencyListGraph<>();
         graph4.addVertex(v2);
         graph4.addVertex(v1);
         graph4.addEdge(new Edge<>(v1, v2));

@@ -30,11 +30,11 @@ class TopologicalSortTest {
 
         graph.removeEdge(new Edge<>(v3, v1));
         graph.addEdge(new Edge<>(v2, v3));
-        List<Vertex<String>> sortedGraph = TopologicalSort.topSort(graph);
         List<Vertex<String>> expectedGraph = new ArrayList<>();
         expectedGraph.add(v1);
         expectedGraph.add(v2);
         expectedGraph.add(v3);
+        List<Vertex<String>> sortedGraph = TopologicalSort.topSort(graph);
         assertEquals(expectedGraph, sortedGraph);
 
     }
