@@ -2,9 +2,8 @@ package ru.nsu.lavitskaya.graph;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.function.Function;
 import java.util.List;
-
+import java.util.function.Function;
 
 /**
  * Represents a generic graph interface.

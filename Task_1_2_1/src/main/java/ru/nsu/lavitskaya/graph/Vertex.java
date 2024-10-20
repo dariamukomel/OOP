@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class Vertex<T> {
     private final T value;
+    
     /**
      * Creates a new vertex with the specified value.
      *

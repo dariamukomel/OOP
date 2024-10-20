@@ -187,7 +187,7 @@ public class AdjacencyMatrixGraph<T> implements Graph<T> {
                     for (int j = 1; j < values.length; j++) {
                         int countOfEdges = Integer.parseInt(values[j]);
                         for (int y = 0; y < countOfEdges; y++) {
-                            addEdge(new Edge<>(vertices.get(i), vertices.get(j-1)));
+                            addEdge(new Edge<>(vertices.get(i), vertices.get(j - 1)));
                         }
                     }
                 }
