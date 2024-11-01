@@ -70,7 +70,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
         Node<K, V> existingNode = table[index];
         while (existingNode != null) {
             if (existingNode.key.equals(key)) {
-                existingNode.value = value;// Update value
+                existingNode.value = value; // Update value
                 return;
             }
             existingNode = existingNode.next;

@@ -62,7 +62,7 @@ public class Node<K, V> {
      */
     @Override
     public String toString() {
-        return (key == null ? "null" : key.toString()) + ": " +
-                (value == null ? "null" : value.toString());
+        return (key == null ? "null" : key.toString()) + ": "
+                + (value == null ? "null" : value.toString());
     }
 }
