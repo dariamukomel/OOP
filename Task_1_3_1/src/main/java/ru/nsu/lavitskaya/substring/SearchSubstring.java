@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * The {@code SearchSubstring} class provides methods to find all occurrences
  * of a specified substring within a given text resource or file.
- *
  * It can read from both regular files and resources bundled within a JAR file.
  * The positions of all occurrences of the substring in the file are returned
  * as a list of indices.

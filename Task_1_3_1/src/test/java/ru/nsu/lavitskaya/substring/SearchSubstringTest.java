@@ -8,14 +8,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 /**
  * The {@code SearchSubstringTest} class contains tests to verify the functionality
  * of substring searching in various contexts using JUnit 5.
- *
  * The tests include searching for a substring in a large file, in resources,
  * and checking the handling of an empty substring. Each test uses different approaches
  * to create test data and handle it.
@@ -31,7 +29,7 @@ class SearchSubstringTest {
     }
 
     @Test
-    public void testFindSubstringSize8GB() throws IOException {
+    public void testFindSubstringSize8Gb() throws IOException {
         tempFile = Files.createTempFile("test_input_", ".txt");
 
         try (BufferedWriter writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
