@@ -16,50 +16,109 @@ class GradeBookTest {
     private GradeBook gradeBook;
 
     @Test
-    public void testGoodBudgetStudent() {
-        gradeBook = new GradeBook("Иванов", false);
-        assertEquals(0.0, gradeBook.calculateAverageScore());
-        assertFalse(gradeBook.canTransferToBudget());
-        assertTrue(gradeBook.eligibleForRedDiploma());
-        assertTrue(gradeBook.eligibleForScholarship());
+    public void testAddingGrades() {
+        gradeBook = new GradeBook("ы", true);
+        Grade grade0 = new Grade(1, TypeEnum.EXAM, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade0);
+        assertEquals(1, gradeBook.getCurrSemester());
 
-        Semester semester1 = new Semester();
-        gradeBook.addSemester(semester1);
-        semester1.addGrade(5);
-        semester1.addExamResult(4);
-        assertEquals(4.5, gradeBook.calculateAverageScore());
-        assertFalse(gradeBook.eligibleForRedDiploma());
-        assertFalse(gradeBook.eligibleForScholarship());
+        Grade grade1 = new Grade(5, TypeEnum.EXAM, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade1);
+        assertEquals(5, gradeBook.getCurrSemester());
 
-        Semester semester2 = new Semester();
-        gradeBook.addSemester(semester2);
-        semester1.addGrade(5);
-        semester1.addExamResult(5);
-        assertTrue(gradeBook.eligibleForScholarship());
-        gradeBook.setQualificationWorkGrade(4);
-        assertFalse(gradeBook.eligibleForRedDiploma());
-        gradeBook.setQualificationWorkGrade(5);
-        assertTrue(gradeBook.eligibleForRedDiploma());
+        Grade grade2 = new Grade(4, TypeEnum.EXAM, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade2);
+        assertEquals(5, gradeBook.getCurrSemester());
     }
 
     @Test
-    public void testAveragePaidStudent() {
-        gradeBook = new GradeBook("Петров", true);
-        assertTrue(gradeBook.canTransferToBudget());
+    public void testCalculateAverageScore() {
+        gradeBook = new GradeBook("ы", true);
+        assertEquals(0.0, gradeBook.calculateAverageScore());
 
-        Semester semester1 = new Semester();
-        gradeBook.addSemester(semester1);
-        semester1.addGrade(3);
-        semester1.addExamResult(4);
-        assertTrue(gradeBook.canTransferToBudget());
+        Grade grade1 = new Grade(1, TypeEnum.EXAM, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade1);
+        Grade grade2 = new Grade(2, TypeEnum.CREDIT, "ho", GradeEnum.GOOD);
+        gradeBook.addGrade(grade2);
+        assertEquals(4.5, gradeBook.calculateAverageScore());
+    }
 
-
-        Semester semester2 = new Semester();
-        gradeBook.addSemester(semester2);
-        semester2.addExamResult(3);
+    @Test
+    public void testCanTransferToBudgetOneSemester() {
+        gradeBook = new GradeBook("ы", false);
         assertFalse(gradeBook.canTransferToBudget());
+
+        gradeBook = new GradeBook("ы", true);
+        assertTrue(gradeBook.canTransferToBudget());
+
+        Grade grade1 = new Grade(1, TypeEnum.EXAM, "hh", GradeEnum.GOOD);
+        gradeBook.addGrade(grade1);
+        Grade grade2 = new Grade(1, TypeEnum.CREDIT, "hf", GradeEnum.SATISFACTORY);
+        gradeBook.addGrade(grade2);
+        assertTrue(gradeBook.canTransferToBudget());
+
+        Grade grade3 = new Grade(1, TypeEnum.EXAM, "df", GradeEnum.SATISFACTORY);
+        gradeBook.addGrade(grade3);
+        assertFalse(gradeBook.canTransferToBudget());
+    }
+
+    @Test
+    public void testCanTransferToBudgetTwoSemesters() {
+        gradeBook = new GradeBook("ы", true);
+        Grade grade1 = new Grade(1, TypeEnum.EXAM, "hh", GradeEnum.SATISFACTORY);
+        gradeBook.addGrade(grade1);
+        Grade grade2 = new Grade(2, TypeEnum.EXAM, "hf", GradeEnum.GOOD);
+        gradeBook.addGrade(grade2);
+        assertFalse(gradeBook.canTransferToBudget());
+
+        Grade grade3 = new Grade(3, TypeEnum.EXAM, "hl", GradeEnum.GOOD);
+        gradeBook.addGrade(grade3);
+        assertTrue(gradeBook.canTransferToBudget());
+    }
+
+    @Test
+    public void testEligibleForRedDiploma() {
+        gradeBook = new GradeBook("ы", true);
+        gradeBook.setQualificationWorkGrade(GradeEnum.GOOD);
         assertFalse(gradeBook.eligibleForRedDiploma());
 
+        gradeBook.setQualificationWorkGrade(GradeEnum.EXCELLENT);
+        Grade grade1 = new Grade(1, TypeEnum.EXAM, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade1);
+        Grade grade2 = new Grade(1, TypeEnum.CREDIT, "hg", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade2);
+        Grade grade3 = new Grade(2, TypeEnum.CREDIT, "hf", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade3);
+        Grade grade4 = new Grade(2, TypeEnum.CREDIT, "hs", GradeEnum.GOOD);
+        gradeBook.addGrade(grade4);
+        assertTrue(gradeBook.eligibleForRedDiploma());
+
+        Grade grade5 = new Grade(3, TypeEnum.CREDIT, "hf", GradeEnum.GOOD);
+        gradeBook.addGrade(grade5);
+        assertFalse(gradeBook.eligibleForRedDiploma());
+
+        Grade grade6 = new Grade(4, TypeEnum.CREDIT, "hf", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade6);
+        assertTrue(gradeBook.eligibleForRedDiploma());
+
+        Grade grade7 = new Grade(4, TypeEnum.CREDIT, "tr", GradeEnum.SATISFACTORY);
+        gradeBook.addGrade(grade7);
+        assertFalse(gradeBook.eligibleForRedDiploma());
+
+    }
+
+    @Test
+    public void testEligibleForScholarship() {
+        gradeBook = new GradeBook("ы", true);
+        assertTrue(gradeBook.eligibleForScholarship());
+
+        Grade grade1 = new Grade(1, TypeEnum.CREDIT, "hh", GradeEnum.EXCELLENT);
+        gradeBook.addGrade(grade1);
+        assertTrue(gradeBook.eligibleForScholarship());
+
+        Grade grade2 = new Grade(1, TypeEnum.CREDIT, "hf", GradeEnum.GOOD);
+        gradeBook.addGrade(grade2);
+        assertFalse(gradeBook.eligibleForScholarship());
     }
 
 }
