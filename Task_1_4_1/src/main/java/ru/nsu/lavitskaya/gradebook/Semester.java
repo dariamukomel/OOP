@@ -51,7 +51,8 @@ public class Semester {
     /**
      * Retrieves an unmodifiable list of exam results for the semester.
      *
-     * @return an unmodifiable list of exam results, which cannot be modified from outside this class.
+     * @return an unmodifiable list of exam results, which cannot be modified from outside
+     *     this class.
      */
     public List<Integer> getExamResults() {
         return Collections.unmodifiableList(examResults);
