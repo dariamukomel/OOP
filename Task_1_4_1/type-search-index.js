@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.gradebook","l":"GradeBook"},{"p":"ru.nsu.lavitskaya.gradebook","l":"Semester"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.gradebook","l":"Grade"},{"p":"ru.nsu.lavitskaya.gradebook","l":"GradeBook"},{"p":"ru.nsu.lavitskaya.gradebook","l":"GradeEnum"},{"p":"ru.nsu.lavitskaya.gradebook","l":"TypeEnum"}];updateSearchResults();

@@ -48,63 +48,89 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html#addExamResult(int)" class="member-name-link">addExamResult(int)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a></dt>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#addGrade(ru.nsu.lavitskaya.gradebook.Grade)" class="member-name-link">addGrade(Grade)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Adds an exam result to the semester.</div>
-</dd>
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html#addGrade(int)" class="member-name-link">addGrade(int)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a></dt>
-<dd>
-<div class="block">Adds a grade to the semester.</div>
-</dd>
-<dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#addSemester(ru.nsu.lavitskaya.gradebook.Semester)" class="member-name-link">addSemester(Semester)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
-<dd>
-<div class="block">Adds a Semester to the student's grade book.</div>
+<div class="block">Adds a grade to the current or next semester.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#calculateAverageScore()" class="member-name-link">calculateAverageScore()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Calculates the average score across all semesters.</div>
+<div class="block">Calculates the average score of all grades.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#canTransferToBudget()" class="member-name-link">canTransferToBudget()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Checks if the student can transfer from a paid to a budget education plan.</div>
+<div class="block">Determines if the student can transfer to a budgetary form of education.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#course()" class="member-name-link">course()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/lavitskaya/gradebook/Grade.html#param-course"><code>course</code></a> record component.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html#CREDIT" class="member-name-link">CREDIT</a> - Enum constant in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">TypeEnum</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#eligibleForRedDiploma()" class="member-name-link">eligibleForRedDiploma()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Checks if the student is eligible for a "Red Diploma".</div>
+<div class="block">Determines if the student is eligible for a Red Diploma.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#eligibleForScholarship()" class="member-name-link">eligibleForScholarship()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Checks if the student is eligible for a scholarship based on their
- performance in the latest semester.</div>
+<div class="block">Determines if the student is eligible for a scholarship.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html#EXAM" class="member-name-link">EXAM</a> - Enum constant in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">TypeEnum</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#EXCELLENT" class="member-name-link">EXCELLENT</a> - Enum constant in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html#getExamResults()" class="member-name-link">getExamResults()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a></dt>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#getCurrSemester()" class="member-name-link">getCurrSemester()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Retrieves an unmodifiable list of exam results for the semester.</div>
+<div class="block">Gets the current semester number.</div>
 </dd>
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html#getGrades()" class="member-name-link">getGrades()</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a></dt>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#getGradeValue()" class="member-name-link">getGradeValue()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#getValue()" class="member-name-link">getValue()</a> - Method in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#GOOD" class="member-name-link">GOOD</a> - Enum constant in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html" class="type-name-link" title="class in ru.nsu.lavitskaya.gradebook">Grade</a> - Record Class in <a href="ru/nsu/lavitskaya/gradebook/package-summary.html">ru.nsu.lavitskaya.gradebook</a></dt>
 <dd>
-<div class="block">Retrieves an unmodifiable list of grades for the semester.</div>
+<div class="block">Represents a grade awarded to a student for a specific course in a given semester.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#%3Cinit%3E(int,ru.nsu.lavitskaya.gradebook.TypeEnum,java.lang.String,ru.nsu.lavitskaya.gradebook.GradeEnum)" class="member-name-link">Grade(int, TypeEnum, String, GradeEnum)</a> - Constructor for record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>Grade</code> record class.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" class="type-name-link" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a> - Class in <a href="ru/nsu/lavitskaya/gradebook/package-summary.html">ru.nsu.lavitskaya.gradebook</a></dt>
 <dd>
-<div class="block">The GradeBook class represents a student's academic record, managing
- their semesters and providing methods to calculate various academic metrics.</div>
+<div class="block">Represents a GradeBook that manages grades for a student.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#%3Cinit%3E(java.lang.String,boolean)" class="member-name-link">GradeBook(String, boolean)</a> - Constructor for class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Constructs a new GradeBook for a student.</div>
+<div class="block">Constructs a GradeBook for a student.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a> - Enum Class in <a href="ru/nsu/lavitskaya/gradebook/package-summary.html">ru.nsu.lavitskaya.gradebook</a></dt>
+<dd>
+<div class="block">This enum represents the different grades that can be assigned
+ to a student's performance.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:H">H</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
@@ -114,20 +140,59 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html" class="type-name-link" title="class in ru.nsu.lavitskaya.gradebook">Semester</a> - Class in <a href="ru/nsu/lavitskaya/gradebook/package-summary.html">ru.nsu.lavitskaya.gradebook</a></dt>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#SATISFACTORY" class="member-name-link">SATISFACTORY</a> - Enum constant in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#semester()" class="member-name-link">semester()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
 <dd>
-<div class="block">The Semester class represents an academic semester for a student.</div>
+<div class="block">Returns the value of the <a href="./ru/nsu/lavitskaya/gradebook/Grade.html#param-semester"><code>semester</code></a> record component.</div>
 </dd>
-<dt><a href="ru/nsu/lavitskaya/gradebook/Semester.html#%3Cinit%3E()" class="member-name-link">Semester()</a> - Constructor for class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a></dt>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#setQualificationWorkGrade(ru.nsu.lavitskaya.gradebook.GradeEnum)" class="member-name-link">setQualificationWorkGrade(GradeEnum)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
 <dd>
-<div class="block">Constructs a new Semester object.</div>
-</dd>
-<dt><a href="ru/nsu/lavitskaya/gradebook/GradeBook.html#setQualificationWorkGrade(int)" class="member-name-link">setQualificationWorkGrade(int)</a> - Method in class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeBook.html" title="class in ru.nsu.lavitskaya.gradebook">GradeBook</a></dt>
-<dd>
-<div class="block">Sets the grade for the student's qualification work.</div>
+<div class="block">Sets the qualification work grade.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<h2 class="title" id="I:T">T</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#type()" class="member-name-link">type()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/lavitskaya/gradebook/Grade.html#param-type"><code>type</code></a> record component.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.gradebook">TypeEnum</a> - Enum Class in <a href="ru/nsu/lavitskaya/gradebook/package-summary.html">ru.nsu.lavitskaya.gradebook</a></dt>
+<dd>
+<div class="block">This enum represents the different types of assessments that can be recorded
+ in a grade book.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:V">V</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/gradebook/Grade.html#value()" class="member-name-link">value()</a> - Method in record class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/lavitskaya/gradebook/Grade.html#param-value"><code>value</code></a> record component.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">TypeEnum</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html#values()" class="member-name-link">values()</a> - Static method in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html#values()" class="member-name-link">values()</a> - Static method in enum class ru.nsu.lavitskaya.gradebook.<a href="ru/nsu/lavitskaya/gradebook/TypeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">TypeEnum</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+</dl>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>

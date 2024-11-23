@@ -90,8 +90,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GradeBook</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">The GradeBook class represents a student's academic record, managing
- their semesters and providing methods to calculate various academic metrics.</div>
+<div class="block">Represents a GradeBook that manages grades for a student.
+ This class allows for adding grades, checking scholarship eligibility,
+ determining eligibility for a Red Diploma, and checking the possibility
+ of transferring to a budgetary form of education.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -106,7 +108,7 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,boolean)" class="member-name-link">GradeBook</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  boolean&nbsp;isPaid)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructs a new GradeBook for a student.</div>
+<div class="block">Constructs a GradeBook for a student.</div>
 </div>
 </div>
 </section>
@@ -123,35 +125,39 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addSemester(ru.nsu.lavitskaya.gradebook.Semester)" class="member-name-link">addSemester</a><wbr>(<a href="Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a>&nbsp;semester)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addGrade(ru.nsu.lavitskaya.gradebook.Grade)" class="member-name-link">addGrade</a><wbr>(<a href="Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a>&nbsp;grade)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a Semester to the student's grade book.</div>
+<div class="block">Adds a grade to the current or next semester.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateAverageScore()" class="member-name-link">calculateAverageScore</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Calculates the average score across all semesters.</div>
+<div class="block">Calculates the average score of all grades.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canTransferToBudget()" class="member-name-link">canTransferToBudget</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the student can transfer from a paid to a budget education plan.</div>
+<div class="block">Determines if the student can transfer to a budgetary form of education.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eligibleForRedDiploma()" class="member-name-link">eligibleForRedDiploma</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the student is eligible for a "Red Diploma".</div>
+<div class="block">Determines if the student is eligible for a Red Diploma.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eligibleForScholarship()" class="member-name-link">eligibleForScholarship</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the student is eligible for a scholarship based on their
- performance in the latest semester.</div>
+<div class="block">Determines if the student is eligible for a scholarship.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setQualificationWorkGrade(int)" class="member-name-link">setQualificationWorkGrade</a><wbr>(int&nbsp;grade)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurrSemester()" class="member-name-link">getCurrSemester</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the grade for the student's qualification work.</div>
+<div class="block">Gets the current semester number.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setQualificationWorkGrade(ru.nsu.lavitskaya.gradebook.GradeEnum)" class="member-name-link">setQualificationWorkGrade</a><wbr>(<a href="GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a>&nbsp;grade)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the qualification work grade.</div>
 </div>
 </div>
 </div>
@@ -175,11 +181,11 @@ loadScripts(document, 'script');</script>
 <h3>GradeBook</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GradeBook</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  boolean&nbsp;isPaid)</span></div>
-<div class="block">Constructs a new GradeBook for a student.</div>
+<div class="block">Constructs a GradeBook for a student.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>name</code> - the name of the student</dd>
-<dd><code>isPaid</code> - indicates if the student is on a paid or budget education plan</dd>
+<dd><code>isPaid</code> - indicates if the student's education is paid or not</dd>
 </dl>
 </section>
 </li>
@@ -192,24 +198,37 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addSemester(ru.nsu.lavitskaya.gradebook.Semester)">
-<h3>addSemester</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addSemester</span><wbr><span class="parameters">(<a href="Semester.html" title="class in ru.nsu.lavitskaya.gradebook">Semester</a>&nbsp;semester)</span></div>
-<div class="block">Adds a Semester to the student's grade book.</div>
+<section class="detail" id="addGrade(ru.nsu.lavitskaya.gradebook.Grade)">
+<h3>addGrade</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addGrade</span><wbr><span class="parameters">(<a href="Grade.html" title="class in ru.nsu.lavitskaya.gradebook">Grade</a>&nbsp;grade)</span></div>
+<div class="block">Adds a grade to the current or next semester.
+ If the grade's semester is greater than the current semester,
+ it also updates the current semester.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>semester</code> - the Semester object to be added</dd>
+<dd><code>grade</code> - the grade to be added</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setQualificationWorkGrade(int)">
+<section class="detail" id="setQualificationWorkGrade(ru.nsu.lavitskaya.gradebook.GradeEnum)">
 <h3>setQualificationWorkGrade</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setQualificationWorkGrade</span><wbr><span class="parameters">(int&nbsp;grade)</span></div>
-<div class="block">Sets the grade for the student's qualification work.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setQualificationWorkGrade</span><wbr><span class="parameters">(<a href="GradeEnum.html" title="enum class in ru.nsu.lavitskaya.gradebook">GradeEnum</a>&nbsp;grade)</span></div>
+<div class="block">Sets the qualification work grade.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>grade</code> - the grade of the qualification work, typically on a scale from 2 to 5</dd>
+<dd><code>grade</code> - the qualification work grade to set</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCurrSemester()">
+<h3>getCurrSemester</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getCurrSemester</span>()</div>
+<div class="block">Gets the current semester number.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current semester number</dd>
 </dl>
 </section>
 </li>
@@ -217,10 +236,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="calculateAverageScore()">
 <h3>calculateAverageScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateAverageScore</span>()</div>
-<div class="block">Calculates the average score across all semesters.</div>
+<div class="block">Calculates the average score of all grades.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the average score, or 0.0 if there are no grades.</dd>
+<dd>the average score as a double; returns 0.0 if no grades are present</dd>
 </dl>
 </section>
 </li>
@@ -228,10 +247,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="canTransferToBudget()">
 <h3>canTransferToBudget</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canTransferToBudget</span>()</div>
-<div class="block">Checks if the student can transfer from a paid to a budget education plan.</div>
+<div class="block">Determines if the student can transfer to a budgetary form of education.
+ The student can transfer if there are no "Satisfactory" grades in the last
+ two exam sessions or if they paid but have no grades.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if the student can transfer to budget, false otherwise.</dd>
+<dd>true if the student can transfer to budget; false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -239,10 +260,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eligibleForRedDiploma()">
 <h3>eligibleForRedDiploma</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">eligibleForRedDiploma</span>()</div>
-<div class="block">Checks if the student is eligible for a "Red Diploma".</div>
+<div class="block">Determines if the student is eligible for a Red Diploma.
+ The student is eligible if:
+ - The qualification work grade is either null or EXCELLENT.
+ - At least 75% of the grades from each course are EXCELLENT, and there are no "Satisfactory"
+     grades.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if the student qualifies for a Red Diploma, false otherwise.</dd>
+<dd>true if eligible for Red Diploma; false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -250,11 +275,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eligibleForScholarship()">
 <h3>eligibleForScholarship</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">eligibleForScholarship</span>()</div>
-<div class="block">Checks if the student is eligible for a scholarship based on their
- performance in the latest semester.</div>
+<div class="block">Determines if the student is eligible for a scholarship.
+ The student is eligible only if all grades in the current semester are EXCELLENT.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true if the student is eligible for a scholarship, false otherwise.</dd>
+<dd>true if eligible for scholarship; false otherwise</dd>
 </dl>
 </section>
 </li>
