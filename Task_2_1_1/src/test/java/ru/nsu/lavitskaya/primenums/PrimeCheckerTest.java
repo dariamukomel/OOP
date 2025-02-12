@@ -42,7 +42,8 @@ class PrimeCheckerTest {
     public void testExecutionTimes() throws IOException, InterruptedException {
 
         int[] primeNumbers = loadPrimesFromFile();
-        long start, end;
+        long start;
+        long end;
         start = System.nanoTime();
         boolean sequentialResult = PrimeChecker.sequential(primeNumbers);
         end = System.nanoTime();
