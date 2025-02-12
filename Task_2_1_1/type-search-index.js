@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.primenums","l":"PrimeChart"},{"p":"ru.nsu.lavitskaya.primenums","l":"PrimeChecker"}];updateSearchResults();
