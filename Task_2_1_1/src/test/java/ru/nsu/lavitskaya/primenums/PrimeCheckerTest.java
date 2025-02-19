@@ -1,15 +1,14 @@
 package ru.nsu.lavitskaya.primenums;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -107,8 +106,12 @@ class PrimeCheckerTest {
     @ParameterizedTest
     @MethodSource("primeCheckersProvider")
     void testNonPrimeNumber(PrimeChecker checker) throws InterruptedException {
-        assertTrue(checker.checkNumbers(primeArray), checker.getClass().getSimpleName());
-        assertFalse(checker.checkNumbers(nonPrimeArray), checker.getClass().getSimpleName());
+        assertAll(
+                () -> assertTrue(checker.checkNumbers(primeArray),
+                        checker.getClass().getSimpleName()),
+                () -> assertFalse(checker.checkNumbers(nonPrimeArray),
+                        checker.getClass().getSimpleName())
+        );
     }
 
 
