@@ -1,21 +1,36 @@
 package ru.nsu.lavitskaya.primenums;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Unit tests for the PrimeChecker class.
- * This class loads a set of prime numbers from a file and measures the execution time
- * of different methods in PrimeChecker, including sequential, parallel thread-based,
- * and parallel stream-based implementations.
+ * Unit tests for the PrimeChecker implementations.
+ * This class loads a set of prime numbers from a file and tests different implementations of
+ *     PrimeChecker.
  */
 class PrimeCheckerTest {
     private static final String FILE_PATH = "src/test/resources/prime_numbers.txt";
+    private static int[] primeNumbers;
+    private static int[] nonPrimeNumbers;
+
+    @BeforeAll
+    static void setUp() throws IOException {
+        primeNumbers = loadPrimesFromFile();
+        nonPrimeNumbers = Arrays.copyOf(primeNumbers, primeNumbers.length + 1);
+        primeNumbers[primeNumbers.length - 1] = 4;
+    }
 
     /**
      * Loads an array of prime numbers from a file.
@@ -23,7 +38,7 @@ class PrimeCheckerTest {
      * @return an array of integers representing prime numbers
      * @throws IOException if an I/O error occurs while reading the file
      */
-    private int[] loadPrimesFromFile() throws IOException {
+    private static int[] loadPrimesFromFile() throws IOException {
         List<Integer> primeList = Files.lines(Paths.get(FILE_PATH))
                 .map(Integer::parseInt)
                 .toList();
@@ -31,9 +46,24 @@ class PrimeCheckerTest {
     }
 
     /**
-     * Tests the execution times of the different implementations of prime number checking.
-     * Measures performance for sequential execution, parallel execution with multiple threads,
-     * and parallel execution using Java's parallel streams.
+     * Measures execution time of a PrimeChecker implementation.
+     *
+     * @param checker the PrimeChecker implementation
+     * @param numbers the array of numbers to check
+     * @return execution time in milliseconds
+     * @throws InterruptedException if a thread is interrupted while executing
+     */
+    private long measureExecutionTime(PrimeChecker checker, int[] numbers)
+            throws InterruptedException {
+        long start = System.nanoTime();
+        checker.checkNumbers(numbers);
+        long end = System.nanoTime();
+        return (end - start) / 1_000_000;
+    }
+
+
+    /**
+     * Tests the execution times of different PrimeChecker implementations.
      *
      * @throws IOException if an error occurs while reading the prime numbers file
      * @throws InterruptedException if a thread is interrupted while executing
@@ -41,32 +71,51 @@ class PrimeCheckerTest {
     @Test
     public void testExecutionTimes() throws IOException, InterruptedException {
 
-        int[] primeNumbers = loadPrimesFromFile();
-        long start;
-        long end;
-        start = System.nanoTime();
-        boolean sequentialResult = PrimeChecker.sequential(primeNumbers);
-        end = System.nanoTime();
-        long sequentialTime = (end - start) / 1_000_000;
-        System.out.println("Sequential: " + sequentialResult + " Time: " + sequentialTime + " ms");
+        PrimeChecker sequentialChecker = new SequentialPrimeChecker();
+        long sequentialTime = measureExecutionTime(sequentialChecker, primeNumbers);
+        System.out.println("Sequential: Time: " + sequentialTime + " ms");
 
         for (int threads = 2; threads <= 8; threads += 1) {
-            start = System.nanoTime();
-            boolean parallelThreadsResult = PrimeChecker.parallelThreads(primeNumbers, threads);
-            end = System.nanoTime();
-            long parallelTime = (end - start) / 1_000_000;
-            System.out.println("Parallel Threads (" + threads + "): " + parallelThreadsResult
-                    + " Time: " + parallelTime + " ms");
+            PrimeChecker parallelThreadsChecker = new ParallelThreadsPrimeChecker(threads);
+            long parallelTime = measureExecutionTime(parallelThreadsChecker, primeNumbers);
+            System.out.println("Parallel Threads (" + threads + "): Time: " + parallelTime + " ms");
         }
 
-        start = System.nanoTime();
-        boolean parallelStreamResult = PrimeChecker.parallelStream(primeNumbers);
-        end = System.nanoTime();
-        long parallelStreamTime = (end - start) / 1_000_000;
-        System.out.println("Parallel Stream: " + parallelStreamResult + " Time: "
-                + parallelStreamTime + " ms");
+        PrimeChecker parallelStreamChecker = new ParallelStreamPrimeChecker();
+        long parallelStreamTime = measureExecutionTime(parallelStreamChecker, primeNumbers);
+        System.out.println("Parallel Stream: Time: " + parallelStreamTime + " ms");
 
         assertTrue(true);
-
     }
+
+    /**
+     * Provides different implementations of PrimeChecker for parameterized testing.
+     *
+     * @return a stream of PrimeChecker instances
+     */
+    private static Stream<PrimeChecker> primeCheckersProvider() {
+        return Stream.of(
+                new SequentialPrimeChecker(),
+                new ParallelThreadsPrimeChecker(2),
+                new ParallelThreadsPrimeChecker(4),
+                new ParallelThreadsPrimeChecker(6),
+                new ParallelThreadsPrimeChecker(8),
+                new ParallelStreamPrimeChecker()
+        );
+    }
+
+    /**
+     * Parameterized test for all PrimeChecker implementations with one not prime number
+     *     in the end of array.
+     *
+     * @param checker the PrimeChecker implementation to be tested
+     */
+    @ParameterizedTest
+    @MethodSource("primeCheckersProvider")
+    void testNonPrimeNumber(PrimeChecker checker) throws InterruptedException {
+        assertTrue(checker.checkNumbers(nonPrimeNumbers), checker.getClass().getSimpleName());
+        assertFalse(checker.checkNumbers(primeNumbers), checker.getClass().getSimpleName());
+    }
+
+
 }
