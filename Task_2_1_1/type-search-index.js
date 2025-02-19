@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.primenums","l":"PrimeChecker"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.primenums","l":"ParallelStreamPrimeChecker"},{"p":"ru.nsu.lavitskaya.primenums","l":"ParallelThreadsPrimeChecker"},{"p":"ru.nsu.lavitskaya.primenums","l":"PrimeChecker"},{"p":"ru.nsu.lavitskaya.primenums","l":"SequentialPrimeChecker"}];updateSearchResults();
