@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Implementation of {@link PrimeChecker} using multiple threads.
  * This class splits the array into chunks and processes them in parallel using threads.
  */
-public class ParallelThreadsPrimeChecker implements PrimeChecker{
+public class ParallelThreadsPrimeChecker implements PrimeChecker {
     private final int threadCount;
 
     public ParallelThreadsPrimeChecker(int threadCount) {
@@ -18,7 +18,7 @@ public class ParallelThreadsPrimeChecker implements PrimeChecker{
         int length = numbers.length;
         int chunkSize = (int) Math.ceil((double) length / threadCount);
         Thread[] threads = new Thread[threadCount];
-        AtomicBoolean result = new AtomicBoolean(false);
+        AtomicBoolean result = new AtomicBoolean(true);
 
         for (int i = 0; i < threadCount; i++) {
             final int start = i * chunkSize;
@@ -27,7 +27,7 @@ public class ParallelThreadsPrimeChecker implements PrimeChecker{
             threads[i] = new Thread(() -> {
                 for (int j = start; j < end; j++) {
                     if (!isPrime(numbers[j])) {
-                        result.set(true);
+                        result.set(false);
                         return;
                     }
                 }

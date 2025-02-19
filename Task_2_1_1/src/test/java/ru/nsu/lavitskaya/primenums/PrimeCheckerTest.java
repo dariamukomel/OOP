@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,15 +21,10 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 class PrimeCheckerTest {
     private static final String FILE_PATH = "src/test/resources/prime_numbers.txt";
-    private static int[] primeNumbers;
-    private static int[] nonPrimeNumbers;
+    private static int[] primeArray = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
+    private static int[] nonPrimeArray = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32};
 
-    @BeforeAll
-    static void setUp() throws IOException {
-        primeNumbers = loadPrimesFromFile();
-        nonPrimeNumbers = Arrays.copyOf(primeNumbers, primeNumbers.length + 1);
-        primeNumbers[primeNumbers.length - 1] = 4;
-    }
+
 
     /**
      * Loads an array of prime numbers from a file.
@@ -70,7 +64,7 @@ class PrimeCheckerTest {
      */
     @Test
     public void testExecutionTimes() throws IOException, InterruptedException {
-
+        int[] primeNumbers = loadPrimesFromFile();
         PrimeChecker sequentialChecker = new SequentialPrimeChecker();
         long sequentialTime = measureExecutionTime(sequentialChecker, primeNumbers);
         System.out.println("Sequential: Time: " + sequentialTime + " ms");
@@ -113,8 +107,8 @@ class PrimeCheckerTest {
     @ParameterizedTest
     @MethodSource("primeCheckersProvider")
     void testNonPrimeNumber(PrimeChecker checker) throws InterruptedException {
-        assertTrue(checker.checkNumbers(nonPrimeNumbers), checker.getClass().getSimpleName());
-        assertFalse(checker.checkNumbers(primeNumbers), checker.getClass().getSimpleName());
+        assertTrue(checker.checkNumbers(primeArray), checker.getClass().getSimpleName());
+        assertFalse(checker.checkNumbers(nonPrimeArray), checker.getClass().getSimpleName());
     }
 
 

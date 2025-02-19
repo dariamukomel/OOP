@@ -7,9 +7,9 @@ import java.util.Arrays;
  * This class checks if an array contains any non-prime numbers by utilizing
  * the parallel processing capabilities of Java Streams.
  */
-public class ParallelStreamPrimeChecker implements PrimeChecker{
+public class ParallelStreamPrimeChecker implements PrimeChecker {
     @Override
     public boolean checkNumbers(int[] numbers) {
-        return Arrays.stream(numbers).parallel().anyMatch(num -> !isPrime(num));
+        return Arrays.stream(numbers).parallel().allMatch(num -> isPrime(num));
     }
 }

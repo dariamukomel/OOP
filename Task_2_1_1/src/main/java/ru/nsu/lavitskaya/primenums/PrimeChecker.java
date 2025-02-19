@@ -8,6 +8,12 @@ package ru.nsu.lavitskaya.primenums;
 public interface PrimeChecker {
     boolean checkNumbers(int[] numbers) throws InterruptedException;
 
+    /**
+     * Determines whether a given number is prime.
+     *
+     * @param num the number to check
+     * @return {@code true} if the number is prime, {@code false} otherwise
+     */
     default boolean isPrime(int num) {
         if (num < 2) {
             return false;
