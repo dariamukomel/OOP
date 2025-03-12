@@ -1,6 +1,10 @@
 package ru.nsu.lavitskaya.pizza;
 
-public class Cook extends Thread{
+/**
+ * The {@code Cook} class represents a worker responsible for preparing pizzas.
+ * Each cook processes orders from the order queue and moves completed pizzas to storage.
+ */
+public class Cook extends Thread {
     private final int id;
     private final int speed;
     private final OrderQueue orderQueue;
@@ -13,6 +17,10 @@ public class Cook extends Thread{
         this.storageQueue = storageQueue;
     }
 
+    /**
+     * Executes the cooking process in a loop, continuously retrieving and preparing pizzas
+     * until no more orders remain.
+     */
     @Override
     public void run() {
         try {
@@ -20,10 +28,9 @@ public class Cook extends Thread{
                 Pizza pizza = orderQueue.take();
                 if (pizza == null) break;
 
-                System.out.println("Cook " + id + " started to cook pizza " + pizza.getId());
+                System.out.println("Cook " + id + " started to cook pizza " + pizza);
                 Thread.sleep(speed * 1000L);
-                System.out.println("Cook " + id + " finished to cook pizza " + pizza.getId());
-                pizza.changeStatus("cooked");
+                System.out.println("Cook " + id + " finished to cook pizza " + pizza);
 
                 storageQueue.add(pizza);
             }
@@ -31,4 +38,10 @@ public class Cook extends Thread{
             Thread.currentThread().interrupt();
         }
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+
 }

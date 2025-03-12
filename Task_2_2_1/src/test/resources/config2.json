@@ -1,0 +1,6 @@
+{
+  "cooksSpeed": [2, 2, 2, 2, 2],
+  "deliveryManCapacity": [1],
+  "storageCapacity": 5,
+  "defaultDeliverySpeed": 7
+}
