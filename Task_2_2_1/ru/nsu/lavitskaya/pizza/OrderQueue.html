@@ -101,8 +101,10 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.lavitskaya.pizza.SharedState)" class="member-name-link">OrderQueue</a><wbr>(ru.nsu.lavitskaya.pizza.SharedState&nbsp;sharedState)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.lavitskaya.pizza.SharedStates)" class="member-name-link">OrderQueue</a><wbr>(ru.nsu.lavitskaya.pizza.SharedStates&nbsp;sharedStates)</code></div>
+<div class="col-last even-row-color">
+<div class="block">The <code>OrderQueue</code> class represents a queue for pizza orders.</div>
+</div>
 </div>
 </section>
 </li>
@@ -119,10 +121,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(ru.nsu.lavitskaya.pizza.Pizza)" class="member-name-link">add</a><wbr>(<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&nbsp;pizza)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a new pizza order to the queue if orders are still being accepted.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#take()" class="member-name-link">take</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves the next pizza order from the queue.</div>
+</div>
 </div>
 </div>
 </div>
@@ -141,9 +147,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.lavitskaya.pizza.SharedState)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.lavitskaya.pizza.SharedStates)">
 <h3>OrderQueue</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">OrderQueue</span><wbr><span class="parameters">(ru.nsu.lavitskaya.pizza.SharedState&nbsp;sharedState)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">OrderQueue</span><wbr><span class="parameters">(ru.nsu.lavitskaya.pizza.SharedStates&nbsp;sharedStates)</span></div>
+<div class="block">The <code>OrderQueue</code> class represents a queue for pizza orders.
+ It ensures synchronization between cooks retrieving orders and new orders being placed.</div>
 </section>
 </li>
 </ul>
@@ -158,6 +166,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="add(ru.nsu.lavitskaya.pizza.Pizza)">
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&nbsp;pizza)</span></div>
+<div class="block">Adds a new pizza order to the queue if orders are still being accepted.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pizza</code> - the pizza order to be added</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -165,9 +178,13 @@ loadScripts(document, 'script');</script>
 <h3>take</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a></span>&nbsp;<span class="element-name">take</span>()
            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Retrieves the next pizza order from the queue.
+ If no orders are available, it waits until one is added or order acceptance stops.</div>
 <dl class="notes">
+<dt>Returns:</dt>
+<dd>the next pizza order, or <code>null</code> if no orders are left and no more can be added</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread is interrupted while waiting</dd>
 </dl>
 </section>
 </li>

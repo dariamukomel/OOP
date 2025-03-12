@@ -90,6 +90,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">StorageQueue</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The <code>StorageQueue</code> class manages the storage of prepared pizzas before delivery.
+ It ensures that the storage does not exceed capacity and allows delivery personnel
+ to retrieve pizzas for delivery.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -101,8 +104,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,ru.nsu.lavitskaya.pizza.SharedState)" class="member-name-link">StorageQueue</a><wbr>(int&nbsp;capacity,
- ru.nsu.lavitskaya.pizza.SharedState&nbsp;sharedState)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,ru.nsu.lavitskaya.pizza.SharedStates)" class="member-name-link">StorageQueue</a><wbr>(int&nbsp;capacity,
+ ru.nsu.lavitskaya.pizza.SharedStates&nbsp;sharedStates)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -120,10 +123,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(ru.nsu.lavitskaya.pizza.Pizza)" class="member-name-link">add</a><wbr>(<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&nbsp;pizza)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a pizza to the storage.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#take(int)" class="member-name-link">take</a><wbr>(int&nbsp;maxCount)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves a batch of pizzas from storage for delivery.</div>
+</div>
 </div>
 </div>
 </div>
@@ -142,10 +149,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,ru.nsu.lavitskaya.pizza.SharedState)">
+<section class="detail" id="&lt;init&gt;(int,ru.nsu.lavitskaya.pizza.SharedStates)">
 <h3>StorageQueue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">StorageQueue</span><wbr><span class="parameters">(int&nbsp;capacity,
- ru.nsu.lavitskaya.pizza.SharedState&nbsp;sharedState)</span></div>
+ ru.nsu.lavitskaya.pizza.SharedStates&nbsp;sharedStates)</span></div>
 </section>
 </li>
 </ul>
@@ -161,9 +168,12 @@ loadScripts(document, 'script');</script>
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&nbsp;pizza)</span>
          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Adds a pizza to the storage. If storage is full, the thread waits until space is available.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pizza</code> - the pizza to be stored</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread is interrupted while waiting</dd>
 </dl>
 </section>
 </li>
@@ -172,9 +182,16 @@ loadScripts(document, 'script');</script>
 <h3>take</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Pizza.html" title="class in ru.nsu.lavitskaya.pizza">Pizza</a>&gt;</span>&nbsp;<span class="element-name">take</span><wbr><span class="parameters">(int&nbsp;maxCount)</span>
                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Retrieves a batch of pizzas from storage for delivery. If storage is empty and cooks
+ are active, the thread waits until pizzas are available.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>maxCount</code> - the maximum number of pizzas to retrieve in a batch</dd>
+<dt>Returns:</dt>
+<dd>a list of pizzas ready for delivery; may contain <code>null</code> if no pizzas are
+ available</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread is interrupted while waiting</dd>
 </dl>
 </section>
 </li>
