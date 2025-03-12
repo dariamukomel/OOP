@@ -59,6 +59,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Adds a pizza to the storage.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#anyCooks()" class="member-name-link">anyCooks()</a> - Method in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>
+<div class="block">Determines whether there are any active cooks in the pizzeria.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
@@ -79,12 +83,16 @@ loadScripts(document, 'script');</script>
 <div class="block">The <code>Cook</code> class represents a worker responsible for preparing pizzas.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Cook.html#%3Cinit%3E(int,int,ru.nsu.lavitskaya.pizza.OrderQueue,ru.nsu.lavitskaya.pizza.StorageQueue)" class="member-name-link">Cook(int, int, OrderQueue, StorageQueue)</a> - Constructor for class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Cook.html" title="class in ru.nsu.lavitskaya.pizza">Cook</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs a cook with a unique ID, speed, order queue and storage queue.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Config.html#cooksSpeed" class="member-name-link">cooksSpeed</a> - Variable in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Config.html" title="class in ru.nsu.lavitskaya.pizza">Config</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#decWorkingCooks()" class="member-name-link">decWorkingCooks()</a> - Method in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Config.html#defaultDeliverySpeed" class="member-name-link">defaultDeliverySpeed</a> - Variable in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Config.html" title="class in ru.nsu.lavitskaya.pizza">Config</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Status.html#DELIVERED" class="member-name-link">DELIVERED</a> - Enum constant in enum class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Status.html" title="enum class in ru.nsu.lavitskaya.pizza">Status</a></dt>
@@ -96,7 +104,9 @@ loadScripts(document, 'script');</script>
 <div class="block">The <code>DeliveryMan</code> class represents a worker responsible for delivering pizzas.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/DeliveryMan.html#%3Cinit%3E(int,int,ru.nsu.lavitskaya.pizza.StorageQueue,int)" class="member-name-link">DeliveryMan(int, int, StorageQueue, int)</a> - Constructor for class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/DeliveryMan.html" title="class in ru.nsu.lavitskaya.pizza">DeliveryMan</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructs a delivery worker with a unique ID, capacity, storage and delivery speed.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Config.html#deliveryManCapacity" class="member-name-link">deliveryManCapacity</a> - Variable in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Config.html" title="class in ru.nsu.lavitskaya.pizza">Config</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -117,8 +127,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#incWorkingCooks()" class="member-name-link">incWorkingCooks()</a> - Method in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Status.html#INIT" class="member-name-link">INIT</a> - Enum constant in enum class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Status.html" title="enum class in ru.nsu.lavitskaya.pizza">Status</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#isAcceptingOrders()" class="member-name-link">isAcceptingOrders()</a> - Method in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>
+<div class="block">Checks whether the pizzeria is still accepting new orders.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -132,11 +148,11 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/pizza/Status.html#ORDERED" class="member-name-link">ORDERED</a> - Enum constant in enum class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Status.html" title="enum class in ru.nsu.lavitskaya.pizza">Status</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/OrderQueue.html" class="type-name-link" title="class in ru.nsu.lavitskaya.pizza">OrderQueue</a> - Class in <a href="ru/nsu/lavitskaya/pizza/package-summary.html">ru.nsu.lavitskaya.pizza</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/pizza/OrderQueue.html#%3Cinit%3E(ru.nsu.lavitskaya.pizza.SharedStates)" class="member-name-link">OrderQueue(SharedStates)</a> - Constructor for class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/OrderQueue.html" title="class in ru.nsu.lavitskaya.pizza">OrderQueue</a></dt>
 <dd>
 <div class="block">The <code>OrderQueue</code> class represents a queue for pizza orders.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/pizza/OrderQueue.html#%3Cinit%3E(ru.nsu.lavitskaya.pizza.SharedStates)" class="member-name-link">OrderQueue(SharedStates)</a> - Constructor for class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/OrderQueue.html" title="class in ru.nsu.lavitskaya.pizza">OrderQueue</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
@@ -176,10 +192,21 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html" class="type-name-link" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a> - Class in <a href="ru/nsu/lavitskaya/pizza/package-summary.html">ru.nsu.lavitskaya.pizza</a></dt>
+<dd>
+<div class="block">The <code>SharedStates</code> class maintains the shared state of the pizzeria,
+ including order acceptance and tracking the number of working cooks.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#%3Cinit%3E()" class="member-name-link">SharedStates()</a> - Constructor for class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Status.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.pizza">Status</a> - Enum Class in <a href="ru/nsu/lavitskaya/pizza/package-summary.html">ru.nsu.lavitskaya.pizza</a></dt>
 <dd>
 <div class="block">The <code>Status</code> enum represents the different stages a pizza order
  can go through in the pizzeria system.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/pizza/SharedStates.html#stopAcceptingOrders()" class="member-name-link">stopAcceptingOrders()</a> - Method in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/SharedStates.html" title="class in ru.nsu.lavitskaya.pizza">SharedStates</a></dt>
+<dd>
+<div class="block">Stops accepting new orders in the pizzeria.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/pizza/Config.html#storageCapacity" class="member-name-link">storageCapacity</a> - Variable in class ru.nsu.lavitskaya.pizza.<a href="ru/nsu/lavitskaya/pizza/Config.html" title="class in ru.nsu.lavitskaya.pizza">Config</a></dt>
 <dd>&nbsp;</dd>
