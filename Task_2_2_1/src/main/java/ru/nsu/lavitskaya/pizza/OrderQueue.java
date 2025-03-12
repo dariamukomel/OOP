@@ -2,14 +2,14 @@ package ru.nsu.lavitskaya.pizza;
 
 import java.util.LinkedList;
 
+/**
+ * The {@code OrderQueue} class represents a queue for pizza orders.
+ * It ensures synchronization between cooks retrieving orders and new orders being placed.
+ */
 public class OrderQueue {
     private final LinkedList<Pizza> queue = new LinkedList<>();
     private final SharedStates sharedStates;
 
-    /**
-     * The {@code OrderQueue} class represents a queue for pizza orders.
-     * It ensures synchronization between cooks retrieving orders and new orders being placed.
-     */
     public OrderQueue(SharedStates sharedStates) {
         this.sharedStates = sharedStates;
     }
@@ -20,7 +20,9 @@ public class OrderQueue {
      * @param pizza the pizza order to be added
      */
     public synchronized void add(Pizza pizza) {
-        if (!sharedStates.isAcceptingOrders()) return;
+        if (!sharedStates.isAcceptingOrders()) {
+            return;
+        }
         queue.add(pizza);
         System.out.println(pizza + " added to order queue");
         pizza.changeStatus(Status.ORDERED);

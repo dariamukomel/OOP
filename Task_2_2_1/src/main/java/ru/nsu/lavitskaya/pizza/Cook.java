@@ -10,6 +10,14 @@ public class Cook extends Thread {
     private final OrderQueue orderQueue;
     private final StorageQueue storageQueue;
 
+    /**
+     * Constructs a cook with a unique ID, speed, order queue and storage queue.
+     *
+     * @param id the unique identifier of the cook
+     * @param speed the time (in seconds) required to prepare one pizza
+     * @param orderQueue the queue from which the cook retrieves orders
+     * @param storageQueue the queue where cooked pizzas are stored
+     */
     public Cook(int id, int speed, OrderQueue orderQueue, StorageQueue storageQueue) {
         this.id = id;
         this.speed = speed;
@@ -26,7 +34,9 @@ public class Cook extends Thread {
         try {
             while (true) {
                 Pizza pizza = orderQueue.take();
-                if (pizza == null) break;
+                if (pizza == null) {
+                    break;
+                }
 
                 System.out.println("Cook " + id + " started to cook pizza " + pizza);
                 Thread.sleep(speed * 1000L);

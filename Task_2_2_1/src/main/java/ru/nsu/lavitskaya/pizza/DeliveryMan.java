@@ -12,6 +12,14 @@ public class DeliveryMan extends Thread {
     private final StorageQueue storageQueue;
     private final int deliverySpeed;
 
+    /**
+     * Constructs a delivery worker with a unique ID, capacity, storage and delivery speed.
+     *
+     * @param id the unique identifier of the delivery worker
+     * @param capacity the maximum number of pizzas the worker can deliver at once
+     * @param storageQueue the storage queue from which pizzas are retrieved
+     * @param deliverySpeed the time (in seconds) required to deliver pizzas
+     */
     public DeliveryMan(int id, int capacity, StorageQueue storageQueue, int deliverySpeed) {
         this.id = id;
         this.capacity = capacity;

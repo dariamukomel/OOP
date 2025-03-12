@@ -41,7 +41,7 @@ public class StorageQueue {
      *
      * @param maxCount the maximum number of pizzas to retrieve in a batch
      * @return a list of pizzas ready for delivery; may contain {@code null} if no pizzas are
-     * available
+     *     available
      * @throws InterruptedException if the thread is interrupted while waiting
      */
     public synchronized List<Pizza> take(int maxCount) throws InterruptedException {

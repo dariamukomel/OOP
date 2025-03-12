@@ -14,7 +14,8 @@ import org.junit.jupiter.api.Test;
 class PizzeriaTest {
 
     /**
-     * Tests the pizzeria's ability to process orders, deliver pizzas, and handle closing operations.
+     * Tests the pizzeria's ability to process orders, deliver pizzas, and handle closing
+     *     operations.
      *
      * @throws IOException if there is an error reading the configuration file
      * @throws InterruptedException if the thread execution is interrupted
