@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.nsu.lavitskaya.snake.GameController"
+            prefWidth="800" prefHeight="600">
+    <Canvas fx:id="gameCanvas" width="800" height="600" />
+    <Label fx:id="statusLabel" layoutX="10" layoutY="10" style="-fx-font-size: 18px;" />
+</AnchorPane>
