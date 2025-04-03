@@ -52,12 +52,16 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#checkSelfCollision()" class="member-name-link">checkSelfCollision()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Checks if the snake has collided with itself.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.snake">Direction</a> - Enum Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Enum representing possible movement directions for the snake.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html#DOWN" class="member-name-link">DOWN</a> - Enum constant in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -69,29 +73,49 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Food.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Food</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a food item in the game.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Food.html#%3Cinit%3E(ru.nsu.lavitskaya.snake.Point)" class="member-name-link">Food(Point)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Food.html" title="class in ru.nsu.lavitskaya.snake">Food</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">GameBoard</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents the game board which holds the snake, food, and obstacles.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#%3Cinit%3E(int,int,int,int,int)" class="member-name-link">GameBoard(int, int, int, int, int)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameController.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">GameController</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Controller class for the Snake Game UI.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameController.html#%3Cinit%3E()" class="member-name-link">GameController()</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameController.html" title="class in ru.nsu.lavitskaya.snake">GameController</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Generator.html#generateObstacle(java.util.Set)" class="member-name-link">generateObstacle(Set&lt;Point&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Generator.html" title="class in ru.nsu.lavitskaya.snake">Generator</a></dt>
+<dd>
+<div class="block">Generates a new obstacle starting at a random location not in the occupied set.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Generator.html#generateOneFood(java.util.Set)" class="member-name-link">generateOneFood(Set&lt;Point&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Generator.html" title="class in ru.nsu.lavitskaya.snake">Generator</a></dt>
+<dd>
+<div class="block">Generates a new food item at a random location that is not in the forbidden set.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Generator.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Generator</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
+<dd>
+<div class="block">Responsible for generating food items and obstacles on the game board.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Generator.html#%3Cinit%3E(int,int)" class="member-name-link">Generator(int, int)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Generator.html" title="class in ru.nsu.lavitskaya.snake">Generator</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#getBody()" class="member-name-link">getBody()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Obstacle.html#getCells()" class="member-name-link">getCells()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/snake/Snake.html#getDirection()" class="member-name-link">getDirection()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#getFoodList()" class="member-name-link">getFoodList()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#getHead()" class="member-name-link">getHead()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Snake.html#getNextHead()" class="member-name-link">getNextHead()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#getObstacles()" class="member-name-link">getObstacles()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
@@ -108,13 +132,17 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/GameController.html#initialize()" class="member-name-link">initialize()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameController.html" title="class in ru.nsu.lavitskaya.snake">GameController</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Initializes the game and UI components.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#isGameOver()" class="member-name-link">isGameOver()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#isGameWon()" class="member-name-link">isGameWon()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html#isOpposite(ru.nsu.lavitskaya.snake.Direction)" class="member-name-link">isOpposite(Direction)</a> - Method in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Checks if the specified direction is opposite to the current direction.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
@@ -128,21 +156,29 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeGame.html" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#move(boolean)" class="member-name-link">move(boolean)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Moves the snake in the current direction.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Point.html#move(ru.nsu.lavitskaya.snake.Direction)" class="member-name-link">move(Direction)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns a new Point moved in the specified direction.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Obstacle.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Obstacle</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents an obstacle on the game board, defined by a list of points.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Obstacle.html#%3Cinit%3E(java.util.List)" class="member-name-link">Obstacle(List&lt;Point&gt;)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Point.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Point</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a point (cell) on the game board.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Point.html#%3Cinit%3E(int,int)" class="member-name-link">Point(int, int)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -158,11 +194,15 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#setDirection(ru.nsu.lavitskaya.snake.Direction)" class="member-name-link">setDirection(Direction)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Snake</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents the snake in the game.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#%3Cinit%3E(ru.nsu.lavitskaya.snake.Point)" class="member-name-link">Snake(Point)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Main class for the Snake Game application.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html#%3Cinit%3E()" class="member-name-link">SnakeGame()</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeGame.html" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html#start(javafx.stage.Stage)" class="member-name-link">start(Stage)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeGame.html" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a></dt>
@@ -173,7 +213,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html#UP" class="member-name-link">UP</a> - Enum constant in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#update()" class="member-name-link">update()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Updates the game state by moving the snake, checking collisions,
+ handling food consumption, and generating new food as needed.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">

@@ -90,6 +90,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameBoard</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents the game board which holds the snake, food, and obstacles.
+ Manages the game state including movement, collision detection, and win/loss conditions.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -101,8 +103,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,int)" class="member-name-link">GameBoard</a><wbr>(int&nbsp;rows,
- int&nbsp;cols,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,int)" class="member-name-link">GameBoard</a><wbr>(int&nbsp;mapRows,
+ int&nbsp;mapColumns,
  int&nbsp;foodCount,
  int&nbsp;targetLength,
  int&nbsp;obstaclesCount)</code></div>
@@ -138,7 +140,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates the game state by moving the snake, checking collisions,
+ handling food consumption, and generating new food as needed.</div>
+</div>
 </div>
 </div>
 </div>
@@ -159,8 +164,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="&lt;init&gt;(int,int,int,int,int)">
 <h3>GameBoard</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameBoard</span><wbr><span class="parameters">(int&nbsp;rows,
- int&nbsp;cols,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameBoard</span><wbr><span class="parameters">(int&nbsp;mapRows,
+ int&nbsp;mapColumns,
  int&nbsp;foodCount,
  int&nbsp;targetLength,
  int&nbsp;obstaclesCount)</span></div>
@@ -208,6 +213,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="update()">
 <h3>update</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
+<div class="block">Updates the game state by moving the snake, checking collisions,
+ handling food consumption, and generating new food as needed.</div>
 </section>
 </li>
 </ul>

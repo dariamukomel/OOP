@@ -90,6 +90,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents the snake in the game.
+ Maintains the snake's body, direction, and provides methods for movement and collision detection.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,22 +121,26 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkSelfCollision()" class="member-name-link">checkSelfCollision</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the snake has collided with itself.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a><wbr>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBody()" class="member-name-link">getBody</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDirection()" class="member-name-link">getDirection</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHead()" class="member-name-link">getHead</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHead()" class="member-name-link">getHead</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNextHead()" class="member-name-link">getNextHead</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#length()" class="member-name-link">length</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(boolean)" class="member-name-link">move</a><wbr>(boolean&nbsp;grow)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the snake in the current direction.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(ru.nsu.lavitskaya.snake.Direction)" class="member-name-link">setDirection</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a>&nbsp;newDirection)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -176,6 +182,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getNextHead()">
+<h3>getNextHead</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></span>&nbsp;<span class="element-name">getNextHead</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="getBody()">
 <h3>getBody</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;</span>&nbsp;<span class="element-name">getBody</span>()</div>
@@ -188,21 +200,28 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getDirection()">
-<h3>getDirection</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></span>&nbsp;<span class="element-name">getDirection</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="move(boolean)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(boolean&nbsp;grow)</span></div>
+<div class="block">Moves the snake in the current direction.
+ If the 'grow' flag is true, the snake grows by not removing the tail.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>grow</code> - if true, the snake grows after moving</dd>
+<dt>Returns:</dt>
+<dd>the new head position after the move</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="checkSelfCollision()">
 <h3>checkSelfCollision</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkSelfCollision</span>()</div>
+<div class="block">Checks if the snake has collided with itself.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if the snake's head collides with any other part of its body, false otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
