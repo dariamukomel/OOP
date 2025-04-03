@@ -23,7 +23,8 @@ public class GameController {
     @FXML
     private Label statusLabel;
 
-    int ROWS, COLS;
+    int rows;
+    int cols;
     private static final int CELL_SIZE = 25;
     private int level = 1;
     private GameBoard gameBoard;
@@ -40,15 +41,15 @@ public class GameController {
      */
     @FXML
     public void initialize() {
-        ROWS = (int) (gameCanvas.getHeight() / CELL_SIZE);
-        COLS = (int) (gameCanvas.getWidth() / CELL_SIZE);
+        rows = (int) (gameCanvas.getHeight() / CELL_SIZE);
+        cols = (int) (gameCanvas.getWidth() / CELL_SIZE);
 
         currentFoodCount = (level < 3) ? (4 - level) : 1;
         currentObstaclesCount = Math.min(3 + (level - 1), 10);
         currentTargetLength = 10 + (level - 1) * 5;
         currentDelay = Math.max(100, 200 - (level - 1) * 20);
 
-        gameBoard = new GameBoard(ROWS, COLS, currentFoodCount, currentTargetLength,
+        gameBoard = new GameBoard(rows, cols, currentFoodCount, currentTargetLength,
                 currentObstaclesCount);
 
         gameCanvas.sceneProperty().addListener((obs, oldScene,
@@ -120,6 +121,7 @@ public class GameController {
             case DOWN -> snake.setDirection(Direction.DOWN);
             case LEFT -> snake.setDirection(Direction.LEFT);
             case RIGHT -> snake.setDirection(Direction.RIGHT);
+            default -> {}
         }
     }
 
@@ -133,31 +135,32 @@ public class GameController {
         gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
         gc.setStroke(Color.LIGHTBLUE);
-        for (int i = 0; i <= COLS; i++)
-            gc.strokeLine(i * CELL_SIZE, 0, i * CELL_SIZE, ROWS * CELL_SIZE);
-        for (int i = 0; i <= ROWS; i++)
-            gc.strokeLine(0, i * CELL_SIZE, COLS * CELL_SIZE, i * CELL_SIZE);
-
+        for (int i = 0; i <= cols; i++) {
+            gc.strokeLine(i * CELL_SIZE, 0, i * CELL_SIZE, rows * CELL_SIZE);
+        }
+        for (int i = 0; i <= rows; i++) {
+            gc.strokeLine(0, i * CELL_SIZE, cols * CELL_SIZE, i * CELL_SIZE);
+        }
         gc.setFill(Color.DARKGRAY.darker());
         for (Obstacle obstacle : gameBoard.getObstacles()) {
             for (Point p : obstacle.getCells()) {
-                drawCell(gc, p.x, p.y);
+                drawCell(gc, p.coordX, p.coordY);
             }
         }
 
         gc.setFill(Color.RED);
         for (Food food : gameBoard.getFoodList()) {
-            drawCell(gc, food.getPosition().x, food.getPosition().y);
+            drawCell(gc, food.getPosition().coordX, food.getPosition().coordY);
         }
 
         gc.setFill(Color.GREEN);
         for (Point part : gameBoard.getSnake().getBody()) {
-            drawCell(gc, part.x, part.y);
+            drawCell(gc, part.coordX, part.coordY);
         }
 
         gc.setFill(Color.DARKGREEN);
         Point head = gameBoard.getSnake().getHead();
-        drawCell(gc, head.x, head.y);
+        drawCell(gc, head.coordX, head.coordY);
     }
 
     private void drawCell(GraphicsContext gc, int x, int y) {

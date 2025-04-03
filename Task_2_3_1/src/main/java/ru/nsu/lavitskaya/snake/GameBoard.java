@@ -1,8 +1,8 @@
 package ru.nsu.lavitskaya.snake;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +25,15 @@ public class GameBoard {
     private boolean gameOver = false;
     private boolean gameWon = false;
 
+    /**
+     * Constructs a GameBoard with specified parameters.
+     *
+     * @param mapRows        number of rows in the game board
+     * @param mapColumns     number of columns in the game board
+     * @param foodCount      number of food items to generate
+     * @param targetLength   the target length of the snake to win
+     * @param obstaclesCount number of obstacles to generate
+     */
     public GameBoard(int mapRows, int mapColumns, int foodCount, int targetLength,
                      int obstaclesCount) {
         this.mapRows = mapRows;
@@ -73,7 +82,7 @@ public class GameBoard {
 
         Point nextHead = snake.getNextHead();
 
-        if (nextHead.x < 0 || nextHead.x >= mapColumns || nextHead.y < 0 || nextHead.y >= mapRows) {
+        if (nextHead.coordX < 0 || nextHead.coordX >= mapColumns || nextHead.coordY < 0 || nextHead.coordY >= mapRows) {
             gameOver = true;
             return;
         }
@@ -149,8 +158,8 @@ public class GameBoard {
         Set<Point> occupied = new HashSet<>(snake.getBody());
         Point snakeHead = snake.getHead();
         for (int i = 1; i <= 5; i++) {
-            int newX = snakeHead.x + i;
-            int newY = snakeHead.y;
+            int newX = snakeHead.coordX + i;
+            int newY = snakeHead.coordY;
             if (newX >= 0 && newX < mapColumns) {
                 occupied.add(new Point(newX, newY));
             }

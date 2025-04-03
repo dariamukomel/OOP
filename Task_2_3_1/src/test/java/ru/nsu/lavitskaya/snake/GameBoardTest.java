@@ -3,9 +3,8 @@ package ru.nsu.lavitskaya.snake;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the {@link GameBoard} class.
@@ -36,7 +35,7 @@ class GameBoardTest {
         GameBoard board = new GameBoard(10, 10, 1, 100,
                 0);
         Snake snake = board.getSnake();
-        Food food = new Food(new Point(snake.getHead().x + 1, snake.getHead().y));
+        Food food = new Food(new Point(snake.getHead().coordX + 1, snake.getHead().coordY));
         board.getFoodList().clear();
         board.getFoodList().add(food);
         int initialLength = snake.length();
@@ -50,10 +49,10 @@ class GameBoardTest {
                 1);
         board.getObstacles().clear();
         Snake snake = board.getSnake();
-        Point head= snake.getHead();
-        Obstacle obstacle = new Obstacle(List.of(new Point(head.x + 6, head.y)));
+        Point head = snake.getHead();
+        Obstacle obstacle = new Obstacle(List.of(new Point(head.coordX + 6, head.coordY)));
         board.getObstacles().add(obstacle);
-        for(int i = 0; i <= 6; i++) {
+        for (int i = 0; i <= 6; i++) {
             board.update();
         }
         assertTrue(board.isGameOver());

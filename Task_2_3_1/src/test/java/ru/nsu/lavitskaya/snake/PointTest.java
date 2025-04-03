@@ -14,33 +14,33 @@ class PointTest {
     @Test
     public void testMoveUp() {
         Point p = new Point(5, 5);
-        Point pUp = p.move(Direction.UP);
-        assertEquals(5, pUp.x);
-        assertEquals(4, pUp.y);
+        Point up = p.move(Direction.UP);
+        assertEquals(5, up.coordX);
+        assertEquals(4, up.coordY);
     }
 
     @Test
     public void testMoveDown() {
         Point p = new Point(5, 5);
-        Point pDown = p.move(Direction.DOWN);
-        assertEquals(5, pDown.x);
-        assertEquals(6, pDown.y);
+        Point down = p.move(Direction.DOWN);
+        assertEquals(5, down.coordX);
+        assertEquals(6, down.coordY);
     }
 
     @Test
     public void testMoveLeft() {
         Point p = new Point(5, 5);
-        Point pLeft = p.move(Direction.LEFT);
-        assertEquals(4, pLeft.x);
-        assertEquals(5, pLeft.y);
+        Point left = p.move(Direction.LEFT);
+        assertEquals(4, left.coordX);
+        assertEquals(5, left.coordY);
     }
 
     @Test
     public void testMoveRight() {
         Point p = new Point(5, 5);
-        Point pRight = p.move(Direction.RIGHT);
-        assertEquals(6, pRight.x);
-        assertEquals(5, pRight.y);
+        Point right = p.move(Direction.RIGHT);
+        assertEquals(6, right.coordX);
+        assertEquals(5, right.coordY);
     }
 
     @Test

@@ -3,9 +3,9 @@ package ru.nsu.lavitskaya.snake;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for the {@link Generator} class.

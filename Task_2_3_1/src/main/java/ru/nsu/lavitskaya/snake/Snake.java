@@ -27,8 +27,14 @@ public class Snake {
         return body;
     }
 
+    /**
+     * Sets the snake's direction. If the new direction is directly opposite to the current
+     * direction, the change is ignored.
+     *
+     * @param newDirection the new direction to set
+     */
     public void setDirection(Direction newDirection) {
-        if (length() ==1 || !newDirection.isOpposite(direction)) {
+        if (length() == 1 || !newDirection.isOpposite(direction)) {
             this.direction = newDirection;
         }
     }

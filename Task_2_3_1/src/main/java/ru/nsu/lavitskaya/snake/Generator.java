@@ -69,17 +69,17 @@ public class Generator {
                 Point down = cell.move(Direction.DOWN);
                 Point left = cell.move(Direction.LEFT);
                 Point right = cell.move(Direction.RIGHT);
-
-                if (up.y >= 0 && !occupied.contains(up) && !cells.contains(up)) {
+                if (up.coordY >= 0 && !occupied.contains(up) && !cells.contains(up)) {
                     candidates.add(up);
                 }
-                if (down.y < mapRows && !occupied.contains(down) && !cells.contains(down)) {
+                if (down.coordY < mapRows && !occupied.contains(down) && !cells.contains(down)) {
                     candidates.add(down);
                 }
-                if (left.x >= 0 && !occupied.contains(left) && !cells.contains(left)) {
+                if (left.coordX >= 0 && !occupied.contains(left) && !cells.contains(left)) {
                     candidates.add(left);
                 }
-                if (right.x < mapColumns && !occupied.contains(right) && !cells.contains(right)) {
+                if (right.coordX < mapColumns && !occupied.contains(right)
+                        && !cells.contains(right)) {
                     candidates.add(right);
                 }
 
