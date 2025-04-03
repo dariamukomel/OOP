@@ -1,6 +1,7 @@
 package ru.nsu.lavitskaya.snake;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -11,6 +12,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+/**
+ * Controller class for the Snake Game UI.
+ * Handles initialization, game loop, input events, and rendering.
+ */
 public class GameController {
     @FXML
     private Canvas gameCanvas;
@@ -20,33 +25,51 @@ public class GameController {
 
     int ROWS, COLS;
     private static final int CELL_SIZE = 25;
-    private static final int FOOD_COUNT = 3;
-    private static final int TARGET_LENGTH = 10;
-    private static final int OBSTACLES_COUNT = 3;
-
+    private int level = 1;
     private GameBoard gameBoard;
     private Timeline gameLoop;
 
+    private int currentFoodCount;
+    private int currentObstaclesCount;
+    private int currentTargetLength;
+    private int currentDelay;
+
+    /**
+     * Initializes the game and UI components.
+     * Sets up the game board based on the current level and starts the game loop.
+     */
     @FXML
     public void initialize() {
-        ROWS = (int)(gameCanvas.getHeight()/CELL_SIZE);
-        COLS = (int)(gameCanvas.getWidth()/CELL_SIZE);
+        ROWS = (int) (gameCanvas.getHeight() / CELL_SIZE);
+        COLS = (int) (gameCanvas.getWidth() / CELL_SIZE);
 
-        gameBoard = new GameBoard(ROWS, COLS, FOOD_COUNT, TARGET_LENGTH, OBSTACLES_COUNT);
+        currentFoodCount = (level < 3) ? (4 - level) : 1;
+        currentObstaclesCount = Math.min(3 + (level - 1), 10);
+        currentTargetLength = 10 + (level - 1) * 5;
+        currentDelay = Math.max(100, 200 - (level - 1) * 20);
 
-        gameCanvas.sceneProperty().addListener((obs, oldScene, newScene) -> {
+        gameBoard = new GameBoard(ROWS, COLS, currentFoodCount, currentTargetLength,
+                currentObstaclesCount);
+
+        gameCanvas.sceneProperty().addListener((obs, oldScene,
+                                                newScene) -> {
             if (newScene != null) {
                 newScene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPress);
             }
         });
 
-        setupGameLoop();
-
+        setupGameLoop(currentDelay);
         draw();
+        statusLabel.setText("Level " + level + ": Score 0/" + currentTargetLength);
     }
 
-    private void setupGameLoop() {
-        gameLoop = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+    /**
+     * Sets up the game loop with the specified delay between frames.
+     *
+     * @param delay the delay in milliseconds between game loop iterations
+     */
+    private void setupGameLoop(int delay) {
+        gameLoop = new Timeline(new KeyFrame(Duration.millis(delay), e -> {
             gameBoard.update();
             draw();
 
@@ -54,22 +77,43 @@ public class GameController {
                 statusLabel.setText("Game Over! Press Enter to restart.");
                 gameLoop.stop();
             } else if (gameBoard.isGameWon()) {
-                statusLabel.setText("You Win! Press Enter to restart.");
+                int score = gameBoard.getSnake().length();
+                statusLabel.setText("Level " + level + ": Score " + score + "/"
+                        + currentTargetLength + ". Next level in 3 sec...");
                 gameLoop.stop();
+
+                PauseTransition pause = new PauseTransition(Duration.seconds(3));
+                pause.setOnFinished(ev -> {
+                    level++;
+                    initialize();
+                });
+                pause.play();
+            } else {
+                int score = gameBoard.getSnake().length();
+                statusLabel.setText("Level " + level + ": Score " + score + "/"
+                        + currentTargetLength);
             }
         }));
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         gameLoop.play();
     }
 
+    /**
+     * Handles key press events to control the snake or restart the game.
+     *
+     * @param event the key event
+     */
+
     private void handleKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            if (gameLoop != null) {
-                gameLoop.stop();
+            if (gameBoard.isGameOver()) {
+                level = 1;
+                initialize();
+            } else if (gameBoard.isGameWon()) {
+                level++;
+                initialize();
             }
-            initialize();
         }
-
         Snake snake = gameBoard.getSnake();
         switch (event.getCode()) {
             case UP -> snake.setDirection(Direction.UP);
@@ -79,15 +123,15 @@ public class GameController {
         }
     }
 
-
+    /**
+     * Renders the game board including grid, obstacles, food, and snake.
+     */
     private void draw() {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
 
-        // Очистка
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
-        // Сетка (по желанию)
         gc.setStroke(Color.LIGHTBLUE);
         for (int i = 0; i <= COLS; i++)
             gc.strokeLine(i * CELL_SIZE, 0, i * CELL_SIZE, ROWS * CELL_SIZE);
@@ -101,19 +145,16 @@ public class GameController {
             }
         }
 
-        // Отрисовка еды
         gc.setFill(Color.RED);
         for (Food food : gameBoard.getFoodList()) {
             drawCell(gc, food.getPosition().x, food.getPosition().y);
         }
 
-        // Отрисовка змейки
         gc.setFill(Color.GREEN);
         for (Point part : gameBoard.getSnake().getBody()) {
             drawCell(gc, part.x, part.y);
         }
 
-        // Голова змейки — темнее
         gc.setFill(Color.DARKGREEN);
         Point head = gameBoard.getSnake().getHead();
         drawCell(gc, head.x, head.y);

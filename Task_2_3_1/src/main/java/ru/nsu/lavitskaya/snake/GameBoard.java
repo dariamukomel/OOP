@@ -1,10 +1,18 @@
 package ru.nsu.lavitskaya.snake;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * Represents the game board which holds the snake, food, and obstacles.
+ * Manages the game state including movement, collision detection, and win/loss conditions.
+ */
 public class GameBoard {
-    private final int rows;
-    private final int cols;
+    private final int mapRows;
+    private final int mapColumns;
     private final int targetLength;
     private final int foodCount;
     private final int obstaclesCount;
@@ -12,23 +20,26 @@ public class GameBoard {
     private final Snake snake;
     private final List<Food> foodList = new ArrayList<>();
     private final List<Obstacle> obstacles = new ArrayList<>();
-    private final Random random = new Random();
+    private final Generator generator;
 
     private boolean gameOver = false;
     private boolean gameWon = false;
 
-    public GameBoard(int rows, int cols, int foodCount, int targetLength, int obstaclesCount) {
-        this.rows = rows;
-        this.cols = cols;
+    public GameBoard(int mapRows, int mapColumns, int foodCount, int targetLength,
+                     int obstaclesCount) {
+        this.mapRows = mapRows;
+        this.mapColumns = mapColumns;
         this.foodCount = foodCount;
         this.targetLength = targetLength;
         this.obstaclesCount = obstaclesCount;
+        this.generator = new Generator(mapRows, mapColumns);
 
-        Point start = new Point(cols / 2, rows / 2);
+        Point start = new Point(mapColumns / 2, mapRows / 2);
         snake = new Snake(start);
 
-        generateFood();
         generateObstacles();
+        generateFood();
+
     }
 
     public Snake getSnake() {
@@ -51,12 +62,18 @@ public class GameBoard {
         return gameWon;
     }
 
+    /**
+     * Updates the game state by moving the snake, checking collisions,
+     * handling food consumption, and generating new food as needed.
+     */
     public void update() {
-        if (gameOver || gameWon) return;
+        if (gameOver || gameWon) {
+            return;
+        }
 
-        Point nextHead = snake.getHead().move(snake.getDirection());
+        Point nextHead = snake.getNextHead();
 
-        if (nextHead.x < 0 || nextHead.x >= cols || nextHead.y < 0 || nextHead.y >= rows) {
+        if (nextHead.x < 0 || nextHead.x >= mapColumns || nextHead.y < 0 || nextHead.y >= mapRows) {
             gameOver = true;
             return;
         }
@@ -93,100 +110,58 @@ public class GameBoard {
             return;
         }
 
-        while (foodList.size() < foodCount) {
-            generateOneFood();
-        }
+        generateFood();
     }
 
+
+    /**
+     * Generates food items until it reaches foodCount.
+     */
     private void generateFood() {
         while (foodList.size() < foodCount) {
-            generateOneFood();
+            foodList.add(generator.generateOneFood(getForbiddenFoodCells()));
         }
     }
 
-    private void generateOneFood() {
-        Set<Point> occupied = new HashSet<>(snake.getBody());
-
-        while (true) {
-            int x = random.nextInt(cols);
-            int y = random.nextInt(rows);
-            Point point = new Point(x, y);
-
-            if (!occupied.contains(point) && foodList.stream().noneMatch(f -> f.getPosition().equals(point))) {
-                foodList.add(new Food(point));
-                break;
-            }
+    /**
+     * Builds a set of points where food should not be generated,
+     * including the snake's body, obstacles, and existing food.
+     *
+     * @return a set of forbidden points for food placement
+     */
+    private Set<Point> getForbiddenFoodCells() {
+        Set<Point> forbidden = new HashSet<>();
+        forbidden.addAll(snake.getBody());
+        for (Obstacle obstacle : obstacles) {
+            forbidden.addAll(obstacle.getCells());
         }
+        for (Food food : foodList) {
+            forbidden.add(food.getPosition());
+        }
+        return forbidden;
     }
 
+    /**
+     * Generates obstacles on the board while preventing them from spawning
+     * in the five cells immediately to the right of the snake's head.
+     */
     private void generateObstacles() {
         Set<Point> occupied = new HashSet<>(snake.getBody());
-        Point snakeStart = snake.getHead();
-        int safetyRadius = 3;
-        for (int dx = -safetyRadius; dx <= safetyRadius; dx++) {
-            for (int dy = -safetyRadius; dy <= safetyRadius; dy++) {
-                int newX = snakeStart.x + dx;
-                int newY = snakeStart.y + dy;
-                if(newX >= 0 && newX < cols && newY >= 0 && newY < rows){
-                    occupied.add(new Point(newX, newY));
-                }
+        Point snakeHead = snake.getHead();
+        for (int i = 1; i <= 5; i++) {
+            int newX = snakeHead.x + i;
+            int newY = snakeHead.y;
+            if (newX >= 0 && newX < mapColumns) {
+                occupied.add(new Point(newX, newY));
             }
         }
-        foodList.forEach(f -> occupied.add(f.getPosition()));
 
         while (obstacles.size() < obstaclesCount) {
-            Obstacle obs = generateObstacle(occupied);
+            Obstacle obs = generator.generateObstacle(occupied);
             if (obs != null) {
                 obstacles.add(obs);
                 occupied.addAll(obs.getCells());
             }
         }
-    }
-
-    private Obstacle generateObstacle(Set<Point> occupied) {
-        int attempts = 0;
-        Point start = null;
-
-        while (attempts < 100) {
-            int x = random.nextInt(cols);
-            int y = random.nextInt(rows);
-            Point candidate = new Point(x, y);
-            if (!occupied.contains(candidate)) {
-                start = candidate;
-                break;
-            }
-            attempts++;
-        }
-        if (start == null) {
-            gameWon = true;
-            return null;
-        }
-
-        List<Point> cells = new ArrayList<>();
-        cells.add(start);
-
-        int obstacleSize = random.nextInt(4) + 1;
-        for (int i = 1; i < obstacleSize; i++) {
-            List<Point> candidates = new ArrayList<>();
-            for (Point cell : cells) {
-                Point up = new Point(cell.x, cell.y - 1);
-                Point down = new Point(cell.x, cell.y + 1);
-                Point left = new Point(cell.x - 1, cell.y);
-                Point right = new Point(cell.x + 1, cell.y);
-                if (up.y >= 0 && !occupied.contains(up) && !cells.contains(up))
-                    candidates.add(up);
-                if (down.y < rows && !occupied.contains(down) && !cells.contains(down))
-                    candidates.add(down);
-                if (left.x >= 0 && !occupied.contains(left) && !cells.contains(left))
-                    candidates.add(left);
-                if (right.x < cols && !occupied.contains(right) && !cells.contains(right))
-                    candidates.add(right);
-            }
-            if (candidates.isEmpty()) break;
-            Point nextCell = candidates.get(random.nextInt(candidates.size()));
-            cells.add(nextCell);
-            occupied.add(nextCell);
-        }
-        return new Obstacle(cells);
     }
 }
