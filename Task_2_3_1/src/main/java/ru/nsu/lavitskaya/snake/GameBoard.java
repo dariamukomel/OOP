@@ -82,7 +82,8 @@ public class GameBoard {
 
         Point nextHead = snake.getNextHead();
 
-        if (nextHead.coordX < 0 || nextHead.coordX >= mapColumns || nextHead.coordY < 0 || nextHead.coordY >= mapRows) {
+        if (nextHead.coordX < 0 || nextHead.coordX >= mapColumns || nextHead.coordY < 0
+                || nextHead.coordY >= mapRows) {
             gameOver = true;
             return;
         }

@@ -121,7 +121,7 @@ public class GameController {
             case DOWN -> snake.setDirection(Direction.DOWN);
             case LEFT -> snake.setDirection(Direction.LEFT);
             case RIGHT -> snake.setDirection(Direction.RIGHT);
-            default -> {}
+            default -> { }
         }
     }
 

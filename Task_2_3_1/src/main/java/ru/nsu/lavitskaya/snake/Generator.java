@@ -66,18 +66,18 @@ public class Generator {
             List<Point> candidates = new ArrayList<>();
             for (Point cell : cells) {
                 Point up = cell.move(Direction.UP);
-                Point down = cell.move(Direction.DOWN);
-                Point left = cell.move(Direction.LEFT);
-                Point right = cell.move(Direction.RIGHT);
                 if (up.coordY >= 0 && !occupied.contains(up) && !cells.contains(up)) {
                     candidates.add(up);
                 }
+                Point down = cell.move(Direction.DOWN);
                 if (down.coordY < mapRows && !occupied.contains(down) && !cells.contains(down)) {
                     candidates.add(down);
                 }
+                Point left = cell.move(Direction.LEFT);
                 if (left.coordX >= 0 && !occupied.contains(left) && !cells.contains(left)) {
                     candidates.add(left);
                 }
+                Point right = cell.move(Direction.RIGHT);
                 if (right.coordX < mapColumns && !occupied.contains(right)
                         && !cells.contains(right)) {
                     candidates.add(right);
