@@ -16,10 +16,12 @@ public class GameBoard {
     private final int targetLength;
     private final int foodCount;
     private final int obstaclesCount;
+    private final int enemyCount;
 
     private final Snake snake;
     private final List<Food> foodList = new ArrayList<>();
     private final List<Obstacle> obstacles = new ArrayList<>();
+    private final List<EnemySnake> enemySnakes = new ArrayList<>();
     private final Generator generator;
 
     private boolean gameOver = false;
@@ -35,12 +37,13 @@ public class GameBoard {
      * @param obstaclesCount number of obstacles to generate
      */
     public GameBoard(int mapRows, int mapColumns, int foodCount, int targetLength,
-                     int obstaclesCount) {
+                     int obstaclesCount, int enemyCount) {
         this.mapRows = mapRows;
         this.mapColumns = mapColumns;
         this.foodCount = foodCount;
         this.targetLength = targetLength;
         this.obstaclesCount = obstaclesCount;
+        this.enemyCount = enemyCount;
         this.generator = new Generator(mapRows, mapColumns);
 
         Point start = new Point(mapColumns / 2, mapRows / 2);
@@ -48,6 +51,7 @@ public class GameBoard {
 
         generateObstacles();
         generateFood();
+        generateEnemySnakes();
 
     }
 
@@ -61,6 +65,18 @@ public class GameBoard {
 
     public List<Obstacle> getObstacles() {
         return obstacles;
+    }
+
+    public List<EnemySnake> getEnemySnakes() {
+        return enemySnakes;
+    }
+
+    public int getMapRows() {
+        return mapRows;
+    }
+
+    public int getMapColumns() {
+        return mapColumns;
     }
 
     public boolean isGameOver() {
@@ -97,6 +113,15 @@ public class GameBoard {
             }
         }
 
+        for (EnemySnake enemy : enemySnakes) {
+            for (Point p : enemy.getBody()) {
+                if (p.equals(nextHead)) {
+                    gameOver = true;
+                    return;
+                }
+            }
+        }
+
         boolean ateFood = false;
         Iterator<Food> it = foodList.iterator();
         while (it.hasNext()) {
@@ -110,6 +135,18 @@ public class GameBoard {
 
         snake.move(ateFood);
 
+        List<EnemySnake> deadEnemies = new ArrayList<>();
+        for (EnemySnake enemy : enemySnakes) {
+            enemy.update(mapRows, mapColumns, foodList, obstacles, snake, enemySnakes);
+            if(!enemy.isAlive()) {
+                deadEnemies.add(enemy);
+            }
+        }
+        for (EnemySnake enemy : deadEnemies) {
+            enemySnakes.remove(enemy);
+        }
+
+
         if (snake.checkSelfCollision()) {
             gameOver = true;
             return;
@@ -121,6 +158,7 @@ public class GameBoard {
         }
 
         generateFood();
+
     }
 
 
@@ -129,9 +167,16 @@ public class GameBoard {
      */
     private void generateFood() {
         while (foodList.size() < foodCount) {
-            foodList.add(generator.generateOneFood(getForbiddenFoodCells()));
+            foodList.add(generator.generateOneFood(getForbiddenCells()));
         }
     }
+
+    private void generateEnemySnakes() {
+        while (enemySnakes.size() < enemyCount) {
+            enemySnakes.add(generator.generateEnemySnake(getForbiddenCells()));
+        }
+    }
+
 
     /**
      * Builds a set of points where food should not be generated,
@@ -139,9 +184,12 @@ public class GameBoard {
      *
      * @return a set of forbidden points for food placement
      */
-    private Set<Point> getForbiddenFoodCells() {
+    private Set<Point> getForbiddenCells() {
         Set<Point> forbidden = new HashSet<>();
         forbidden.addAll(snake.getBody());
+        for (EnemySnake enemy : enemySnakes) {
+            forbidden.addAll(enemy.getBody());
+        }
         for (Obstacle obstacle : obstacles) {
             forbidden.addAll(obstacle.getCells());
         }

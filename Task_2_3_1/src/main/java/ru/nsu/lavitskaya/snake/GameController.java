@@ -34,6 +34,7 @@ public class GameController {
     private int currentObstaclesCount;
     private int currentTargetLength;
     private int currentDelay;
+    private int currentEnemyCount;
 
     /**
      * Initializes the game and UI components.
@@ -44,13 +45,20 @@ public class GameController {
         rows = (int) (gameCanvas.getHeight() / CELL_SIZE);
         cols = (int) (gameCanvas.getWidth() / CELL_SIZE);
 
-        currentFoodCount = (level < 3) ? (4 - level) : 1;
+        currentFoodCount = (level < 3) ? (5 - level) : 1;
         currentObstaclesCount = Math.min(3 + (level - 1), 10);
         currentTargetLength = 10 + (level - 1) * 5;
         currentDelay = Math.max(100, 200 - (level - 1) * 20);
+        if (level <= 3) {
+            currentEnemyCount = 1;
+        } else if (level <= 10) {
+            currentEnemyCount = 2;
+        } else {
+            currentEnemyCount = 3;
+        }
 
         gameBoard = new GameBoard(rows, cols, currentFoodCount, currentTargetLength,
-                currentObstaclesCount);
+                currentObstaclesCount, currentEnemyCount);
 
         gameCanvas.sceneProperty().addListener((obs, oldScene,
                                                 newScene) -> {
@@ -151,6 +159,18 @@ public class GameController {
         gc.setFill(Color.RED);
         for (Food food : gameBoard.getFoodList()) {
             drawCell(gc, food.getPosition().coordX, food.getPosition().coordY);
+        }
+
+        gc.setFill(Color.ORANGE);
+        for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
+            for (Point part : enemy.getBody()) {
+                drawCell(gc, part.coordX, part.coordY);
+            }
+        }
+        gc.setFill(Color.DARKORANGE);
+        for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
+            Point head = enemy.getHead();
+            drawCell(gc, head.coordX, head.coordY);
         }
 
         gc.setFill(Color.GREEN);

@@ -39,6 +39,10 @@ public class Snake {
         }
     }
 
+    public Direction getDirection() {
+        return this.direction;
+    }
+
     /**
      * Moves the snake in the current direction.
      * If the 'grow' flag is true, the snake grows by not removing the tail.

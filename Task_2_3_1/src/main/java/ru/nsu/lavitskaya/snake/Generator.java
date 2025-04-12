@@ -94,4 +94,15 @@ public class Generator {
         return new Obstacle(cells);
     }
 
+    public EnemySnake generateEnemySnake(Set<Point> forbidden) {
+        while (true) {
+            int x = random.nextInt(mapColumns);
+            int y = random.nextInt(mapRows);
+            Point point = new Point(x, y);
+            if (!forbidden.contains(point)) {
+                return new EnemySnake(point);
+            }
+        }
+    }
+
 }
