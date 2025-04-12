@@ -138,7 +138,7 @@ public class GameBoard {
         List<EnemySnake> deadEnemies = new ArrayList<>();
         for (EnemySnake enemy : enemySnakes) {
             enemy.update(mapRows, mapColumns, foodList, obstacles, snake, enemySnakes);
-            if(!enemy.isAlive()) {
+            if (!enemy.isAlive()) {
                 deadEnemies.add(enemy);
             }
         }

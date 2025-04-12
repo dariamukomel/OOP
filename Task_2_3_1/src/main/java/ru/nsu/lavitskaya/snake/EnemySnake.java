@@ -119,31 +119,40 @@ public class EnemySnake extends Snake {
      */
     private boolean hasCollision(Point next, int mapRows, int mapColumns, List<Obstacle> obstacles,
                                  Snake playerSnake, List<EnemySnake> enemySnakes) {
-        if (next.coordX < 0 || next.coordX >= mapColumns ||
-                next.coordY < 0 || next.coordY >= mapRows) {
+        if (next.coordX < 0 || next.coordX >= mapColumns
+                || next.coordY < 0 || next.coordY >= mapRows) {
             return true;
         }
 
         for (Obstacle obs : obstacles) {
             for (Point cell : obs.getCells()) {
-                if (cell.equals(next)) return true;
+                if (cell.equals(next)) {
+                    return true;
+                }
             }
         }
 
         Point headAfterTwoSteps = next.move(this.getDirection()).move(this.getDirection());
         for (Point p : playerSnake.getBody()) {
-            if (p.equals(headAfterTwoSteps)) return true;
+            if (p.equals(headAfterTwoSteps)) {
+                return true;
+            }
         }
 
         for (EnemySnake enemy : enemySnakes) {
             if (enemy == this) continue;
             for (Point p : enemy.getBody()) {
-                if (p.equals(next)) return true;
+                if (p.equals(next)) {
+                    return true;
+                }
             }
         }
 
         for (Point p : super.getBody()) {
-            if (p.equals(next)) return true;
+            if (p.equals(next)) {
+                return true;
+            }
+
         }
         return false;
     }

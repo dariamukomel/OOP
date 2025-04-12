@@ -94,6 +94,12 @@ public class Generator {
         return new Obstacle(cells);
     }
 
+    /**
+     * Generates a new enemy snake at a random location that is not present in the forbidden set.
+     *
+     * @param forbidden a set of points where an enemy snake cannot be generated
+     * @return a new {@link EnemySnake} object created at a valid, unoccupied position
+     */
     public EnemySnake generateEnemySnake(Set<Point> forbidden) {
         while (true) {
             int x = random.nextInt(mapColumns);
