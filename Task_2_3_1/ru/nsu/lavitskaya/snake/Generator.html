@@ -121,7 +121,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateEnemySnake(java.util.Set)" class="member-name-link">generateEnemySnake</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;&nbsp;forbidden)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a new enemy snake at a random location that is not present in the forbidden set.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateObstacle(java.util.Set)" class="member-name-link">generateObstacle</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;&nbsp;occupied)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -195,6 +197,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="generateEnemySnake(java.util.Set)">
 <h3>generateEnemySnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></span>&nbsp;<span class="element-name">generateEnemySnake</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;&nbsp;forbidden)</span></div>
+<div class="block">Generates a new enemy snake at a random location that is not present in the forbidden set.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>forbidden</code> - a set of points where an enemy snake cannot be generated</dd>
+<dt>Returns:</dt>
+<dd>a new <a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake"><code>EnemySnake</code></a> object created at a valid, unoccupied position</dd>
+</dl>
 </section>
 </li>
 </ul>
