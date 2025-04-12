@@ -35,6 +35,7 @@ public class GameController {
     private int currentTargetLength;
     private int currentDelay;
     private int currentEnemyCount;
+    private boolean inTransition = false;
 
     /**
      * Initializes the game and UI components.
@@ -93,8 +94,12 @@ public class GameController {
 
                 PauseTransition pause = new PauseTransition(Duration.seconds(3));
                 pause.setOnFinished(ev -> {
-                    level++;
-                    initialize();
+                    if (!inTransition) {
+                        level++;
+                        initialize();
+                    }
+                    inTransition = false;
+
                 });
                 pause.play();
             } else {
@@ -119,6 +124,7 @@ public class GameController {
                 level = 1;
                 initialize();
             } else if (gameBoard.isGameWon()) {
+                inTransition = true;
                 level++;
                 initialize();
             }

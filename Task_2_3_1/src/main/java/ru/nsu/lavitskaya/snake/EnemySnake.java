@@ -64,13 +64,14 @@ public class EnemySnake extends Snake {
         }
 
         Food targetFood = chooseTargetFood(foodList, head);
-        int currentDistance = getDistance(head, targetFood.getPosition());
-
         List<Direction> candidateDirections = new ArrayList<>();
-        for (Direction dir : safeDirections) {
-            int newDistance = getDistance(head.move(dir), targetFood.getPosition());
-            if (newDistance < currentDistance) {
-                candidateDirections.add(dir);
+        if (targetFood != null) {
+            int currentDistance = getDistance(head, targetFood.getPosition());
+            for (Direction dir : safeDirections) {
+                int newDistance = getDistance(head.move(dir), targetFood.getPosition());
+                if (newDistance < currentDistance) {
+                    candidateDirections.add(dir);
+                }
             }
         }
 
@@ -178,6 +179,9 @@ public class EnemySnake extends Snake {
      * @return the food item closest to the enemy snake.
      */
     private Food chooseTargetFood(List<Food> foodList, Point head) {
+        if (foodList.isEmpty()) {
+            return null;
+        }
         Food target = foodList.get(0);
         int bestDistance = getDistance(head, target.getPosition());
         for (Food food : foodList) {
