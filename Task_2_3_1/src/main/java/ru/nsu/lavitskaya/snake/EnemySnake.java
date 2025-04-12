@@ -140,7 +140,9 @@ public class EnemySnake extends Snake {
         }
 
         for (EnemySnake enemy : enemySnakes) {
-            if (enemy == this) continue;
+            if (enemy == this) {
+                continue;
+            }
             for (Point p : enemy.getBody()) {
                 if (p.equals(next)) {
                     return true;
