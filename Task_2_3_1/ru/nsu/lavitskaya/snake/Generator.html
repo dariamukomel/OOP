@@ -134,6 +134,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates a new food item at a random location that is not in the forbidden set.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SatedSnake.html" title="class in ru.nsu.lavitskaya.snake">SatedSnake</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateSatedSnake(java.util.Set)" class="member-name-link">generateSatedSnake</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;&nbsp;forbidden)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Generates a new <a href="SatedSnake.html" title="class in ru.nsu.lavitskaya.snake"><code>SatedSnake</code></a> at a random free position with a randomly determined
+     length.</div>
+</div>
 </div>
 </div>
 </div>
@@ -203,6 +209,27 @@ loadScripts(document, 'script');</script>
 <dd><code>forbidden</code> - a set of points where an enemy snake cannot be generated</dd>
 <dt>Returns:</dt>
 <dd>a new <a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake"><code>EnemySnake</code></a> object created at a valid, unoccupied position</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="generateSatedSnake(java.util.Set)">
+<h3>generateSatedSnake</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SatedSnake.html" title="class in ru.nsu.lavitskaya.snake">SatedSnake</a></span>&nbsp;<span class="element-name">generateSatedSnake</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&gt;&nbsp;forbidden)</span></div>
+<div class="block">Generates a new <a href="SatedSnake.html" title="class in ru.nsu.lavitskaya.snake"><code>SatedSnake</code></a> at a random free position with a randomly determined
+     length.
+ <p>
+ The method attempts to place the snake’s head in a cell not in the given <code>forbidden</code>
+ set. It then grows the body in a random valid direction up to a desired length of 3–5
+ segments; if fewer than 3 segments can be placed, it retries with a new head position.
+ Finally, it orients the snake’s direction away from its second segment and assigns the
+ generated segment list to the snake’s body.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>forbidden</code> - a set of <a href="Point.html" title="class in ru.nsu.lavitskaya.snake"><code>Point</code></a>s where the snake’s head or body must not appear</dd>
+<dt>Returns:</dt>
+<dd>a <code>SatedSnake</code> instance with 3–5 segments, positioned and oriented safely</dd>
 </dl>
 </section>
 </li>

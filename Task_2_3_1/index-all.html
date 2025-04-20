@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#checkSelfCollision()" class="member-name-link">checkSelfCollision()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
@@ -62,6 +62,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html#DEAD" class="member-name-link">DEAD</a> - Enum constant in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.snake">Direction</a> - Enum Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
 <dd>
 <div class="block">Enum representing possible movement directions for the snake.</div>
@@ -71,6 +73,8 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html#ENEMY" class="member-name-link">ENEMY</a> - Enum constant in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
 <dd>
 <div class="block">Represents an enemy snake.</div>
@@ -95,7 +99,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents the game board which holds the snake, food, and obstacles.</div>
 </dd>
-<dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#%3Cinit%3E(int,int,int,int,int,int)" class="member-name-link">GameBoard(int, int, int, int, int, int)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
+<dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#%3Cinit%3E(int,int,int,int,int,int,int)" class="member-name-link">GameBoard(int, int, int, int, int, int, int)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>
 <div class="block">Constructs a GameBoard with specified parameters.</div>
 </dd>
@@ -116,6 +120,11 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/snake/Generator.html#generateOneFood(java.util.Set)" class="member-name-link">generateOneFood(Set&lt;Point&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Generator.html" title="class in ru.nsu.lavitskaya.snake">Generator</a></dt>
 <dd>
 <div class="block">Generates a new food item at a random location that is not in the forbidden set.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/Generator.html#generateSatedSnake(java.util.Set)" class="member-name-link">generateSatedSnake(Set&lt;Point&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Generator.html" title="class in ru.nsu.lavitskaya.snake">Generator</a></dt>
+<dd>
+<div class="block">Generates a new <a href="ru/nsu/lavitskaya/snake/SatedSnake.html" title="class in ru.nsu.lavitskaya.snake"><code>SatedSnake</code></a> at a random free position with a randomly determined
+     length.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Generator.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">Generator</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
 <dd>
@@ -147,9 +156,22 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#getSnake()" class="member-name-link">getSnake()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html#getType()" class="member-name-link">getType()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></dt>
+<dd>
+<div class="block">Returns the current status of this snake.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html#hasCollidedWithPlayer(ru.nsu.lavitskaya.snake.Snake)" class="member-name-link">hasCollidedWithPlayer(Snake)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></dt>
+<dd>
+<div class="block">Checks whether the enemy snake's next head (the cell it is about to move into)
+ would collide with any part of the player's snake.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html#hasCollision(ru.nsu.lavitskaya.snake.Point,int,int,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">hasCollision(Point, int, int, List&lt;Obstacle&gt;, Snake, List&lt;EnemySnake&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></dt>
+<dd>
+<div class="block">Determines if moving to the specified point will result in a collision.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Point.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -158,10 +180,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/lavitskaya/snake/GameController.html#initialize()" class="member-name-link">initialize()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameController.html" title="class in ru.nsu.lavitskaya.snake">GameController</a></dt>
 <dd>
 <div class="block">Initializes the game and UI components.</div>
-</dd>
-<dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html#isAlive()" class="member-name-link">isAlive()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></dt>
-<dd>
-<div class="block">Checks whether the enemy snake is alive.</div>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/snake/GameBoard.html#isGameOver()" class="member-name-link">isGameOver()</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/GameBoard.html" title="class in ru.nsu.lavitskaya.snake">GameBoard</a></dt>
 <dd>&nbsp;</dd>
@@ -219,6 +237,17 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html#SATED" class="member-name-link">SATED</a> - Enum constant in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SatedSnake.html" class="type-name-link" title="class in ru.nsu.lavitskaya.snake">SatedSnake</a> - Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
+<dd>
+<div class="block">A “sated” enemy snake that wanders randomly in any safe direction,
+ avoiding collisions.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SatedSnake.html#%3Cinit%3E(ru.nsu.lavitskaya.snake.Point)" class="member-name-link">SatedSnake(Point)</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SatedSnake.html" title="class in ru.nsu.lavitskaya.snake">SatedSnake</a></dt>
+<dd>
+<div class="block">Creates a new <code>SatedSnake</code> at the specified starting position.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/Snake.html#setDirection(ru.nsu.lavitskaya.snake.Direction)" class="member-name-link">setDirection(Direction)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a></dt>
 <dd>
 <div class="block">Sets the snake's direction.</div>
@@ -235,7 +264,14 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html#%3Cinit%3E()" class="member-name-link">SnakeGame()</a> - Constructor for class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeGame.html" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a> - Enum Class in <a href="ru/nsu/lavitskaya/snake/package-summary.html">ru.nsu.lavitskaya.snake</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/lavitskaya/snake/SnakeGame.html#start(javafx.stage.Stage)" class="member-name-link">start(Stage)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeGame.html" title="class in ru.nsu.lavitskaya.snake">SnakeGame</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:T">T</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/snake/EnemySnake.html#type" class="member-name-link">type</a> - Variable in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:U">U</h2>
@@ -251,10 +287,19 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Updates the state of the enemy snake.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SatedSnake.html#update(int,int,java.util.List,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">update(int, int, List&lt;Food&gt;, List&lt;Obstacle&gt;, Snake, List&lt;EnemySnake&gt;)</a> - Method in class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SatedSnake.html" title="class in ru.nsu.lavitskaya.snake">SatedSnake</a></dt>
+<dd>
+<div class="block">Updates this snake’s position by choosing a random safe direction,
+ checking for collisions with the player or obstacles, and moving one cell.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/snake/Direction.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
@@ -263,8 +308,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </dd>
+<dt><a href="ru/nsu/lavitskaya/snake/SnakeType.html#values()" class="member-name-link">values()</a> - Static method in enum class ru.nsu.lavitskaya.snake.<a href="ru/nsu/lavitskaya/snake/SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>
