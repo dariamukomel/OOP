@@ -15,19 +15,20 @@ import java.util.Random;
  */
 public class EnemySnake extends Snake {
     private final Random random = new Random();
-    private boolean alive = true;
+    protected SnakeType type;
 
     public EnemySnake(Point start) {
         super(start);
+        this.type = SnakeType.ENEMY;
     }
 
     /**
-     * Checks whether the enemy snake is alive.
+     * Returns the current status of this snake.
      *
-     * @return true if the enemy snake is still active; false if it has died.
+     * @return the {@link SnakeType} of this snake (e.g., ENEMY, SATED, or DEAD)
      */
-    public boolean isAlive() {
-        return alive;
+    protected SnakeType getType() {
+        return type;
     }
 
     /**
@@ -59,7 +60,7 @@ public class EnemySnake extends Snake {
             }
         }
         if (safeDirections.isEmpty()) {
-            alive = false;
+            type = SnakeType.DEAD;
             return;
         }
 
@@ -85,7 +86,7 @@ public class EnemySnake extends Snake {
         super.setDirection(chosen);
 
         if (hasCollidedWithPlayer(playerSnake)) {
-            alive = false;
+            type = SnakeType.DEAD;
             return;
         }
 
@@ -118,7 +119,7 @@ public class EnemySnake extends Snake {
      * @param enemySnakes   the list of all enemy snakes.
      * @return true if a collision is detected with any of the checked objects; false otherwise.
      */
-    private boolean hasCollision(Point next, int mapRows, int mapColumns, List<Obstacle> obstacles,
+    protected boolean hasCollision(Point next, int mapRows, int mapColumns, List<Obstacle> obstacles,
                                  Snake playerSnake, List<EnemySnake> enemySnakes) {
         if (next.coordX < 0 || next.coordX >= mapColumns
                 || next.coordY < 0 || next.coordY >= mapRows) {
@@ -201,7 +202,7 @@ public class EnemySnake extends Snake {
      * @param playerSnake the player's snake to check for collision.
      * @return true if a collision is detected with any cell of the player's snake; false otherwise.
      */
-    private boolean hasCollidedWithPlayer(Snake playerSnake) {
+    protected boolean hasCollidedWithPlayer(Snake playerSnake) {
         Point enemyHead = this.getNextHead();
         for (Point p : playerSnake.getBody()) {
             if (enemyHead.equals(p)) {

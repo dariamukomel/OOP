@@ -35,6 +35,7 @@ public class GameController {
     private int currentTargetLength;
     private int currentDelay;
     private int currentEnemyCount;
+    private int currentSatedCount;
     private boolean inTransition = false;
 
     /**
@@ -52,14 +53,17 @@ public class GameController {
         currentDelay = Math.max(100, 200 - (level - 1) * 20);
         if (level <= 3) {
             currentEnemyCount = 1;
+            currentSatedCount = 2;
         } else if (level <= 10) {
             currentEnemyCount = 2;
+            currentSatedCount = 3;
         } else {
             currentEnemyCount = 3;
+            currentSatedCount = 4;
         }
 
         gameBoard = new GameBoard(rows, cols, currentFoodCount, currentTargetLength,
-                currentObstaclesCount, currentEnemyCount);
+                currentObstaclesCount, currentEnemyCount, currentSatedCount);
 
         gameCanvas.sceneProperty().addListener((obs, oldScene,
                                                 newScene) -> {
@@ -167,14 +171,26 @@ public class GameController {
             drawCell(gc, food.getPosition().coordX, food.getPosition().coordY);
         }
 
-        gc.setFill(Color.ORANGE);
+
         for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
+            if (enemy.getType().equals(SnakeType.ENEMY)) {
+                gc.setFill(Color.ORANGE);
+            }
+            else {
+                gc.setFill(Color.SIENNA);
+            }
             for (Point part : enemy.getBody()) {
                 drawCell(gc, part.coordX, part.coordY);
             }
         }
-        gc.setFill(Color.DARKORANGE);
+
         for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
+            if (enemy.getType().equals(SnakeType.ENEMY)) {
+                gc.setFill(Color.DARKORANGE);
+            }
+            else {
+                gc.setFill(Color.SADDLEBROWN);
+            }
             Point head = enemy.getHead();
             drawCell(gc, head.coordX, head.coordY);
         }

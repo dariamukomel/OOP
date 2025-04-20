@@ -19,7 +19,7 @@ class GameBoardTest {
     @Test
     public void testGameOverWhenSnakeHitsWall() {
         GameBoard board = new GameBoard(10, 10, 0,
-                5, 0, 0);
+                5, 0, 0, 0);
 
         int iterations = 0;
         while (iterations < 5) {
@@ -33,7 +33,7 @@ class GameBoardTest {
     @Test
     public void testEatFoodIncreasesSnakeLength() {
         GameBoard board = new GameBoard(10, 10, 1, 100,
-                0, 0);
+                0, 0, 0);
         Snake snake = board.getSnake();
         Food food = new Food(new Point(snake.getHead().coordX + 1, snake.getHead().coordY));
         board.getFoodList().clear();
@@ -46,7 +46,7 @@ class GameBoardTest {
     @Test
     public void testCollisionWithObstacle() {
         GameBoard board = new GameBoard(10, 10, 1, 10,
-                1, 0);
+                1, 0, 0);
         board.getObstacles().clear();
         Snake snake = board.getSnake();
         Point head = snake.getHead();
@@ -61,7 +61,7 @@ class GameBoardTest {
     @Test
     public void testWinCondition() {
         GameBoard board = new GameBoard(10, 10, 1, 3,
-                1, 0);
+                1, 0, 0);
         board.getFoodList().clear();
         Snake snake = board.getSnake();
         Point foodPos1 = snake.getNextHead();

@@ -2,6 +2,7 @@ package ru.nsu.lavitskaya.snake;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,6 +51,25 @@ class GeneratorTest {
             for (Point p : obstacle2.getCells()) {
                 assertFalse(obstacle1.getCells().contains(p));
             }
+        }
+    }
+
+    @Test
+    void testGenerateSatedSnake() {
+        Set<Point> forbidden = new HashSet<>();
+        forbidden.add(new Point(0, 0));
+        forbidden.add(new Point(9, 9));
+        Generator generator = new Generator(10, 10);
+        SatedSnake snake = generator.generateSatedSnake(forbidden);
+        assertNotNull(snake);
+        Point head = snake.getHead();
+        assertFalse(forbidden.contains(head));
+        int length = snake.length();
+        assertTrue(length >= 3 && length <= 5);
+        Set<Point> seen = new HashSet<>();
+        for (Point p : snake.getBody()) {
+            assertFalse(forbidden.contains(p));
+            assertTrue(seen.add(p));
         }
     }
 

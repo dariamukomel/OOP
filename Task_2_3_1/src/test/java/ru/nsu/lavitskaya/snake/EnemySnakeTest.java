@@ -1,6 +1,6 @@
 package ru.nsu.lavitskaya.snake;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,7 +47,7 @@ public class EnemySnakeTest {
         Snake playerSnake = new Snake(new Point(0, 0));
         enemy.update(10, 10, foodList, obstacles, playerSnake, enemySnakes);
 
-        assertTrue(enemy.isAlive());
+        assertNotEquals(SnakeType.DEAD, enemy.getType());
 
         assertNotEquals(new Point(6, 5), enemy.getHead());
     }
@@ -78,7 +78,7 @@ public class EnemySnakeTest {
         Snake playerSnake = new Snake(new Point(2, 0));
         enemy.update(3, 3, foodList, obstacles, playerSnake, enemySnakes);
 
-        assertFalse(enemy.isAlive());
+        assertEquals(SnakeType.DEAD, enemy.getType());
     }
 
     /**
@@ -122,6 +122,6 @@ public class EnemySnakeTest {
         Snake playerSnake = new Snake(new Point(6, 5));
         playerSnake.getBody().add(new Point(6, 6));
         enemy.update(10, 10, foodList, obstacles, playerSnake, enemySnakes);
-        assertFalse(enemy.isAlive());
+        assertEquals(SnakeType.DEAD, enemy.getType());
     }
 }

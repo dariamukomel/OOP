@@ -1,6 +1,9 @@
 package ru.nsu.lavitskaya.snake;
 
+
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -108,6 +111,91 @@ public class Generator {
             if (!forbidden.contains(point)) {
                 return new EnemySnake(point);
             }
+        }
+    }
+
+    /**
+     * Generates a new {@link SatedSnake} at a random free position with a randomly determined
+     *     length.
+     * <p>
+     * The method attempts to place the snake’s head in a cell not in the given {@code forbidden}
+     * set. It then grows the body in a random valid direction up to a desired length of 3–5
+     * segments; if fewer than 3 segments can be placed, it retries with a new head position.
+     * Finally, it orients the snake’s direction away from its second segment and assigns the
+     * generated segment list to the snake’s body.
+     * </p>
+     *
+     * @param forbidden a set of {@link Point}s where the snake’s head or body must not appear
+     * @return a {@code SatedSnake} instance with 3–5 segments, positioned and oriented safely
+     */
+    public SatedSnake generateSatedSnake(Set<Point> forbidden) {
+        while (true) {
+            int x = random.nextInt(mapColumns);
+            int y = random.nextInt(mapRows);
+            Point head = new Point(x, y);
+            if (forbidden.contains(head)) continue;
+
+            int desiredLen = random.nextInt(4) + 2;
+
+            List<Point> body = new ArrayList<>();
+            body.add(head);
+            Set<Point> used = new HashSet<>(forbidden);
+            used.add(head);
+            Point current = head;
+
+            for (int i = 1; i < desiredLen; i++) {
+                List<Point> neigh = new ArrayList<>();
+                for (Direction d : Direction.values()) {
+                    Point np = current.move(d);
+                    if (np.coordX >= 0 && np.coordX < mapColumns
+                            && np.coordY >= 0 && np.coordY < mapRows
+                            && !used.contains(np)) {
+                        neigh.add(np);
+                    }
+                }
+                if (neigh.isEmpty()) {
+                    break;
+                }
+                Point next = neigh.get(random.nextInt(neigh.size()));
+                body.add(next);
+                used.add(next);
+                current = next;
+            }
+
+            if (body.size() < 3) {
+                continue;
+            }
+
+            SatedSnake s = new SatedSnake(head);
+
+            Point second = body.get(1);
+            int dx = head.coordX - second.coordX;
+            int dy = head.coordY - second.coordY;
+            Direction initDir;
+            if (dx == 1) {
+                initDir = Direction.RIGHT;
+            }
+            else if (dx == -1) {
+                initDir = Direction.LEFT;
+            }
+            else if (dy == 1)  {
+                initDir = Direction.DOWN;
+            }
+            else     {
+                initDir = Direction.UP;
+            }
+
+            s.setDirection(initDir);
+
+            Deque<Point> dq = s.getBody();
+            dq.clear();
+            for (Point p : body) {
+                dq.addLast(p);
+            }
+
+            return s;
+
+
         }
     }
 

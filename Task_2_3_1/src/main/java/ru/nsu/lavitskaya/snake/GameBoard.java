@@ -17,6 +17,7 @@ public class GameBoard {
     private final int foodCount;
     private final int obstaclesCount;
     private final int enemyCount;
+    private final int satedCount;
 
     private final Snake snake;
     private final List<Food> foodList = new ArrayList<>();
@@ -37,13 +38,14 @@ public class GameBoard {
      * @param obstaclesCount number of obstacles to generate
      */
     public GameBoard(int mapRows, int mapColumns, int foodCount, int targetLength,
-                     int obstaclesCount, int enemyCount) {
+                     int obstaclesCount, int enemyCount, int satedCount) {
         this.mapRows = mapRows;
         this.mapColumns = mapColumns;
         this.foodCount = foodCount;
         this.targetLength = targetLength;
         this.obstaclesCount = obstaclesCount;
         this.enemyCount = enemyCount;
+        this.satedCount = satedCount;
         this.generator = new Generator(mapRows, mapColumns);
 
         Point start = new Point(mapColumns / 2, mapRows / 2);
@@ -135,15 +137,13 @@ public class GameBoard {
 
         snake.move(ateFood);
 
-        List<EnemySnake> deadEnemies = new ArrayList<>();
-        for (EnemySnake enemy : enemySnakes) {
+        Iterator<EnemySnake> snakeIterator = enemySnakes.iterator();
+        while (snakeIterator.hasNext()) {
+            EnemySnake enemy = snakeIterator.next();
             enemy.update(mapRows, mapColumns, foodList, obstacles, snake, enemySnakes);
-            if (!enemy.isAlive()) {
-                deadEnemies.add(enemy);
+            if (enemy.getType() == SnakeType.DEAD) {
+                snakeIterator.remove();
             }
-        }
-        for (EnemySnake enemy : deadEnemies) {
-            enemySnakes.remove(enemy);
         }
 
 
@@ -171,9 +171,20 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Generates and adds enemy snakes to the game.
+     * <p>
+     * First, creates {@code enemyCount} hungry {@link EnemySnake} instances;
+     * then, creates {@code satedCount} sated {@link SatedSnake} instances.
+     * Each new snake is placed in a free cell determined by {@link #getForbiddenCells()}.
+     * </p>
+     */
     private void generateEnemySnakes() {
         while (enemySnakes.size() < enemyCount) {
             enemySnakes.add(generator.generateEnemySnake(getForbiddenCells()));
+        }
+        while (enemySnakes.size()-enemyCount < satedCount) {
+            enemySnakes.add(generator.generateSatedSnake(getForbiddenCells()));
         }
     }
 
