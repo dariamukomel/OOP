@@ -86,7 +86,8 @@ public class SatedSnakeTest {
         obstacles.add(new Obstacle(List.of(new Point(1, 1).move(Direction.LEFT))));
         foodList.add(new Food(new Point(2, 1)));
         playerSnake = new Snake(new Point(-1, -1));
-        enemySnakes.clear(); enemySnakes.add(satedSnake);
+        enemySnakes.clear();
+        enemySnakes.add(satedSnake);
         int initialLength = satedSnake.length();
         satedSnake.update(MAP_ROWS, MAP_COLS, foodList, obstacles, playerSnake, enemySnakes);
         assertEquals(SnakeType.SATED, satedSnake.getType());
