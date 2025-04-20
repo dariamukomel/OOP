@@ -119,8 +119,9 @@ public class EnemySnake extends Snake {
      * @param enemySnakes   the list of all enemy snakes.
      * @return true if a collision is detected with any of the checked objects; false otherwise.
      */
-    protected boolean hasCollision(Point next, int mapRows, int mapColumns, List<Obstacle> obstacles,
-                                 Snake playerSnake, List<EnemySnake> enemySnakes) {
+    protected boolean hasCollision(Point next, int mapRows, int mapColumns,
+                                   List<Obstacle> obstacles, Snake playerSnake,
+                                   List<EnemySnake> enemySnakes) {
         if (next.coordX < 0 || next.coordX >= mapColumns
                 || next.coordY < 0 || next.coordY >= mapRows) {
             return true;

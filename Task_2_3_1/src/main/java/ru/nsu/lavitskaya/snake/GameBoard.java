@@ -183,7 +183,7 @@ public class GameBoard {
         while (enemySnakes.size() < enemyCount) {
             enemySnakes.add(generator.generateEnemySnake(getForbiddenCells()));
         }
-        while (enemySnakes.size()-enemyCount < satedCount) {
+        while (enemySnakes.size() - enemyCount < satedCount) {
             enemySnakes.add(generator.generateSatedSnake(getForbiddenCells()));
         }
     }

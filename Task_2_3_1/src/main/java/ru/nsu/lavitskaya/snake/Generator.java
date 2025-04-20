@@ -133,7 +133,9 @@ public class Generator {
             int x = random.nextInt(mapColumns);
             int y = random.nextInt(mapRows);
             Point head = new Point(x, y);
-            if (forbidden.contains(head)) continue;
+            if (forbidden.contains(head)) {
+                continue;
+            }
 
             int desiredLen = random.nextInt(4) + 2;
 
@@ -174,14 +176,11 @@ public class Generator {
             Direction initDir;
             if (dx == 1) {
                 initDir = Direction.RIGHT;
-            }
-            else if (dx == -1) {
+            } else if (dx == -1) {
                 initDir = Direction.LEFT;
-            }
-            else if (dy == 1)  {
+            } else if (dy == 1)  {
                 initDir = Direction.DOWN;
-            }
-            else     {
+            } else     {
                 initDir = Direction.UP;
             }
 

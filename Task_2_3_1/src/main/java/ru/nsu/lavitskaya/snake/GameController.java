@@ -175,8 +175,7 @@ public class GameController {
         for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
             if (enemy.getType().equals(SnakeType.ENEMY)) {
                 gc.setFill(Color.ORANGE);
-            }
-            else {
+            } else {
                 gc.setFill(Color.SIENNA);
             }
             for (Point part : enemy.getBody()) {
@@ -187,8 +186,7 @@ public class GameController {
         for (EnemySnake enemy : gameBoard.getEnemySnakes()) {
             if (enemy.getType().equals(SnakeType.ENEMY)) {
                 gc.setFill(Color.DARKORANGE);
-            }
-            else {
+            } else {
                 gc.setFill(Color.SADDLEBROWN);
             }
             Point head = enemy.getHead();

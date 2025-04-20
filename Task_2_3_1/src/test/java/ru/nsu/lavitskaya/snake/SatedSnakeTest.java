@@ -66,7 +66,8 @@ public class SatedSnakeTest {
         obstacles.add(new Obstacle(List.of(new Point(0, 1))));
         obstacles.add(new Obstacle(List.of(new Point(2, 1))));
         playerSnake = new Snake(new Point(-1, -1));
-        enemySnakes.clear(); enemySnakes.add(satedSnake);
+        enemySnakes.clear();
+        enemySnakes.add(satedSnake);
         Point initialHead = satedSnake.getHead();
         satedSnake.update(MAP_ROWS, MAP_COLS, foodList, obstacles, playerSnake, enemySnakes);
         Point newHead = satedSnake.getHead();

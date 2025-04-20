@@ -12,7 +12,7 @@ import java.util.Random;
  * simply picks a random safe direction each turn and moves one step.
  * </p>
  */
-public class SatedSnake extends EnemySnake{
+public class SatedSnake extends EnemySnake {
     private final Random random = new Random();
 
     /**
