@@ -145,35 +145,45 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the current status of this snake.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasCollidedWithPlayer(ru.nsu.lavitskaya.snake.Snake)" class="member-name-link">hasCollidedWithPlayer</a><wbr>(<a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks whether the enemy snake's next head (the cell it is about to move into)
- would collide with any part of the player's snake.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasCollision(ru.nsu.lavitskaya.snake.Point,int,int,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">hasCollision</a><wbr>(<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&nbsp;next,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSafeDirections(ru.nsu.lavitskaya.snake.Point,int,int,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">getSafeDirections</a><wbr>(<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&nbsp;head,
  int&nbsp;mapRows,
  int&nbsp;mapColumns,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a>&gt;&nbsp;obstacles,
  <a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a>&gt;&nbsp;enemySnakes)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Determines all safe directions the enemy snake can move without causing a collision.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="SnakeType.html" title="enum class in ru.nsu.lavitskaya.snake">SnakeType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current status of this snake.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasCollidedWithPlayer(ru.nsu.lavitskaya.snake.Snake)" class="member-name-link">hasCollidedWithPlayer</a><wbr>(<a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether the enemy snake's next head (the cell it is about to move into)
+ would collide with any part of the player's snake.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasCollision(ru.nsu.lavitskaya.snake.Point,int,int,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">hasCollision</a><wbr>(<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&nbsp;next,
+ int&nbsp;mapRows,
+ int&nbsp;mapColumns,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a>&gt;&nbsp;obstacles,
+ <a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a>&gt;&nbsp;enemySnakes)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Determines if moving to the specified point will result in a collision.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update(int,int,java.util.List,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">update</a><wbr>(int&nbsp;mapRows,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update(int,int,java.util.List,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)" class="member-name-link">update</a><wbr>(int&nbsp;mapRows,
  int&nbsp;mapColumns,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Food.html" title="class in ru.nsu.lavitskaya.snake">Food</a>&gt;&nbsp;foodList,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a>&gt;&nbsp;obstacles,
  <a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a>&gt;&nbsp;enemySnakes)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Updates the state of the enemy snake.</div>
 </div>
 </div>
@@ -261,6 +271,34 @@ loadScripts(document, 'script');</script>
 <dd><code>obstacles</code> - the list of obstacles present on the map.</dd>
 <dd><code>playerSnake</code> - the player's snake.</dd>
 <dd><code>enemySnakes</code> - the list of all enemy snakes.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSafeDirections(ru.nsu.lavitskaya.snake.Point,int,int,java.util.List,ru.nsu.lavitskaya.snake.Snake,java.util.List)">
+<h3>getSafeDirections</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Direction.html" title="enum class in ru.nsu.lavitskaya.snake">Direction</a>&gt;</span>&nbsp;<span class="element-name">getSafeDirections</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.lavitskaya.snake">Point</a>&nbsp;head,
+ int&nbsp;mapRows,
+ int&nbsp;mapColumns,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Obstacle.html" title="class in ru.nsu.lavitskaya.snake">Obstacle</a>&gt;&nbsp;obstacles,
+ <a href="Snake.html" title="class in ru.nsu.lavitskaya.snake">Snake</a>&nbsp;playerSnake,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="EnemySnake.html" title="class in ru.nsu.lavitskaya.snake">EnemySnake</a>&gt;&nbsp;enemySnakes)</span></div>
+<div class="block">Determines all safe directions the enemy snake can move without causing a collision.
+ <p>
+ A direction is considered safe if moving the snake's head in that direction does not
+ result in a collision with the map boundaries, any obstacles, the player's snake,
+ other enemy snakes, or the enemy's own body.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>head</code> - the current head position of the enemy snake.</dd>
+<dd><code>mapRows</code> - the number of rows in the game map.</dd>
+<dd><code>mapColumns</code> - the number of columns in the game map.</dd>
+<dd><code>obstacles</code> - the list of obstacles on the map.</dd>
+<dd><code>playerSnake</code> - the player's snake to check for potential collisions.</dd>
+<dd><code>enemySnakes</code> - the list of all enemy snakes, including this one.</dd>
+<dt>Returns:</dt>
+<dd>a list of directions that are safe to move into.</dd>
 </dl>
 </section>
 </li>
