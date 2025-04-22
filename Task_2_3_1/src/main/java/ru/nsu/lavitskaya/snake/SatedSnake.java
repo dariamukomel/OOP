@@ -44,15 +44,11 @@ public class SatedSnake extends EnemySnake {
     @Override
     public void update(int mapRows, int mapColumns, List<Food> foodList, List<Obstacle> obstacles,
                        Snake playerSnake, List<EnemySnake> enemySnakes) {
-
         Point head = getHead();
-        List<Direction> safeDirections = new ArrayList<>();
-        for (Direction dir : Direction.values()) {
-            Point next = head.move(dir);
-            if (!hasCollision(next, mapRows, mapColumns, obstacles, playerSnake, enemySnakes)) {
-                safeDirections.add(dir);
-            }
-        }
+
+        List<Direction> safeDirections = getSafeDirections(head, mapRows, mapColumns, obstacles,
+                playerSnake, enemySnakes);
+
         if (safeDirections.isEmpty()) {
             type = SnakeType.DEAD;
             return;

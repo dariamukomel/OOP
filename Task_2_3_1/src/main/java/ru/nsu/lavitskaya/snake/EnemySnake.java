@@ -52,13 +52,10 @@ public class EnemySnake extends Snake {
     public void update(int mapRows, int mapColumns, List<Food> foodList, List<Obstacle> obstacles,
                        Snake playerSnake, List<EnemySnake> enemySnakes) {
         Point head = getHead();
-        List<Direction> safeDirections = new ArrayList<>();
-        for (Direction dir : Direction.values()) {
-            Point next = head.move(dir);
-            if (!hasCollision(next, mapRows, mapColumns, obstacles, playerSnake, enemySnakes)) {
-                safeDirections.add(dir);
-            }
-        }
+
+        List<Direction> safeDirections = getSafeDirections(head, mapRows, mapColumns, obstacles,
+                playerSnake, enemySnakes);
+
         if (safeDirections.isEmpty()) {
             type = SnakeType.DEAD;
             return;
@@ -100,6 +97,35 @@ public class EnemySnake extends Snake {
             }
         }
         super.move(grow);
+    }
+
+    /**
+     * Determines all safe directions the enemy snake can move without causing a collision.
+     * <p>
+     * A direction is considered safe if moving the snake's head in that direction does not
+     * result in a collision with the map boundaries, any obstacles, the player's snake,
+     * other enemy snakes, or the enemy's own body.
+     * </p>
+     *
+     * @param head          the current head position of the enemy snake.
+     * @param mapRows       the number of rows in the game map.
+     * @param mapColumns    the number of columns in the game map.
+     * @param obstacles     the list of obstacles on the map.
+     * @param playerSnake   the player's snake to check for potential collisions.
+     * @param enemySnakes   the list of all enemy snakes, including this one.
+     * @return a list of directions that are safe to move into.
+     */
+    protected List<Direction> getSafeDirections(Point head, int mapRows, int mapColumns,
+                                                List<Obstacle> obstacles, Snake playerSnake,
+                                                List<EnemySnake> enemySnakes) {
+        List<Direction> safeDirections = new ArrayList<>();
+        for (Direction dir : Direction.values()) {
+            Point next = head.move(dir);
+            if (!hasCollision(next, mapRows, mapColumns, obstacles, playerSnake, enemySnakes)) {
+                safeDirections.add(dir);
+            }
+        }
+        return safeDirections;
     }
 
     /**
