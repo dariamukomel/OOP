@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.lavitskaya.mr","l":"Master"},{"p":"ru.nsu.lavitskaya.mr","l":"MasterGateway"},{"p":"ru.nsu.lavitskaya.mr","l":"Worker"},{"p":"ru.nsu.lavitskaya.mr","l":"WorkersGateway"}];updateSearchResults();
