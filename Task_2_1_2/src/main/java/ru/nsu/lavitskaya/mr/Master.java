@@ -1,9 +1,27 @@
 package ru.nsu.lavitskaya.mr;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
+/**
+ * Master process that distributes arrays of integers to multiple Worker instances,
+ * collects their responses, and determines if any composite numbers are present.
+ * <p>
+ * Uses {@link WorkersGateway} for network discovery and communication,
+ * and a thread pool with {@link CompletionService} for concurrent task execution.
+ * </p>
+ */
 public class Master {
     private final WorkersGateway gateway = new WorkersGateway();
     private final BlockingQueue<int[]> taskQueue = new LinkedBlockingQueue<>();
@@ -16,6 +34,21 @@ public class Master {
         this.cs = new ExecutorCompletionService<>(executor);
     }
 
+    /**
+     * Executes the distributed prime checking algorithm on the provided numbers.
+     * <ol>
+     *   <li>Discovers available workers via multicast.</li>
+     *   <li>Partitions the input array into chunks equal to the number of workers.</li>
+     *   <li>Submits each chunk to a worker and monitors for results.</li>
+     *   <li>Upon detecting a composite, terminates early; otherwise, continues until all chunks
+     *       processed.</li>
+     *   <li>Sends a "Terminate" command to all workers and shuts down resources.</li>
+     * </ol>
+     *
+     * @param numbers array of integers to check for compositeness
+     * @throws IOException if network discovery or communication fails
+     * @throws InterruptedException if the current thread is interrupted while waiting
+     */
     public void execute(int[] numbers) throws IOException, InterruptedException {
         List<String> workers = gateway.discover();
         System.out.println("Discovered workers: " + workers);
@@ -51,7 +84,8 @@ public class Master {
                 if (cause instanceof WorkerDisconnectedException) {
                     int[] failedChunk = ((WorkerDisconnectedException) cause).getChunk();
                     taskQueue.offer(failedChunk);
-                    System.err.println("Worker disconnected: " + ((WorkerDisconnectedException) cause).getWorkerId());
+                    System.err.println("Worker disconnected: "
+                            + ((WorkerDisconnectedException) cause).getWorkerId());
                 } else {
                     System.err.println("Task execution failed: " + cause);
                 }
@@ -76,7 +110,8 @@ public class Master {
         for (String wid : workers) {
             try {
                 gateway.sendCommand(wid, "Terminate");
-            } catch (IOException e) {}
+            } catch (IOException e) {
+            }
         }
 
         gateway.close();
@@ -89,6 +124,12 @@ public class Master {
         }
     }
 
+    /**
+     * Submits a partitioned task to a specific worker via the completion service.
+     *
+     * @param workerId identifier of the target worker
+     * @param chunk array of integers to process
+     */
     private void submitTask(String workerId, int[] chunk) {
         cs.submit(() -> {
             try {
@@ -106,6 +147,13 @@ public class Master {
         });
     }
 
+    /**
+     * Partitions an array into the given number of subarrays of nearly equal size.
+     *
+     * @param array the input array to partition
+     * @param parts number of partitions to create
+     * @return list of int[] chunks summing to the original array
+     */
     private static List<int[]> partition(int[] array, int parts) {
         List<int[]> result = new ArrayList<>(parts);
         int n = array.length;
@@ -122,6 +170,9 @@ public class Master {
         return result;
     }
 
+    /**
+     * Holds the result of a task executed by a worker.
+     */
     private static class TaskResult {
         final String workerId;
         final boolean hasComposite;
@@ -132,6 +183,9 @@ public class Master {
         }
     }
 
+    /**
+     * Exception indicating a worker disconnected or I/O failure during task execution.
+     */
     private static class WorkerDisconnectedException extends RuntimeException {
         private final String workerId;
         private final int[] chunk;

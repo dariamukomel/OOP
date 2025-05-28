@@ -1,13 +1,31 @@
 package ru.nsu.lavitskaya.mr;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.MulticastSocket;
+import java.net.ServerSocket;
+import java.net.SocketTimeoutException;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * Manages communication with multiple Worker instances.
+ * <p>
+ * Sends a multicast announcement to invite Workers to connect,
+ * accepts incoming TCP connections, and allows sending tasks and commands
+ * to individual Workers as well as receiving their responses.
+ * </p>
+ */
 public class WorkersGateway {
     private static final String MULTICAST_GROUP = "224.0.0.1";
     private static final int MULTICAST_PORT = 5000;
@@ -18,6 +36,19 @@ public class WorkersGateway {
     private final ConcurrentMap<String, BufferedReader> readers = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, BufferedWriter> writers = new ConcurrentHashMap<>();
 
+    /**
+     * Discovers Worker instances by sending a multicast announcement
+     * and accepting TCP connections for a fixed timeout period.
+     * <p>
+     * Each Worker that receives the announcement should connect back via TCP.
+     * The method collects all connected Worker IDs (socket addresses) and
+     * initializes I/O streams for each.
+     * </p>
+     *
+     * @return list of connected Worker identifiers (remote socket addresses)
+     * @throws IOException if network interfaces cannot be found, if no
+     *                     Workers connect within the timeout, or other I/O errors
+     */
     public List<String> discover() throws IOException {
         serverSocket = new ServerSocket(SERVER_PORT);
         serverSocket.setReuseAddress(true);
@@ -25,40 +56,45 @@ public class WorkersGateway {
         String localHost = InetAddress.getLocalHost().getHostAddress();
         String announcement = localHost + ":" + SERVER_PORT;
         byte[] buf = announcement.getBytes(StandardCharsets.UTF_8);
-        try (DatagramSocket ds = new DatagramSocket()) {
-            DatagramPacket packet = new DatagramPacket(
-                    buf, buf.length,
-                    InetAddress.getByName(MULTICAST_GROUP),
-                    MULTICAST_PORT
-            );
-            ds.send(packet);
+
+        InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, group, MULTICAST_PORT);
+
+        NetworkInterface ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+        if (ni == null) {
+            throw new IOException("Не удалось найти сетевой интерфейс для локального адреса");
         }
 
-        long timeoutMillis = 5000;
+        try (MulticastSocket ms = new MulticastSocket()) {
+            ms.setNetworkInterface(ni);
+            ms.send(packet);
+        }
+
+        long timeoutMillis = 5_000;
         long endTime = System.currentTimeMillis() + timeoutMillis;
         List<String> connectedWorkers = new ArrayList<>();
 
-        while (true) {
+        while (System.currentTimeMillis() < endTime) {
             long remaining = endTime - System.currentTimeMillis();
-            if (remaining <= 0) {
-                break;
-            }
             serverSocket.setSoTimeout((int) remaining);
             try {
                 Socket workerSocket = serverSocket.accept();
                 String workerId = workerSocket.getRemoteSocketAddress().toString();
 
                 BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(workerSocket.getInputStream(), StandardCharsets.UTF_8)
+                        new InputStreamReader(workerSocket.getInputStream(),
+                                StandardCharsets.UTF_8)
                 );
                 BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(workerSocket.getOutputStream(), StandardCharsets.UTF_8)
+                        new OutputStreamWriter(workerSocket.getOutputStream(),
+                                StandardCharsets.UTF_8)
                 );
 
                 workerSockets.put(workerId, workerSocket);
                 readers.put(workerId, reader);
                 writers.put(workerId, writer);
                 connectedWorkers.add(workerId);
+
             } catch (SocketTimeoutException e) {
                 break;
             }
@@ -66,11 +102,21 @@ public class WorkersGateway {
 
         if (connectedWorkers.isEmpty()) {
             serverSocket.close();
-            throw new IOException("No workers connected within 5-second timeout");
+            throw new IOException("Ни один воркер не подключился за 5 секунд");
         }
         return connectedWorkers;
     }
 
+    /**
+     * Sends a TASK message with the given numbers to the specified Worker.
+     * <p>
+     * The format is "Task n1,n2,..." sent over the Worker TCP connection.
+     * </p>
+     *
+     * @param workerId identifier of the Worker (remote socket address)
+     * @param numbers  array of integers to check
+     * @throws IOException if the Worker ID is not connected or writing fails
+     */
     public void sendTasks(String workerId, int[] numbers) throws IOException {
         BufferedWriter writer = writers.get(workerId);
         if (writer == null) {
@@ -86,6 +132,13 @@ public class WorkersGateway {
         writer.flush();
     }
 
+    /**
+     * Reads the next line of response from the specified Worker.
+     *
+     * @param workerId identifier of the Worker (remote socket address)
+     * @return the raw response string from the Worker
+     * @throws IOException if the Worker ID is not connected or reading fails
+     */
     public String getAnswer(String workerId) throws IOException {
         BufferedReader reader = readers.get(workerId);
         if (reader == null) {
@@ -94,6 +147,16 @@ public class WorkersGateway {
         return reader.readLine();
     }
 
+    /**
+     * Sends an arbitrary command string to the specified Worker.
+     * <p>
+     * Can be used for control commands like "Terminate".
+     * </p>
+     *
+     * @param workerId identifier of the Worker (remote socket address)
+     * @param command  the command string to send
+     * @throws IOException if the Worker ID is not connected or writing fails
+     */
     public void sendCommand(String workerId, String command) throws IOException {
         BufferedWriter writer = writers.get(workerId);
         if (writer == null) {
@@ -104,6 +167,12 @@ public class WorkersGateway {
         writer.flush();
     }
 
+    /**
+     * Closes the server socket and all connected Worker sockets.
+     * <p>
+     * Suppresses any I/O exceptions thrown during close operations.
+     * </p>
+     */
     public void close() {
         try {
             serverSocket.close();
