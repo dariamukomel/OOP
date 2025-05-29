@@ -23,6 +23,8 @@ import java.nio.charset.StandardCharsets;
 public class MasterGateway {
     private static final String MULTICAST_GROUP = "224.0.0.1";
     private static final int MULTICAST_PORT = 5000;
+    private static final boolean CI =
+            "true".equalsIgnoreCase(System.getenv("GITHUB_ACTIONS"));
     private MulticastSocket multicastSocket;
     private Socket tcpSocket;
     private BufferedReader reader;
@@ -39,24 +41,27 @@ public class MasterGateway {
      * @throws IOException if network I/O fails or announcement format is invalid
      */
     public void connect() throws IOException {
+        InetAddress localAddr = CI
+                ? InetAddress.getLoopbackAddress()
+                : InetAddress.getLocalHost();
+
         multicastSocket = new MulticastSocket(MULTICAST_PORT);
+        NetworkInterface ni = NetworkInterface.getByInetAddress(localAddr);
+        if (ni == null) throw new IOException("No interface for " + localAddr);
+        multicastSocket.setNetworkInterface(ni);
+
         InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
-
-        NetworkInterface ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
-
-        this.multicastSocket.setNetworkInterface(ni);
         SocketAddress groupAddr = new InetSocketAddress(group, MULTICAST_PORT);
         multicastSocket.joinGroup(groupAddr, ni);
 
         byte[] buf = new byte[256];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         multicastSocket.receive(packet);
-
         String msg = new String(packet.getData(), 0, packet.getLength(),
                 StandardCharsets.UTF_8).trim();
         String[] parts = msg.split(":", 2);
         if (parts.length != 2) {
-            throw new IOException("Invalid master announcement: " + msg);
+            throw new IOException("Invalid announcement: " + msg);
         }
         String masterHost = parts[0];
         int masterPort = Integer.parseInt(parts[1]);
