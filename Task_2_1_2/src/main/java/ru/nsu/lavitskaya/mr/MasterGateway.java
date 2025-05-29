@@ -2,12 +2,12 @@ package ru.nsu.lavitskaya.mr;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.DatagramPacket;
-import java.net.InetSocketAddress;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
 import java.net.Socket;
@@ -120,16 +120,25 @@ public class MasterGateway {
      */
     public void close() {
         try {
-            if (reader != null) reader.close();
-        } catch (IOException ignored) {
+            if (reader != null) {
+                reader.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to close reader", e);
         }
         try {
-            if (writer != null) writer.close();
-        } catch (IOException ignored) {
+            if (writer != null) {
+                writer.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to close writer", e);
         }
         try {
-            if (tcpSocket != null) tcpSocket.close();
-        } catch (IOException ignored) {
+            if (tcpSocket != null) {
+                tcpSocket.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to close tcp socket", e);
         }
     }
 }

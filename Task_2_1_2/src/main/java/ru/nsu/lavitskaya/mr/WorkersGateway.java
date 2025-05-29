@@ -2,16 +2,16 @@ package ru.nsu.lavitskaya.mr;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.MulticastSocket;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
-import java.net.SocketTimeoutException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +98,8 @@ public class WorkersGateway {
                         new InputStreamReader(workerSocket.getInputStream(), StandardCharsets.UTF_8)
                 );
                 BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(workerSocket.getOutputStream(), StandardCharsets.UTF_8)
+                        new OutputStreamWriter(workerSocket.getOutputStream(),
+                                StandardCharsets.UTF_8)
                 );
 
                 workerSockets.put(workerId, workerSocket);
@@ -135,7 +136,9 @@ public class WorkersGateway {
         StringBuilder sb = new StringBuilder("Task ");
         for (int i = 0; i < numbers.length; i++) {
             sb.append(numbers[i]);
-            if (i < numbers.length - 1) sb.append(",");
+            if (i < numbers.length - 1) {
+                sb.append(",");
+            }
         }
         writer.write(sb.toString());
         writer.newLine();
@@ -186,12 +189,15 @@ public class WorkersGateway {
     public void close() {
         try {
             serverSocket.close();
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to close server socket", e);
         }
         workerSockets.values().forEach(s -> {
             try {
                 s.close();
-            } catch (IOException ignored) {
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to close worker socket: "
+                        + s.getRemoteSocketAddress(), e);
             }
         });
     }
