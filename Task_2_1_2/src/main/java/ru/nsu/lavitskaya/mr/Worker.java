@@ -1,13 +1,18 @@
 package ru.nsu.lavitskaya.mr;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Worker process that connects to the Master via multicast discovery,
  * receives tasks, checks for composite numbers, and sends back answers.
  */
 public class Worker {
-    private final MasterGateway gateway = new MasterGateway();
+    private final MasterGateway gateway;
+
+    public Worker(boolean useLoopback) {
+        this.gateway = new MasterGateway(useLoopback);
+    }
 
     public void start() {
         try {
@@ -37,7 +42,7 @@ public class Worker {
     }
 
     public static void main(String[] args) {
-        new Worker().start();
+        boolean useLoopback = Arrays.asList(args).contains("test");
+        new Worker(useLoopback).start();
     }
 }
-

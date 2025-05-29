@@ -23,15 +23,16 @@ import java.util.Scanner;
  * </p>
  */
 public class Master {
-    private final WorkersGateway gateway = new WorkersGateway();
+    private final WorkersGateway gateway;
     private final BlockingQueue<int[]> taskQueue = new LinkedBlockingQueue<>();
     private final BlockingQueue<String> freeWorkers = new LinkedBlockingQueue<>();
     private final ExecutorService executor;
     private final CompletionService<TaskResult> cs;
 
-    public Master(int poolSize) {
+    public Master(int poolSize, boolean useLoopback) {
         this.executor = Executors.newFixedThreadPool(poolSize);
         this.cs = new ExecutorCompletionService<>(executor);
+        this.gateway = new WorkersGateway(useLoopback);
     }
 
     /**
@@ -212,6 +213,8 @@ public class Master {
     }
 
     public static void main(String[] args) {
+        boolean useLoopback = Arrays.asList(args).contains("test");
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter integers separated by spaces:");
         String line = scanner.nextLine().trim();
@@ -219,6 +222,7 @@ public class Master {
             System.err.println("No numbers provided. Exiting.");
             System.exit(1);
         }
+
         int[] numbers;
         try {
             numbers = Arrays.stream(line.split("\\s+"))
@@ -230,7 +234,7 @@ public class Master {
             return;
         }
 
-        Master master = new Master(numbers.length);
+        Master master = new Master(numbers.length, useLoopback);
         try {
             master.execute(numbers);
         } catch (Exception e) {

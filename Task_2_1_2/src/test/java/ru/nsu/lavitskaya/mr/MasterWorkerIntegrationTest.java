@@ -31,13 +31,13 @@ public class MasterWorkerIntegrationTest {
     @Test
     void testCompositeNumbers() throws Exception {
         ProcessBuilder workerPb = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker", "test"
         ).redirectErrorStream(true);
         Process worker = workerPb.start();
         Thread.sleep(1000);
 
         ProcessBuilder masterPb = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master", "test"
         );
         Process master = masterPb.start();
 
@@ -73,13 +73,13 @@ public class MasterWorkerIntegrationTest {
     @Test
     void testAllPrimeNumbers() throws Exception {
         ProcessBuilder workerPb = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker", "test"
         ).redirectErrorStream(true);
         Process worker = workerPb.start();
         Thread.sleep(1000);
 
         ProcessBuilder masterPb = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master", "test"
         );
         Process master = masterPb.start();
 
@@ -116,19 +116,19 @@ public class MasterWorkerIntegrationTest {
     @Test
     void testTwoWorkersAllPrimesLargeArray() throws Exception {
         ProcessBuilder workerPb1 = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker", "test"
         ).redirectErrorStream(true);
         Process worker1 = workerPb1.start();
 
         ProcessBuilder workerPb2 = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Worker", "test"
         ).redirectErrorStream(true);
         Process worker2 = workerPb2.start();
 
         Thread.sleep(1000);
 
         ProcessBuilder masterPb = new ProcessBuilder(
-                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master"
+                "java", "-cp", CLASS_PATH, "ru.nsu.lavitskaya.mr.Master", "test"
         );
         Process master = masterPb.start();
 
