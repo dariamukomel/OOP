@@ -1,5 +1,6 @@
 package ru.nsu.lavitskaya.mr;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
@@ -113,5 +114,43 @@ public class MasterWorkerIntegrationTest {
 
         String output = out.toString(StandardCharsets.UTF_8);
         assertTrue(output.contains("All numbers are prime"));
+    }
+
+    /**
+     * Verifies that Master throws IllegalStateException if no workers connect.
+     */
+    @Test
+    void testNoWorkersAvailable() {
+        Master master = new Master(1, true);
+        assertThrows(IllegalStateException.class, () -> master.execute(new int[]{2, 3, 5}));
+    }
+
+    /**
+     * Verifies that Master logs a WorkerDisconnectedException
+     * when a Worker disconnects during processing.
+     */
+    @Test
+    void testWorkerDisconnectDuringProcessing() throws Exception {
+        Thread workerThread = new Thread(() -> new Worker(true).start());
+        workerThread.setDaemon(true);
+        workerThread.start();
+        TimeUnit.SECONDS.sleep(1);
+
+        workerThread.interrupt();
+
+        ByteArrayOutputStream errOut = new ByteArrayOutputStream();
+        PrintStream psErr = new PrintStream(errOut);
+        PrintStream oldErr = System.err;
+        System.setErr(psErr);
+
+        try {
+            Master master = new Master(1, true);
+            master.execute(new int[]{4});
+        } finally {
+            System.setErr(oldErr);
+        }
+
+        String stderr = errOut.toString(StandardCharsets.UTF_8);
+        assertTrue(stderr.contains("Worker disconnected"));
     }
 }

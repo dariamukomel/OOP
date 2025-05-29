@@ -53,14 +53,15 @@ public class Master {
      * </ol>
      *
      * @param numbers array of integers to check for compositeness
-     * @throws IOException          if network discovery or communication fails
      * @throws InterruptedException if the current thread is interrupted while waiting
      */
-    public void execute(int[] numbers) throws IOException, InterruptedException {
-        List<String> workers = gateway.discover();
-        System.out.println("Discovered workers: " + workers);
-        if (workers.isEmpty()) {
-            throw new IllegalStateException("No workers available");
+    public void execute(int[] numbers) throws InterruptedException {
+        List<String> workers;
+        try {
+            workers = gateway.discover();
+            System.out.println("Discovered workers: " + workers);
+        } catch (IOException e) {
+            throw new IllegalStateException("No workers available", e);
         }
 
         freeWorkers.addAll(workers);
@@ -118,7 +119,8 @@ public class Master {
             try {
                 gateway.sendCommand(wid, "Terminate");
             } catch (IOException e) {
-                throw new RuntimeException("Failed send Terminate command", e);
+                System.err.println("Failed to send Terminate command to worker "
+                        + wid + ": " + e.getMessage());
             }
         }
 
