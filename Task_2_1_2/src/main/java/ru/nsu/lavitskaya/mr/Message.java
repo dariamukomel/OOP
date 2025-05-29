@@ -15,32 +15,43 @@ public class Message {
      * Enumeration of supported message types.
      */
     public enum Type {
+        /**
+         * Indicates a Task message with payload of integers.
+         */
         TASK,
+        /**
+         * Indicates a Terminate command without payload.
+         */
         TERMINATE,
+        /**
+         * Indicates an unrecognized or empty message.
+         */
         UNKNOWN
     }
 
     private final Type type;
     private final int[] numbers;
 
+    /**
+     * Private constructor used by the parser.
+     *
+     * @param type the message type
+     * @param numbers the integer payload (may be empty)
+     */
     private Message(Type type, int[] numbers) {
         this.type = type;
         this.numbers = numbers;
     }
 
     /**
-     * Parses a raw input string into a Message object.
+     * Parses a raw message string into a Message object.
      * <p>
-     * Expected input formats:
-     * <ul>
-     *   <li>"Task n1,n2,..."; TASK message with payload</li>
-     *   <li>"Terminate"; TERMINATE command</li>
-     *   <li>Any other input or blank; UNKNOWN type</li>
-     * </ul>
+     * Recognizes commands "Task", "Terminate", case-insensitive.
+     * Returns UNKNOWN for null, blank, or unrecognized inputs.
      * </p>
      *
-     * @param raw the raw message string
-     * @return a Message instance representing the parsed data
+     * @param raw the raw input string
+     * @return a Message instance with determined type and payload
      */
     public static Message parse(String raw) {
         if (raw == null || raw.isBlank()) {

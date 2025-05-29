@@ -29,6 +29,12 @@ public class Master {
     private final ExecutorService executor;
     private final CompletionService<TaskResult> cs;
 
+    /**
+     * Constructs a Master instance.
+     *
+     * @param poolSize the number of threads to use for task execution
+     * @param useLoopback if true, use the loopback interface for network operations
+     */
     public Master(int poolSize, boolean useLoopback) {
         this.executor = Executors.newFixedThreadPool(poolSize);
         this.cs = new ExecutorCompletionService<>(executor);
@@ -47,7 +53,7 @@ public class Master {
      * </ol>
      *
      * @param numbers array of integers to check for compositeness
-     * @throws IOException if network discovery or communication fails
+     * @throws IOException          if network discovery or communication fails
      * @throws InterruptedException if the current thread is interrupted while waiting
      */
     public void execute(int[] numbers) throws IOException, InterruptedException {
@@ -212,34 +218,60 @@ public class Master {
         }
     }
 
+    /**
+     * Application entry point.
+     * <p>
+     * Reads integers from standard input and starts the execution.
+     * Requires a pool size argument, and accepts optional 'test' flag to force loopback usage.
+     * </p>
+     *
+     * @param args command-line arguments: first is thread pool size, optionally include 'test' to
+     *     use loopback
+     */
     public static void main(String[] args) {
-        boolean useLoopback = Arrays.asList(args).contains("test");
+        if (args.length < 1) {
+            System.err.println("Usage: java Master <poolSize> [test]");
+            System.exit(1);
+        }
+        int poolSize;
+        try {
+            poolSize = Integer.parseInt(args[0]);
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid pool size: " + args[0]);
+            System.exit(2);
+            return;
+        }
+        boolean useLoopback = false;
+        if (args.length > 1) {
+            useLoopback = Arrays.asList(Arrays.copyOfRange(args, 1, args.length))
+                    .contains("test");
+        }
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter integers separated by spaces:");
         String line = scanner.nextLine().trim();
         if (line.isEmpty()) {
             System.err.println("No numbers provided. Exiting.");
-            System.exit(1);
+            System.exit(3);
         }
 
         int[] numbers;
         try {
-            numbers = Arrays.stream(line.split("\\s+"))
+            numbers = Arrays.stream(line.split("\s+"))
                     .mapToInt(Integer::parseInt)
                     .toArray();
         } catch (NumberFormatException e) {
             System.err.println("Invalid input. Please enter only integers.");
-            System.exit(2);
+            System.exit(4);
             return;
         }
 
-        Master master = new Master(numbers.length, useLoopback);
+        Master master = new Master(poolSize, useLoopback);
         try {
             master.execute(numbers);
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(3);
+            System.exit(5);
         }
     }
 }

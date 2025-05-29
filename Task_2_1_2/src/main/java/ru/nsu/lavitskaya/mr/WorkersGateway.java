@@ -37,10 +37,28 @@ public class WorkersGateway {
     private final ConcurrentMap<String, BufferedReader> readers = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, BufferedWriter> writers = new ConcurrentHashMap<>();
 
+    /**
+     * Constructs a WorkersGateway.
+     *
+     * @param useLoopback if true, use the loopback interface for network operations;
+     *                    otherwise use the default host interface
+     */
     public WorkersGateway(boolean useLoopback) {
         this.useLoopback = useLoopback;
     }
 
+    /**
+     * Discovers Worker instances by sending a multicast announcement
+     * and accepting TCP connections within a timeout.
+     * <p>
+     * Each Worker that receives the announcement should connect back via TCP.
+     * The method returns identifiers of all connected Worker sockets.
+     * </p>
+     *
+     * @return list of connected Worker identifiers (remote socket addresses)
+     * @throws IOException if network interfaces cannot be found, if no
+     *                     Workers connect within the timeout, or other I/O errors
+     */
     public List<String> discover() throws IOException {
         serverSocket = new ServerSocket(SERVER_PORT);
         serverSocket.setReuseAddress(true);

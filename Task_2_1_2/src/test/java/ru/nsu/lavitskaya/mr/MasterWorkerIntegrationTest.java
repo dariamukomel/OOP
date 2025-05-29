@@ -80,7 +80,6 @@ public class MasterWorkerIntegrationTest {
      */
     @Test
     void testTwoWorkersAllPrimesLargeArray() throws Exception {
-        // Запускаем два воркера
         Thread w1 = new Thread(() -> new Worker(true).start());
         Thread w2 = new Thread(() -> new Worker(true).start());
         w1.setDaemon(true);

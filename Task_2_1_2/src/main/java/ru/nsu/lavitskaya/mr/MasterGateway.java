@@ -30,15 +30,29 @@ public class MasterGateway {
     private BufferedReader reader;
     private BufferedWriter writer;
 
+    /**
+     * Constructs a MasterGateway.
+     *
+     * @param useLoopback if true, use the loopback interface for multicast and TCP
+     *                    operations; otherwise use the default host interface
+     */
     public MasterGateway(boolean useLoopback) {
         this.useLoopback = useLoopback;
     }
 
+    /**
+     * Discovers the Master via multicast announcement and establishes a TCP connection.
+     * <p>
+     * Joins the multicast group, waits for a packet in the format "host:port",
+     * then connects to the Master at that address via TCP.
+     * </p>
+     *
+     * @throws IOException if network I/O fails or announcement format is invalid
+     */
     public void connect() throws IOException {
         multicastSocket = new MulticastSocket(MULTICAST_PORT);
         InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
 
-        // выбираем интерфейс в зависимости от флага
         InetAddress addr = useLoopback
                 ? InetAddress.getLoopbackAddress()
                 : InetAddress.getLocalHost();
