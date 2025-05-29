@@ -2,16 +2,16 @@ package ru.nsu.lavitskaya.mr;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.MulticastSocket;
 import java.net.ServerSocket;
-import java.net.SocketTimeoutException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +25,17 @@ import java.util.concurrent.ConcurrentMap;
  * accepts incoming TCP connections, and allows sending tasks and commands
  * to individual Workers as well as receiving their responses.
  * </p>
+ * <p>
+ * When running under GitHub Actions (detected via GITHUB_ACTIONS env var),
+ * uses the loopback interface for multicast to ensure compatibility.
+ * </p>
  */
 public class WorkersGateway {
     private static final String MULTICAST_GROUP = "224.0.0.1";
     private static final int MULTICAST_PORT = 5000;
     private static final int SERVER_PORT = 6000;
+    private static final boolean CI =
+            "true".equalsIgnoreCase(System.getenv("GITHUB_ACTIONS"));
 
     private ServerSocket serverSocket;
     private final ConcurrentMap<String, Socket> workerSockets = new ConcurrentHashMap<>();
@@ -53,19 +59,23 @@ public class WorkersGateway {
         serverSocket = new ServerSocket(SERVER_PORT);
         serverSocket.setReuseAddress(true);
 
-        String localHost = InetAddress.getLocalHost().getHostAddress();
-        String announcement = localHost + ":" + SERVER_PORT;
+        InetAddress bindAddr = CI
+                ? InetAddress.getLoopbackAddress()
+                : InetAddress.getLocalHost();
+        String announcementAddr = bindAddr.getHostAddress();
+        String announcement = announcementAddr + ":" + SERVER_PORT;
         byte[] buf = announcement.getBytes(StandardCharsets.UTF_8);
 
         InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
         DatagramPacket packet = new DatagramPacket(buf, buf.length, group, MULTICAST_PORT);
 
-        NetworkInterface ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+        NetworkInterface ni = NetworkInterface.getByInetAddress(bindAddr);
         if (ni == null) {
-            throw new IOException("Не удалось найти сетевой интерфейс для локального адреса");
+            serverSocket.close();
+            throw new IOException("Failed to find network interface for address: " + bindAddr);
         }
 
-        try (MulticastSocket ms = new MulticastSocket()) {
+        try (MulticastSocket ms = new MulticastSocket(MULTICAST_PORT)) {
             ms.setNetworkInterface(ni);
             ms.send(packet);
         }
@@ -82,12 +92,10 @@ public class WorkersGateway {
                 String workerId = workerSocket.getRemoteSocketAddress().toString();
 
                 BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(workerSocket.getInputStream(),
-                                StandardCharsets.UTF_8)
+                        new InputStreamReader(workerSocket.getInputStream(), StandardCharsets.UTF_8)
                 );
                 BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(workerSocket.getOutputStream(),
-                                StandardCharsets.UTF_8)
+                        new OutputStreamWriter(workerSocket.getOutputStream(), StandardCharsets.UTF_8)
                 );
 
                 workerSockets.put(workerId, workerSocket);
@@ -102,7 +110,7 @@ public class WorkersGateway {
 
         if (connectedWorkers.isEmpty()) {
             serverSocket.close();
-            throw new IOException("Ни один воркер не подключился за 5 секунд");
+            throw new IOException("No workers connected within timeout: " + timeoutMillis + "ms");
         }
         return connectedWorkers;
     }
@@ -175,7 +183,7 @@ public class WorkersGateway {
      */
     public void close() {
         try {
-            serverSocket.close();
+            if (serverSocket != null) serverSocket.close();
         } catch (IOException ignored) {
         }
         workerSockets.values().forEach(s -> {
