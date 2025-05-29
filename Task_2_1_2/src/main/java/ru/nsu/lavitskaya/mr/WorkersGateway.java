@@ -27,8 +27,8 @@ import java.util.concurrent.ConcurrentMap;
  * </p>
  */
 public class WorkersGateway {
-    private static final String MULTICAST_GROUP = "224.0.0.1";
-    private static final int MULTICAST_PORT = 5000;
+    private static final String MULTICAST_GROUP = "230.0.0.1";
+    private static final int MULTICAST_PORT = 4446;
     private static final int SERVER_PORT = 6000;
 
     private final boolean useLoopback;

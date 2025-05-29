@@ -21,8 +21,8 @@ import java.nio.charset.StandardCharsets;
  * connection for message exchange.</p>
  */
 public class MasterGateway {
-    private static final String MULTICAST_GROUP = "224.0.0.1";
-    private static final int MULTICAST_PORT = 5000;
+    private static final String MULTICAST_GROUP = "230.0.0.1";
+    private static final int MULTICAST_PORT = 4446;
 
     private final boolean useLoopback;
     private MulticastSocket multicastSocket;
