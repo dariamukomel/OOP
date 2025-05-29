@@ -30,7 +30,7 @@ public class Worker {
         try {
             gateway.connect();
 
-            while (!Thread.currentThread().isInterrupted()) {
+            while (true) {
                 Message msg = gateway.getMessage();
                 switch (msg.getType()) {
                     case TASK:
