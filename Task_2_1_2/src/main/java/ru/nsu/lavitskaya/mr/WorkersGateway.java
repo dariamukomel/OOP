@@ -25,17 +25,14 @@ import java.util.concurrent.ConcurrentMap;
  * accepts incoming TCP connections, and allows sending tasks and commands
  * to individual Workers as well as receiving their responses.
  * </p>
- * <p>
- * When running under GitHub Actions (detected via GITHUB_ACTIONS env var),
- * uses the loopback interface for multicast to ensure compatibility.
- * </p>
  */
 public class WorkersGateway {
     private static final String MULTICAST_GROUP = "224.0.0.1";
     private static final int MULTICAST_PORT = 5000;
     private static final int SERVER_PORT = 6000;
     private static final boolean CI =
-            "true".equalsIgnoreCase(System.getenv("GITHUB_ACTIONS"));
+            "true".equalsIgnoreCase(System.getenv("GITHUB_ACTIONS")) ||
+                    "true".equalsIgnoreCase(System.getenv("CI"));
 
     private ServerSocket serverSocket;
     private final ConcurrentMap<String, Socket> workerSockets = new ConcurrentHashMap<>();
@@ -62,57 +59,51 @@ public class WorkersGateway {
         InetAddress bindAddr = CI
                 ? InetAddress.getLoopbackAddress()
                 : InetAddress.getLocalHost();
-        String announcementAddr = bindAddr.getHostAddress();
-        String announcement = announcementAddr + ":" + SERVER_PORT;
+        String announcement = bindAddr.getHostAddress() + ":" + SERVER_PORT;
         byte[] buf = announcement.getBytes(StandardCharsets.UTF_8);
+
+        MulticastSocket ms = new MulticastSocket();
+        NetworkInterface ni = NetworkInterface.getByInetAddress(bindAddr);
+        if (ni == null) {
+            ni = NetworkInterface.getByInetAddress(InetAddress.getLoopbackAddress());
+        }
+        if (ni == null) {
+            ms.close();
+            throw new IOException("No network interface for multicast on " + bindAddr);
+        }
+        ms.setNetworkInterface(ni);
 
         InetAddress group = InetAddress.getByName(MULTICAST_GROUP);
         DatagramPacket packet = new DatagramPacket(buf, buf.length, group, MULTICAST_PORT);
+        ms.send(packet);
+        ms.close();
 
-        NetworkInterface ni = NetworkInterface.getByInetAddress(bindAddr);
-        if (ni == null) {
-            serverSocket.close();
-            throw new IOException("Failed to find network interface for address: " + bindAddr);
-        }
-
-        try (MulticastSocket ms = new MulticastSocket(MULTICAST_PORT)) {
-            ms.setNetworkInterface(ni);
-            ms.send(packet);
-        }
-
-        long timeoutMillis = 5_000;
-        long endTime = System.currentTimeMillis() + timeoutMillis;
-        List<String> connectedWorkers = new ArrayList<>();
-
-        while (System.currentTimeMillis() < endTime) {
-            long remaining = endTime - System.currentTimeMillis();
-            serverSocket.setSoTimeout((int) remaining);
+        long end = System.currentTimeMillis() + 5_000;
+        List<String> connected = new ArrayList<>();
+        while (System.currentTimeMillis() < end) {
+            serverSocket.setSoTimeout((int) (end - System.currentTimeMillis()));
             try {
-                Socket workerSocket = serverSocket.accept();
-                String workerId = workerSocket.getRemoteSocketAddress().toString();
+                Socket s = serverSocket.accept();
+                String id = s.getRemoteSocketAddress().toString();
+                BufferedReader r = new BufferedReader(new InputStreamReader(
+                        s.getInputStream(), StandardCharsets.UTF_8));
+                BufferedWriter w = new BufferedWriter(new OutputStreamWriter(
+                        s.getOutputStream(), StandardCharsets.UTF_8));
 
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(workerSocket.getInputStream(), StandardCharsets.UTF_8)
-                );
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(workerSocket.getOutputStream(), StandardCharsets.UTF_8)
-                );
-
-                workerSockets.put(workerId, workerSocket);
-                readers.put(workerId, reader);
-                writers.put(workerId, writer);
-                connectedWorkers.add(workerId);
-
-            } catch (SocketTimeoutException e) {
+                workerSockets.put(id, s);
+                readers.put(id, r);
+                writers.put(id, w);
+                connected.add(id);
+            } catch (SocketTimeoutException ex) {
                 break;
             }
         }
 
-        if (connectedWorkers.isEmpty()) {
+        if (connected.isEmpty()) {
             serverSocket.close();
-            throw new IOException("No workers connected within timeout: " + timeoutMillis + "ms");
+            throw new IOException("No workers connected within timeout");
         }
-        return connectedWorkers;
+        return connected;
     }
 
     /**
