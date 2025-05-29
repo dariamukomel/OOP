@@ -48,46 +48,107 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Closes all network resources: multicast socket, TCP socket, reader, and writer.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Closes the server socket and all connected Worker sockets.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#connect()" class="member-name-link">connect()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Discovers the Master via multicast announcement and establishes a TCP connection.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/PrimeChecker.html#containsComposite(int%5B%5D)" class="member-name-link">containsComposite(int[])</a> - Static method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/PrimeChecker.html" title="class in ru.nsu.lavitskaya.mr">PrimeChecker</a></dt>
+<dd>
+<div class="block">Checks whether the given array of integers contains any composite numbers.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#discover()" class="member-name-link">discover()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Discovers Worker instances by sending a multicast announcement
+ and accepting TCP connections within a timeout.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/Master.html#execute(int%5B%5D)" class="member-name-link">execute(int[])</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Master.html" title="class in ru.nsu.lavitskaya.mr">Master</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Executes the distributed prime checking algorithm on the provided numbers.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#getAnswer(java.lang.String)" class="member-name-link">getAnswer(String)</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Reads the next line of response from the specified Worker.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#getMessage()" class="member-name-link">getMessage()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Reads the next message from the Master and parses it into a Message object.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.html#getNumbers()" class="member-name-link">getNumbers()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.html" title="class in ru.nsu.lavitskaya.mr">Message</a></dt>
+<dd>
+<div class="block">Returns a copy of the integer payload for TASK messages.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.html#getType()" class="member-name-link">getType()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.html" title="class in ru.nsu.lavitskaya.mr">Message</a></dt>
+<dd>
+<div class="block">Returns the type of this message.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/Master.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Master.html" title="class in ru.nsu.lavitskaya.mr">Master</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Application entry point.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/Worker.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Application entry point for the worker.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/Master.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">Master</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/mr/Master.html#%3Cinit%3E(int)" class="member-name-link">Master(int)</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Master.html" title="class in ru.nsu.lavitskaya.mr">Master</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Master process that distributes arrays of integers to multiple Worker instances,
+ collects their responses, and determines if any composite numbers are present.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Master.html#%3Cinit%3E(int,boolean)" class="member-name-link">Master(int, boolean)</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Master.html" title="class in ru.nsu.lavitskaya.mr">Master</a></dt>
+<dd>
+<div class="block">Constructs a Master instance.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#%3Cinit%3E()" class="member-name-link">MasterGateway()</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
+<dd>
+<div class="block">MasterGateway handles communication with the Master server.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#%3Cinit%3E(boolean)" class="member-name-link">MasterGateway(boolean)</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
+<dd>
+<div class="block">Constructs a MasterGateway.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">Message</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
+<dd>
+<div class="block">Represents a parsed message received from the MasterGateway.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html" class="type-name-link" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a> - Enum Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
+<dd>
+<div class="block">Enumeration of supported message types.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:P">P</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/mr/Message.html#parse(java.lang.String)" class="member-name-link">parse(String)</a> - Static method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.html" title="class in ru.nsu.lavitskaya.mr">Message</a></dt>
+<dd>
+<div class="block">Parses a raw message string into a Message object.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/PrimeChecker.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">PrimeChecker</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
+<dd>
+<div class="block">Class for prime number checks.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/PrimeChecker.html#%3Cinit%3E()" class="member-name-link">PrimeChecker()</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/PrimeChecker.html" title="class in ru.nsu.lavitskaya.mr">PrimeChecker</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
@@ -98,26 +159,76 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/MasterGateway.html#sendAnswer(java.lang.String)" class="member-name-link">sendAnswer(String)</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends an answer string to the Master over the established TCP connection.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#sendCommand(java.lang.String,java.lang.String)" class="member-name-link">sendCommand(String, String)</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends an arbitrary command string to the specified Worker.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#sendTasks(java.lang.String,int%5B%5D)" class="member-name-link">sendTasks(String, int[])</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sends a TASK message with the given numbers to the specified Worker.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/Worker.html#start()" class="member-name-link">start()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></dt>
+<dd>
+<div class="block">Starts the worker's main loop: connects to the master,
+ processes incoming TASK and TERMINATE messages, and sends responses.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:T">T</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html#TASK" class="member-name-link">TASK</a> - Enum constant in enum class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></dt>
+<dd>
+<div class="block">Indicates a Task message with payload of integers.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html#TERMINATE" class="member-name-link">TERMINATE</a> - Enum constant in enum class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></dt>
+<dd>
+<div class="block">Indicates a Terminate command without payload.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.html" title="class in ru.nsu.lavitskaya.mr">Message</a></dt>
 <dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:U">U</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html#UNKNOWN" class="member-name-link">UNKNOWN</a> - Enum constant in enum class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></dt>
+<dd>
+<div class="block">Indicates an unrecognized or empty message.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:V">V</h2>
+<dl class="index">
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Message.Type.html#values()" class="member-name-link">values()</a> - Static method in enum class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:W">W</h2>
 <dl class="index">
 <dt><a href="ru/nsu/lavitskaya/mr/Worker.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">Worker</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/mr/Worker.html#%3Cinit%3E()" class="member-name-link">Worker()</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Worker process that connects to the Master via multicast discovery,
+ receives tasks, checks for composite numbers, and sends back answers.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/Worker.html#%3Cinit%3E(boolean)" class="member-name-link">Worker(boolean)</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></dt>
+<dd>
+<div class="block">Constructs a Worker instance.</div>
+</dd>
 <dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" class="type-name-link" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a> - Class in <a href="ru/nsu/lavitskaya/mr/package-summary.html">ru.nsu.lavitskaya.mr</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#%3Cinit%3E()" class="member-name-link">WorkersGateway()</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Manages communication with multiple Worker instances.</div>
+</dd>
+<dt><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html#%3Cinit%3E(boolean)" class="member-name-link">WorkersGateway(boolean)</a> - Constructor for class ru.nsu.lavitskaya.mr.<a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></dt>
+<dd>
+<div class="block">Constructs a WorkersGateway.</div>
+</dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>

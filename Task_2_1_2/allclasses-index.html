@@ -49,18 +49,42 @@ loadScripts(document, 'script');</script>
 <h1 title="All Classes and Interfaces" class="title">All Classes and Interfaces</h1>
 </div>
 <div id="all-classes-table">
-<div class="caption"><span>Classes</span></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab3" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab3', 2)" class="table-tab">Enum Classes</button></div>
+<div id="all-classes-table.tabpanel" role="tabpanel" aria-labelledby="all-classes-table-tab0">
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/Master.html" title="class in ru.nsu.lavitskaya.mr">Master</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Master process that distributes arrays of integers to multiple Worker instances,
+ collects their responses, and determines if any composite numbers are present.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/MasterGateway.html" title="class in ru.nsu.lavitskaya.mr">MasterGateway</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">MasterGateway handles communication with the Master server.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/Message.html" title="class in ru.nsu.lavitskaya.mr">Message</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Represents a parsed message received from the MasterGateway.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="ru/nsu/lavitskaya/mr/Message.Type.html" title="enum class in ru.nsu.lavitskaya.mr">Message.Type</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">
+<div class="block">Enumeration of supported message types.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/PrimeChecker.html" title="class in ru.nsu.lavitskaya.mr">PrimeChecker</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Class for prime number checks.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/Worker.html" title="class in ru.nsu.lavitskaya.mr">Worker</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Worker process that connects to the Master via multicast discovery,
+ receives tasks, checks for composite numbers, and sends back answers.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/lavitskaya/mr/WorkersGateway.html" title="class in ru.nsu.lavitskaya.mr">WorkersGateway</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Manages communication with multiple Worker instances.</div>
+</div>
+</div>
 </div>
 </div>
 </main>
